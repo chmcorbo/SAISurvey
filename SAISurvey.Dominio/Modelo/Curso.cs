@@ -6,10 +6,9 @@ using SAISurvey.Dominio.Excecoes;
 
 namespace SAISurvey.Dominio.Modelo
 {
-    public class Curso : EntidadeBase
+    public class Curso : FormatoCursoPadrao
     {
         private IList<Bloco> _blocos;
-        public virtual String Descricao { get; set; }
 
         public virtual IList<Bloco> Blocos
         {
@@ -34,7 +33,7 @@ namespace SAISurvey.Dominio.Modelo
         {
             if (pBloco.Curso != this)
             {
-                throw new ExBlocoInexistentenoCurso("O módulo inserido não tem referência do blobo em questão");
+                throw new ExBlocoNaoRefereciadoNoCurso("O módulo inserido não tem referência do blobo em questão");
             }
             _blocos.Add(pBloco);
         }

@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
-using SAISurvey.Persistence.nHibernate.Repositorio;
+using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
 {

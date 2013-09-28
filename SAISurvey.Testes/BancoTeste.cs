@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SAISurvey.Persistence.nHibernate.Repositorio;
+using SAISurvey.Persistence.nHibernate.Repositorios;
 using NUnit.Framework;
 
 namespace SAISurvey.Testes.Repositorios

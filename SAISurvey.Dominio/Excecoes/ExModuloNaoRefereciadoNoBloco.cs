@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SAISurvey.Dominio.Excecoes
 {
-    public class ExModuloNaoRefereciadoNoBloco:  Exception
+    public class ExBlocoNaoRefereciadoNoCurso:  Exception
     {
-        public ExModuloNaoRefereciadoNoBloco(String Message) { }
+        public ExBlocoNaoRefereciadoNoCurso(String Message) { }
     }
 }

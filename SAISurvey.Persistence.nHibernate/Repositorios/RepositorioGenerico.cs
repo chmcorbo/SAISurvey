@@ -6,7 +6,7 @@ using NHibernate;
 using SAISurvey.Dominio;
 using SAISurvey.Dominio.Repositorios;
 
-namespace SAISurvey.Persistence.nHibernate.Repositorio
+namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioGenerico<T> : IRepositorioGenerico<T> where T: EntidadeBase 
     {

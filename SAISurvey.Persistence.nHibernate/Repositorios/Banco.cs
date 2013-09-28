@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NHibernate;
 
-namespace SAISurvey.Persistence.nHibernate.Repositorio
+namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class Banco
     {

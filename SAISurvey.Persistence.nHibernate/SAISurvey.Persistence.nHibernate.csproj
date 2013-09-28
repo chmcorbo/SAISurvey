@@ -60,6 +60,8 @@
     <Compile Include="Mapeamentos\RespostaMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Banco.cs" />
+    <Compile Include="Repositorios\RepositorioCurso.cs" />
+    <Compile Include="Repositorios\RepositorioModulo.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,10 +5,9 @@ using System.Text;
 
 namespace SAISurvey.Dominio.Modelo
 {
-    public class Modulo : EntidadeBase
+    public class Modulo : FormatoCursoPadrao
     {
         public virtual Bloco Bloco { get; set; }
-        public virtual String Descricao { get; set; }
         public virtual String Sala { get; set; }
         public virtual DateTime Data_Inicio { get; set; }
         public virtual DateTime Data_Fim { get; set; }
