@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Dominio", "SAISurvey.Dominio\SAISurvey.Dominio.csproj", "{54C010CF-77D4-43A9-AC35-88C27FCDDD24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Testes", "SAISurvey.Testes\SAISurvey.Testes.csproj", "{61135D32-0C26-45B0-B93F-3BF6FEBB33B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Persistence.nHibernate", "SAISurvey.Persistence.nHibernate\SAISurvey.Persistence.nHibernate.csproj", "{1EB4E285-B1E2-42E7-941A-1019F86E1938}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54C010CF-77D4-43A9-AC35-88C27FCDDD24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C010CF-77D4-43A9-AC35-88C27FCDDD24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C010CF-77D4-43A9-AC35-88C27FCDDD24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C010CF-77D4-43A9-AC35-88C27FCDDD24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61135D32-0C26-45B0-B93F-3BF6FEBB33B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61135D32-0C26-45B0-B93F-3BF6FEBB33B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61135D32-0C26-45B0-B93F-3BF6FEBB33B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61135D32-0C26-45B0-B93F-3BF6FEBB33B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB4E285-B1E2-42E7-941A-1019F86E1938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB4E285-B1E2-42E7-941A-1019F86E1938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB4E285-B1E2-42E7-941A-1019F86E1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB4E285-B1E2-42E7-941A-1019F86E1938}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
