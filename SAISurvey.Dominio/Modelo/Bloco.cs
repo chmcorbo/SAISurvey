@@ -6,9 +6,10 @@ using SAISurvey.Dominio.Excecoes;
 
 namespace SAISurvey.Dominio.Modelo
 {
-    public class Bloco : FormatoCursoPadrao
+    public class Bloco : EntidadeBase
     {
         public virtual Curso Curso { get; set; }
+        public virtual String Descricao { get; set; }
 
         public Bloco()
         {

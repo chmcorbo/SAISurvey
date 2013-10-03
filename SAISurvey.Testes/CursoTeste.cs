@@ -54,7 +54,7 @@ namespace SAISurvey.Testes
         }
 
         [Test]
-        public void d_Atualizar_Curso()
+        public void c_Atualizar_Curso()
         {
             objeto = repositorio.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             
@@ -71,14 +71,14 @@ namespace SAISurvey.Testes
         }
 
         [Test]
-        public void e_Excluir_Curso()
+        public void d_Excluir_Curso()
         {
             objeto=Incluir_Curso_Com_Bloco();
             repositorio.Excluir(objeto);
         }
 
         [Test]
-        public void f_Atualizar_Bloco_de_Curso()
+        public void e_Atualizar_Bloco_de_Curso()
         {
             objeto = repositorio.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             if (objeto == null)
@@ -98,7 +98,7 @@ namespace SAISurvey.Testes
         }
 
         [Test]
-        public void g_Excluir_Bloco_de_Curso()
+        public void f_Excluir_Bloco_de_Curso()
         {
             objeto = repositorio.ListarTudo().Where(c => c.Descricao == "MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             if (objeto == null)

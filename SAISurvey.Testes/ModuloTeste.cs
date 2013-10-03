@@ -23,7 +23,7 @@ namespace SAISurvey.Testes
 
         public Curso Incluir_Curso()
         {
-            RepositorioCurso repositorioCurso = new RepositorioCurso()
+            RepositorioCurso repositorioCurso = new RepositorioCurso();
             Curso curso = new Curso() { Descricao = "MIT em Engenharia de Software com .NET" };
             Bloco bloco = curso.AdicionarBloco("Engenharia de software");
             bloco = curso.AdicionarBloco("Desenvolvimento Orientado a Objetos com .NET");
@@ -36,7 +36,13 @@ namespace SAISurvey.Testes
         public void Incluir_Modulo()
         {
             Curso curso = new Curso() { Descricao = "MIT em Engenharia de Software com .NET" };
-            Bloco bloco = objeto.AdicionarBloco("Engenharia de software");
+
+            Bloco bloco = curso.AdicionarBloco("Engenharia de software");
+
+            objeto = new Modulo(bloco);
+            objeto.
+
+
             bloco.AdicionarModulo("Engenharia de Software aplicada");
             bloco.AdicionarModulo("Processos de Desenvolvimento de Software:");
             bloco.AdicionarModulo("Métricas de Desenvolvimento de Software:");

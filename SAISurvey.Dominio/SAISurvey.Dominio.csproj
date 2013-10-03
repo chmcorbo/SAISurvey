@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="EntidadeBase.cs" />
     <Compile Include="Excecoes\ExModuloNaoRefereciadoNoBloco.cs" />
-    <Compile Include="FormatoCursoPadrao.cs" />
     <Compile Include="Modelo\Aluno.cs" />
     <Compile Include="Modelo\Bloco.cs" />
     <Compile Include="Modelo\Curso.cs" />

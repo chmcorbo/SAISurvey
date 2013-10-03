@@ -6,26 +6,22 @@ using SAISurvey.Dominio.Excecoes;
 
 namespace SAISurvey.Dominio.Modelo
 {
-    public class Curso : FormatoCursoPadrao
+    public class Curso : EntidadeBase
     {
-        private IList<Bloco> _blocos;
 
-        public virtual IList<Bloco> Blocos
-        {
-            get { return _blocos; }
-            protected set { _blocos = value; }
-        }
+        public virtual String Descricao { get; set; }
+        public virtual IList<Bloco> Blocos { get; set; }
         
         public Curso()
         {
-            _blocos = new List<Bloco>();
+            Blocos = new List<Bloco>();
         }
 
         public virtual Bloco AdicionarBloco(String pDescricao)
         {
             // Implementar teste unitário
             Bloco bloco = new Bloco(this) { Descricao = pDescricao };
-            _blocos.Add(bloco);
+            Blocos.Add(bloco);
             return bloco;
         }
 
@@ -33,17 +29,17 @@ namespace SAISurvey.Dominio.Modelo
         {
             if (pBloco.Curso != this)
             {
-                throw new ExBlocoNaoRefereciadoNoCurso("O módulo inserido não tem referência do blobo em questão");
+                throw new ExBlocoNaoRefereciadoNoCurso("O bloco inserido não tem referência do curso em questão");
             }
-            _blocos.Add(pBloco);
+            Blocos.Add(pBloco);
         }
 
         public virtual void ExcluirBloco(String pDescricao)
         {
             // Implementar teste unitário
-            Bloco bloco = _blocos.Where(m => m.Descricao == pDescricao).FirstOrDefault();
+            Bloco bloco = Blocos.Where(m => m.Descricao == pDescricao).FirstOrDefault();
             if (bloco != null)
-                _blocos.Remove(bloco);
+                Blocos.Remove(bloco);
         }
 
     }
