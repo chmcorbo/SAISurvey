@@ -19,16 +19,6 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
                 OrderBy(c => c.Descricao).Asc;
             return queryOver.List<Curso>();
         }
-
-        public IList<Bloco> ObterBlocos(Curso pCurso, string pDescricaoBloco)
-        {
-            IQueryOver<Bloco> queryOver = Session.QueryOver<Bloco>().
-                Where(c => c.Curso.ID==pCurso.ID).
-                WhereRestrictionOn(c => c.Descricao).
-                IsLike("%" + pDescricaoBloco + "%").
-                OrderBy(c => c.Descricao).Asc;
-            return queryOver.List<Bloco>();
-        }
         
         public IList<Bloco> ObterBlocos(string pDescricaoBloco)
         {

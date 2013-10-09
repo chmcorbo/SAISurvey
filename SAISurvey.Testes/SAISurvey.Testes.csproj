@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestaoTeste.cs" />
     <Compile Include="RespostaTeste.cs" />
+    <Compile Include="TurmaTeste.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

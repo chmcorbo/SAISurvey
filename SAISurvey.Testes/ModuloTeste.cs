@@ -13,8 +13,8 @@ namespace SAISurvey.Testes
     public class ModuloTeste
     {
         RepositorioModulo repositorio;
-        Modulo objeto;
-        Modulo objetoRecuperado;
+        Modulo objeto = null;
+        Modulo objetoRecuperado = null;
 
         public ModuloTeste()
         {
@@ -35,7 +35,7 @@ namespace SAISurvey.Testes
 
         public void Incluir_Modulo()
         {
-            Curso curso = new Curso() { Descricao = "MIT em Engenharia de Software com .NET" };
+            /*Curso curso = new Curso() { Descricao = "MIT em Engenharia de Software com .NET" };
 
             Bloco bloco = curso.AdicionarBloco("Engenharia de software");
 
@@ -64,13 +64,13 @@ namespace SAISurvey.Testes
             bloco.AdicionarModulo("TCC");
 
             repositorio.Adicionar(objeto);
-            return objeto;
+            return objeto;*/
 
         }
 
         public void a_Inclusao_Modulo()
         {
-            Curso curso;
+            /*Curso curso;
             RepositorioCurso repositorioCurso = new RepositorioCurso();
 
             curso = repositorioCurso.ObterPorDescricao("MIT em Engenharia de Software com .NET").FirstOrDefault();
@@ -105,7 +105,7 @@ namespace SAISurvey.Testes
             bloco.AdicionarModulo("TCC");
 
             repositorio.Adicionar(objeto);
-
+            */
 
         }
 

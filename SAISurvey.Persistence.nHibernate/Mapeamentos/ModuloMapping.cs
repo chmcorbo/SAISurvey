@@ -13,13 +13,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
         {
             Id(m => m.ID).Index("PK_MODULO").Length(40);
             Map(m => m.Descricao).Length(70);
-            Map(m => m.Sala).Length(5);
-            Map(m => m.Data_Inicio);
-            Map(m => m.Data_Fim);
-            References(m => m.Professor);
             References(m => m.Bloco).Not.Nullable();
-            HasMany(m => m.Alunos);
-            
             Table("TB_MODULO");
         }
     }

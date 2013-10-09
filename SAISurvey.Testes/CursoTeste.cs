@@ -74,7 +74,11 @@ namespace SAISurvey.Testes
         public void d_Excluir_Curso()
         {
             objeto=Incluir_Curso_Com_Bloco();
+            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            Assert.AreSame(objeto, objetoRecuperado);
             repositorio.Excluir(objeto);
+            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            Assert.Null(objetoRecuperado);
         }
 
         [Test]

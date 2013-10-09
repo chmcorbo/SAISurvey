@@ -12,13 +12,13 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class ProfessorTeste
     {
-        IRepositorioGenerico<Professor> repositorio;
+        IRepositorioProfessor repositorio;
         Professor objeto;
         Professor objetoRecuperado;
 
         public ProfessorTeste()
         {
-            repositorio = new RepositorioGenerico<Professor>();
+            repositorio = new RepositorioProfessor();
         }
 
         public void IncluirProfessores()
@@ -26,13 +26,12 @@ namespace SAISurvey.Testes
             objeto = new Professor();
             objeto.Matricula = "100001";
             objeto.Nome = "Ubirajara Júnior";
-            repositorio.Atualizar(objeto);
+            repositorio.Adicionar(objeto);
 
             objeto = new Professor();
             objeto.Matricula = "100002";
             objeto.Nome = "Carlos Pedro Muniz";
             repositorio.Atualizar(objeto);
-
         }
 
         [Test]

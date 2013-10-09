@@ -52,17 +52,24 @@
     <Compile Include="FluentSessionFactory.cs" />
     <Compile Include="HybridSessionBuilder.cs" />
     <Compile Include="Mapeamentos\AlunoMapping.cs" />
+    <Compile Include="Mapeamentos\AvaliacaoAlunoMapping.cs" />
+    <Compile Include="Mapeamentos\AvaliacaoMapping.cs" />
     <Compile Include="Mapeamentos\BlocoMapping.cs" />
     <Compile Include="Mapeamentos\CursoMapping.cs" />
     <Compile Include="Mapeamentos\ModuloMapping.cs" />
     <Compile Include="Mapeamentos\ProfessorMapping.cs" />
     <Compile Include="Mapeamentos\QuestaoMapping.cs" />
     <Compile Include="Mapeamentos\RespostaMapping.cs" />
+    <Compile Include="Mapeamentos\RespostaQuestaoMapping.cs" />
+    <Compile Include="Mapeamentos\TurmaMapping.cs" />
+    <Compile Include="Mapeamentos\UsuarioMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Banco.cs" />
+    <Compile Include="Repositorios\RepositorioAluno.cs" />
     <Compile Include="Repositorios\RepositorioCurso.cs" />
     <Compile Include="Repositorios\RepositorioModulo.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
+    <Compile Include="Repositorios\RepositorioProfessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
