@@ -103,6 +103,14 @@ namespace SAISurvey.Testes
             return turma;
         }
 
+        public void Incluir_Turmas()
+        {
+            Incluir_Turma_Sem_Professor_Sem_Aluno();
+            Incluir_Turma_Com_Professor_Sem_Aluno();
+            Incluir_Turma_Sem_Professor_Com_Aluno();
+            Incluir_Turma_Com_Professor_Com_Aluno();
+        }
+
         [Test]
         public void a_Incluir_Turma_Sem_Professor_Sem_Aluno()
         {
