@@ -70,13 +70,14 @@
     <Compile Include="Repositorios\RepositorioCurso.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
     <Compile Include="Repositorios\RepositorioProfessor.cs" />
+    <Compile Include="Repositorios\RepositorioUsuario.cs" />
+    <Compile Include="Servicos\ServValidadorAcessoUsuario.cs" />
+    <Compile Include="Servicos\ServValidadorGravacaoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Servicos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SAISurvey.Dominio\SAISurvey.Dominio.csproj">
       <Project>{54C010CF-77D4-43A9-AC35-88C27FCDDD24}</Project>

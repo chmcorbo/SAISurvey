@@ -41,7 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntidadeBase.cs" />
+    <Compile Include="Excecoes\ExLoginExistenteUsuario.cs" />
+    <Compile Include="Excecoes\ExLoginNaoInformado.cs" />
     <Compile Include="Excecoes\ExModuloNaoRefereciadoNoBloco.cs" />
+    <Compile Include="Excecoes\ExSenhaNaoInformada.cs" />
+    <Compile Include="Excecoes\ExSenhaUsuarioInvalida.cs" />
+    <Compile Include="Excecoes\ExUsuarioInvalido.cs" />
+    <Compile Include="Excecoes\ExUsuarioNaoAdministrador.cs" />
     <Compile Include="Modelo\Aluno.cs" />
     <Compile Include="Modelo\Avaliacao.cs" />
     <Compile Include="Modelo\AvaliacaoAluno.cs" />
@@ -60,10 +66,12 @@
     <Compile Include="Repositorios\IRepositorioCurso.cs" />
     <Compile Include="Repositorios\IRepositorioGenerico.cs" />
     <Compile Include="Repositorios\IRepositorioProfessor.cs" />
+    <Compile Include="Repositorios\IRepositorioUsuario.cs" />
+    <Compile Include="Servicos\IServValidadorAcessoUsuario.cs" />
+    <Compile Include="Servicos\IServValidadorGravacaoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enumerados\" />
-    <Folder Include="Servicos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

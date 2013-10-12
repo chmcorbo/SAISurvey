@@ -52,6 +52,7 @@
     <Compile Include="QuestaoTeste.cs" />
     <Compile Include="RespostaTeste.cs" />
     <Compile Include="TurmaTeste.cs" />
+    <Compile Include="UsuarioTeste.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
