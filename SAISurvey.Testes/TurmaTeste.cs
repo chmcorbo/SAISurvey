@@ -29,7 +29,6 @@ namespace SAISurvey.Testes
         private Turma Incluir_Turma_Sem_Professor_Sem_Aluno()
         {
             Turma turma = new Turma();
-            turma.Descricao = "Quinta-feiras à noite";
             turma.Sala = "101";
             turma.Data_Inicio = DateTime.Parse("29/09/2013");
             turma.Data_Fim = DateTime.Parse("21/11/2013");
@@ -47,7 +46,6 @@ namespace SAISurvey.Testes
             }
 
             Turma turma = new Turma();
-            turma.Descricao = "Segundas-feiras pela manhã";
             turma.Sala = "102";
             turma.Data_Inicio = DateTime.Parse("02/09/2013");
             turma.Data_Fim = DateTime.Parse("25/11/2013");
@@ -66,7 +64,6 @@ namespace SAISurvey.Testes
             }
 
             Turma turma = new Turma();
-            turma.Descricao = "Quartas-feiras à tarde";
             turma.Sala = "103";
             turma.Data_Inicio = DateTime.Parse("28/08/2013");
             turma.Data_Fim = DateTime.Parse("21/11/2013");
@@ -94,7 +91,6 @@ namespace SAISurvey.Testes
             }
 
             Turma turma = new Turma();
-            turma.Descricao = "Quartas-feiras à tarde";
             turma.Sala = "104";
             turma.Data_Inicio = DateTime.Parse("28/08/2013");
             turma.Data_Fim = DateTime.Parse("21/11/2013");
@@ -105,10 +101,14 @@ namespace SAISurvey.Testes
 
         public void Incluir_Turmas()
         {
-            Incluir_Turma_Sem_Professor_Sem_Aluno();
-            Incluir_Turma_Com_Professor_Sem_Aluno();
-            Incluir_Turma_Sem_Professor_Com_Aluno();
-            Incluir_Turma_Com_Professor_Com_Aluno();
+            Turma turma = Incluir_Turma_Sem_Professor_Sem_Aluno();
+            repositorio.Adicionar(turma);
+            turma = Incluir_Turma_Com_Professor_Sem_Aluno();
+            repositorio.Adicionar(turma);
+            turma = Incluir_Turma_Sem_Professor_Com_Aluno();
+            repositorio.Adicionar(turma);
+            turma = Incluir_Turma_Com_Professor_Com_Aluno();
+            repositorio.Adicionar(turma);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace SAISurvey.Testes
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
             Professor professor = repProfessor.ObterPorMatricula("100001");
-            Assert.AreSame(professor, objeto.Professor);
+            Assert.AreEqual(professor.ID, objeto.Professor.ID);
         }
 
         [Test]
@@ -151,10 +151,34 @@ namespace SAISurvey.Testes
             Assert.AreSame(objeto, objetoRecuperado);
             
             Professor professor = repProfessor.ObterPorMatricula("100001");
-            Assert.AreSame(professor, objetoRecuperado.Professor);
+            Assert.AreEqual(professor.ID, objetoRecuperado.Professor.ID);
 
             Aluno aluno = repAluno.ObterPorMatricula("900001");
             Assert.AreEqual(aluno.ID, objetoRecuperado.Alunos[0].ID);
         }
+
+        [Test]
+        public void e_Alterar_Turma()
+        {
+            objeto = Incluir_Turma_Com_Professor_Com_Aluno();
+            objeto.Data_Inicio = DateTime.Parse("14/01/2014");
+            objeto.Data_Fim = DateTime.Parse("25/03/2014");
+            objeto.Professor = null;
+            Aluno aluno = objeto.Alunos.Where(a => a.Matricula=="0002").FirstOrDefault();
+            objeto.Alunos.Remove(aluno);
+            repositorio.Atualizar(objeto);
+            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            Assert.AreSame(objeto, objetoRecuperado);
+        }
+
+        [Test]
+        public void f_Excluir_Turma()
+        {
+            objeto = Incluir_Turma_Com_Professor_Com_Aluno();
+            repositorio.Excluir(objeto);
+            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            Assert.IsNull(objetoRecuperado);
+        }
+
     }
 }

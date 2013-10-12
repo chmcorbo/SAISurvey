@@ -68,7 +68,6 @@
     <Compile Include="Repositorios\RepositorioAluno.cs" />
     <Compile Include="Repositorios\RepositorioAvaliacao.cs" />
     <Compile Include="Repositorios\RepositorioCurso.cs" />
-    <Compile Include="Repositorios\RepositorioModulo.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
     <Compile Include="Repositorios\RepositorioProfessor.cs" />
   </ItemGroup>

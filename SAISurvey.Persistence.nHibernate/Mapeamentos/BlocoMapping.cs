@@ -15,6 +15,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
             Id(b => b.ID).Index("PK_BLOCO").Length(40);
             Map(b => b.Descricao).Length(70);
             References(b => b.Curso);
+            HasMany(b => b.Modulos).Cascade.All();
             Table("TB_BLOCO");
         }
     }

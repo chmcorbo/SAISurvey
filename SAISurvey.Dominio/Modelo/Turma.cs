@@ -7,7 +7,7 @@ namespace SAISurvey.Dominio.Modelo
 {
     public class Turma : EntidadeBase
     {
-        public virtual String Descricao { get; set; }
+        public virtual Curso Curso { get; set; }
         public virtual String Sala { get; set; }
         public virtual DateTime? Data_Inicio { get; set; }
         public virtual DateTime? Data_Fim { get; set; }
@@ -15,9 +15,12 @@ namespace SAISurvey.Dominio.Modelo
         public virtual IList<Aluno> Alunos { get; set; }
         public Turma()
         {
-            Professor = new Professor();
             Alunos = new List<Aluno>();
-            //Modulo = new Modulo();
+        }
+
+        public Turma(Curso pCurso)
+        {
+            Curso = pCurso;
         }
     }
 }

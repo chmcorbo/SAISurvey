@@ -14,7 +14,7 @@ namespace SAISurvey.Dominio.Modelo
         public virtual DateTime? Data_Fim { get; set; }
         public Avaliacao()
         {
-            Turma = new Turma();
+            //Turma = new Turma();
             Questoes = new List<Questao>();
         }
  
