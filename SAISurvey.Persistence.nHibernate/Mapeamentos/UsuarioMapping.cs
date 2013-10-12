@@ -14,7 +14,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
             Id(u => u.ID).Index("PK_USUARIO").Length(40);
             Map(u => u.Login).Length(20);
             Map(u => u.Nome).Length(50);
-            Map(u => u.Senha).Length(10);
+            Map(u => u.Senha).Length(20);
             Map(u => u.Administrador).Length(1).Not.Nullable();
             Table("TB_USUARIO");
         }

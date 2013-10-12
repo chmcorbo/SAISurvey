@@ -54,6 +54,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Pages\CadastroResposta.aspx" />
+    <Content Include="Pages\CadastroUsuario.aspx" />
     <Content Include="Pages\ConsQuestoes.aspx" />
     <Content Include="Pages\CadastroQuestao.aspx" />
     <Content Include="Pages\ConsRespostas.aspx" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="Pages\CadastroResposta.aspx.designer.cs">
       <DependentUpon>CadastroResposta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CadastroUsuario.aspx.cs">
+      <DependentUpon>CadastroUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CadastroUsuario.aspx.designer.cs">
+      <DependentUpon>CadastroUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ConsQuestoes.aspx.cs">
       <DependentUpon>ConsQuestoes.aspx</DependentUpon>
