@@ -13,13 +13,13 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class QuestaoTeste
     {
-        IRepositorioGenerico<Questao> repositorio;
+        IRepositorioQuestao repositorio;
         Questao questao;
         Questao questaoRecuperada;
 
         public QuestaoTeste()
         {
-            repositorio = new RepositorioGenerico<Questao>();
+            repositorio = new RepositorioQuestao();
         }
 
         public void IncluirQuestoes()
