@@ -33,15 +33,24 @@ namespace SAISurvey.Testes
             return usuario;
         }
 
-        public void IncluirUsuarios()
+        public Boolean IncluirUsuarios()
         {
-            Usuario usuario = new Usuario();
-            usuario.Login = "carlos.meireles";
-            usuario.Nome = "CARLOS HENRIQUE MEIRELES CORBO";
-            usuario.Senha = "nqbx2009";
-            usuario.Administrador="S";
-            repositorio.Adicionar(usuario);
-            repositorio.Adicionar(IncluirUsuario());
+            Boolean erro = false;
+            try
+            {
+                Usuario usuario = new Usuario();
+                usuario.Login = "carlos.meireles";
+                usuario.Nome = "CARLOS HENRIQUE MEIRELES CORBO";
+                usuario.Senha = "nqbx2009";
+                usuario.Administrador = "S";
+                repositorio.Adicionar(usuario);
+                repositorio.Adicionar(IncluirUsuario());
+            }
+            catch 
+            {
+                erro = true;
+            }
+            return !erro;
         }
 
 
@@ -66,7 +75,7 @@ namespace SAISurvey.Testes
 
             Assert.IsNotNull(objeto);
 
-            objeto.Nome = "José Carlos Corbo";
+            objeto.Nome = "JOSÉ CARLOS CORBO";
             objeto.Login = "jose.corbo";
             repositorio.Atualizar(objeto);
             objetoRecuperado = repositorio.ObterPorLogin("jose.corbo");
@@ -127,7 +136,7 @@ namespace SAISurvey.Testes
 
             objeto = new Usuario();
             objeto.Login = "ana.moreira";
-            objeto.Nome = "Ana Carolina Soares Moreira";
+            objeto.Nome = "ANA CAROLINA SOARES MOREIRA";
             objeto.Senha = "1111";
 
             Assert.Throws<ExLoginExistenteUsuario>(delegate { repositorio.Adicionar(objeto); });

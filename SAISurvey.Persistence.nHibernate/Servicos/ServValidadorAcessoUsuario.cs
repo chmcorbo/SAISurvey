@@ -11,7 +11,7 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
 {
     public class ServValidadorAcessoUsuario : IServValidadorAcessoUsuario
     {
-        public bool Execute(string pLogin, String pSenha)
+        public Usuario Execute(string pLogin, String pSenha)
         {
             RepositorioUsuario repositorio = new RepositorioUsuario();
             Usuario usuario = repositorio.ObterPorLogin(pLogin);
@@ -24,7 +24,7 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
             if (usuario.Administrador == "N")
                 throw new ExUsuarioNaoAdministrador("O usuário não é um administrador");
 
-            return true;
+            return usuario;
         }
     }
 }

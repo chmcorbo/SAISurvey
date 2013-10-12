@@ -17,5 +17,12 @@ namespace SAISurvey.Testes.Repositorios
         {
             Assert.IsTrue(Banco.CriarBancoDeDados());
         }
+
+        [Test]
+        public void b_Incluir_Usuario()
+        {
+            UsuarioTeste usuarioTeste = new UsuarioTeste();
+            Assert.IsTrue(usuarioTeste.IncluirUsuarios());
+        }
     }
 }
