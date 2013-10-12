@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using SAISurvey.Dominio.Modelo;
 
+
 namespace SAISurvey.Dominio.Repositorios
 {
-    public interface IRepositorioUsuario : IRepositorioGenerico<Usuario>
+    public interface IRepositorioResposta : IRepositorioGenerico<Resposta>
     {
-        Usuario ObterPorLogin(String pLogin);
-        IList<Usuario> ListarPorNome(String pNome);
+        IList<Resposta> ObterPorDescricao(String pDescricao);
     }
+
+    
 }

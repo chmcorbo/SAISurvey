@@ -32,5 +32,14 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
             if (servValidadorGravacaoUsuario.Execute(pEntidadeBase))
                 base.Atualizar(pEntidadeBase);
         }
+
+        public IList<Usuario> ListarPorNome(string pNome)
+        {
+            IQueryOver<Usuario> queryOver = Session.QueryOver<Usuario>()
+                .WhereRestrictionOn(c => c.Nome)
+                .IsLike("%" + pNome + "%")
+                .OrderBy(c => c.Nome).Asc;
+            return queryOver.List<Usuario>();
+        }
     }
 }

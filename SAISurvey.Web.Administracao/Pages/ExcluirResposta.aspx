@@ -1,19 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExcluirQuestao.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.ExcluirQuestao" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExcluirResposta.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.ExcluirResposta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-    .style1
-    {
-        width: 97%;
-    }
-    .style2
-    {
-        width: 25px;
-    }
-</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <h2>
-        Excluir questão
+        Excluir Resposta
     </h2>
 <table class="style1">
     <tr>
@@ -46,6 +37,5 @@
         </td>
     </tr>
 </table>
-
 
 </asp:Content>

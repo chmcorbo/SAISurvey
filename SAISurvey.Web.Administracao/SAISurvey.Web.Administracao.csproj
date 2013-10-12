@@ -53,9 +53,13 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Pages\CadastroResposta.aspx" />
     <Content Include="Pages\ConsQuestoes.aspx" />
     <Content Include="Pages\CadastroQuestao.aspx" />
+    <Content Include="Pages\ConsRespostas.aspx" />
+    <Content Include="Pages\ConsUsuarios.aspx" />
     <Content Include="Pages\ExcluirQuestao.aspx" />
+    <Content Include="Pages\ExcluirResposta.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -97,7 +101,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IPages\IPaginaCadastroPadrao.cs" />
     <Compile Include="Modelo\TipoOperacaoUsuario.cs" />
+    <Compile Include="Pages\CadastroResposta.aspx.cs">
+      <DependentUpon>CadastroResposta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CadastroResposta.aspx.designer.cs">
+      <DependentUpon>CadastroResposta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ConsQuestoes.aspx.cs">
       <DependentUpon>ConsQuestoes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,12 +124,33 @@
     <Compile Include="Pages\CadastroQuestao.aspx.designer.cs">
       <DependentUpon>CadastroQuestao.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ConsRespostas.aspx.cs">
+      <DependentUpon>ConsRespostas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConsRespostas.aspx.designer.cs">
+      <DependentUpon>ConsRespostas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsUsuarios.aspx.cs">
+      <DependentUpon>ConsUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConsUsuarios.aspx.designer.cs">
+      <DependentUpon>ConsUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExcluirQuestao.aspx.cs">
       <DependentUpon>ExcluirQuestao.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\ExcluirQuestao.aspx.designer.cs">
       <DependentUpon>ExcluirQuestao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExcluirResposta.aspx.cs">
+      <DependentUpon>ExcluirResposta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ExcluirResposta.aspx.designer.cs">
+      <DependentUpon>ExcluirResposta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

@@ -13,13 +13,13 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class RespostaTeste
     {
-        IRepositorioGenerico<Resposta> repositorio;
+        RepositorioResposta repositorio;
         Resposta resposta;
         Resposta respostaRecuperada;
 
         public RespostaTeste()
         {
-            repositorio = new RepositorioGenerico<Resposta>();
+            repositorio = new RepositorioResposta();
         }
 
         public void IncluirResposta()

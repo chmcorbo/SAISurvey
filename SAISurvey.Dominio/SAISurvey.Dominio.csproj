@@ -67,6 +67,7 @@
     <Compile Include="Repositorios\IRepositorioGenerico.cs" />
     <Compile Include="Repositorios\IRepositorioProfessor.cs" />
     <Compile Include="Repositorios\IRepositorioQuestao.cs" />
+    <Compile Include="Repositorios\IRepositorioResposta.cs" />
     <Compile Include="Repositorios\IRepositorioUsuario.cs" />
     <Compile Include="Servicos\IServValidadorAcessoUsuario.cs" />
     <Compile Include="Servicos\IServValidadorGravacaoUsuario.cs" />

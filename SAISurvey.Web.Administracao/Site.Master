@@ -35,7 +35,12 @@
                         <asp:MenuItem NavigateUrl="~/Pages/ConsQuestoes.aspx" Text="Questões"/>
                         <asp:MenuItem NavigateUrl="~/Pages/ConsRespostas.aspx" Text="Respostas"/>
                         <asp:MenuItem NavigateUrl="~/Pages/ConsAvaliacao.aspx" Text="Avaliações"/>
-                        <asp:MenuItem NavigateUrl="~/Pages/ConsUsuario.aspx" Text="Usuários"/>
+                        <asp:MenuItem Text="Usuários">
+                            <asp:MenuItem NavigateUrl="~/Pages/AlterarSenhaUsuario.aspx" 
+                                Text="Alterar Senha" Value="AlterarSenha"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Pages/ConsUsuarios.aspx" Text="Cadastrar" 
+                                Value="CadastrarUsuario"></asp:MenuItem>
+                        </asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="Sobre"/>
                     </Items>
                 </asp:Menu>

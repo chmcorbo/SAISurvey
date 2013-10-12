@@ -4,20 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SAISurvey.Web.Administracao.IPages;
+using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate.Repositorios;
-using SAISurvey.Web.Administracao.Modelo;
-using SAISurvey.Web.Administracao.IPages;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
-    public partial class EditarQuestao : System.Web.UI.Page
+    public partial class CadastroResposta : System.Web.UI.Page, IPaginaCadastroPadrao<Resposta>
     {
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
-        private IRepositorioQuestao _repositorio;
-        private Questao _objeto;
+        private IRepositorioResposta _repositorio;
+        private Resposta _objeto;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,36 +28,36 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _repositorio = new RepositorioQuestao();
+                    _repositorio = new RepositorioResposta();
                     _objeto = _repositorio.ObterPorID(_id);
                 }
                 else
                 {
                     _operacao = TipoOperacaoUsuario.Incluir;
-                    _objeto = new Questao();
+                    _objeto = new Resposta();
                 }
-                Session["operacaoUsuario"]=_operacao;
-                Session["questao"]=_objeto;
+                Session["operacaoUsuario"] = _operacao;
+                Session["resposta"] = _objeto;
                 BindToUI(_objeto);
             }
         }
 
-        private void BindToUI(Questao pObjeto)
+        public void BindToUI(Resposta pObjeto)
         {
             lbID.Text = pObjeto.ID;
             txtDescricao.Text = pObjeto.Descricao;
         }
 
-        private Questao BindToModel()
+        public Resposta BindToModel()
         {
-            Questao questao = (Questao)Session["questao"];
-            questao.Descricao = txtDescricao.Text;
-            return questao;
+            Resposta resposta = (Resposta)Session["resposta"];
+            resposta.Descricao = txtDescricao.Text;
+            return resposta;
         }
 
-        private void Gravar(Questao pObjeto)
+        public void Gravar(Resposta pObjeto)
         {
-            _repositorio = new RepositorioQuestao();
+            _repositorio = new RepositorioResposta();
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
                 _repositorio.Adicionar(pObjeto);
@@ -77,11 +78,12 @@ namespace SAISurvey.Web.Administracao.Pages
                 lbMessagem.Visible = true;
                 lbMessagem.Text = ex.Message;
             }
+
         }
 
         protected void btnVoltar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/ConsQuestoes.aspx");
+            Response.Redirect("~/Pages/ConsRespostas.aspx");
         }
     }
 }
