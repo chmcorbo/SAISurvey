@@ -31,6 +31,7 @@ p
 {
     margin-bottom: 10px;
     line-height: 1.6em;
+    text-align: center;
 }
 
 
@@ -222,7 +223,6 @@ legend
 input.textEntry 
 {
     border: 1px solid #ccc;
-    color: Blue;
 }
 
 input.passwordEntry 

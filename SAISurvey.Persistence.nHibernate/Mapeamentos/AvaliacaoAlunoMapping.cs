@@ -12,11 +12,11 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
         public AvaliacaoAlunoMapping()
         {
             // Estudar depois uma forma de criar chaves duplas onde essas tais estão dentro de um objeto declarado na classe;
-
             Id(a => a.ID).Index("PK_AVALIACAO_ALUNO").Length(40);
-            References(a => a.Aluno).Column("ID_Aluno").Cascade.None();
-            References(a => a.Avaliacao).Column("ID_Avaliacao").Cascade.None();
-            HasMany<RespostaQuestao>(a => a.RespostasQuestoes).Cascade.None();
+            Map(a => a.Fechada).Length(1);
+            References<Aluno>(a => a.Aluno).Not.Nullable().ForeignKey("FK_AVALIACAO_ALUNO_ALUNO").Column("ID_Aluno");
+            References<Avaliacao>(a => a.Avaliacao).Not.Nullable().ForeignKey("FK_AVALIACAO_ALUNO_AVALIACAO").Column("ID_Avaliacao");
+            HasMany<RespostaQuestao>(a => a.RespostasQuestoes).Cascade.AllDeleteOrphan();
             Table("TB_AVALIACAO_ALUNO");
         }
     }

@@ -10,8 +10,10 @@ namespace SAISurvey.Dominio.Modelo
         public virtual Aluno Aluno { get; set; }
         public virtual Avaliacao Avaliacao { get; set; }
         public virtual IList<RespostaQuestao> RespostasQuestoes { get; set; }
+        public virtual String Fechada { get; set; }
         private void CriarObjetos()
         {
+            Fechada = "N";
             Avaliacao = new Avaliacao();
             RespostasQuestoes = new List<RespostaQuestao>();
         }
@@ -24,6 +26,13 @@ namespace SAISurvey.Dominio.Modelo
         {
             Aluno = pAluno;
             CriarObjetos();
+        }
+
+        public virtual AvaliacaoAluno AdicionarRespostaQuestao(Questao pQuestao, Resposta pResposta)
+        {
+            RespostaQuestao respostaQuestao = new RespostaQuestao(){AvaliacaoAluno=this, Questao = pQuestao, Resposta=pResposta};
+            RespostasQuestoes.Add(respostaQuestao);
+            return this;
         }
     }
 }

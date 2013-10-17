@@ -1,26 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExcluirResposta.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.ExcluirResposta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExcluirUsuario.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.ExcluirUsuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
         {
-            width: 618px;
+            width: 609px;
         }
         .style2
         {
-            width: 28px;
+            width: 14px;
         }
         .style3
         {
-            width: 307px;
+            width: 238px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>
-        Excluir Resposta
+        Excluir Usuário
     </h2>
-<table class="style1">
+    <table class="style1">
     <tr>
         <td class="style2">
             ID</td>
@@ -30,10 +30,27 @@
     </tr>
     <tr>
         <td class="style2">
-            Descrição</td>
+            Login</td>
         <td class="style3">
-            <asp:Label ID="lbDescricao" runat="server" CssClass="textEntry" 
-                Text="Descrição"></asp:Label>
+            <asp:Label ID="lbLogin" runat="server" CssClass="textEntry" 
+                Text="Login"></asp:Label>
+        </td>
+    </tr>
+        <tr>
+        <td class="style2">
+            Nome</td>
+        <td class="style3">
+            <asp:Label ID="lbNome" runat="server" CssClass="textEntry" 
+                Text="Nome"></asp:Label>
+        </td>
+    </tr>
+    
+    <tr>
+        <td class="style2">
+            Administrador</td>
+        <td class="style3">
+            <asp:Label ID="lbAdministrador" runat="server" CssClass="textEntry" 
+                Text="Administrador"></asp:Label>
         </td>
     </tr>
     <tr>
@@ -50,6 +67,6 @@
                 Width="64px" />
         </td>
     </tr>
-</table>
-
+    </table>
+ 
 </asp:Content>

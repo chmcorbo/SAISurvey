@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Pages\AlterarSenhaUsuario.aspx" />
     <Content Include="Pages\CadastroResposta.aspx" />
     <Content Include="Pages\CadastroUsuario.aspx" />
     <Content Include="Pages\ConsQuestoes.aspx" />
@@ -61,12 +62,14 @@
     <Content Include="Pages\ConsUsuarios.aspx" />
     <Content Include="Pages\ExcluirQuestao.aspx" />
     <Content Include="Pages\ExcluirResposta.aspx" />
+    <Content Include="Pages\ExcluirUsuario.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="UsuarioNaoLogado.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -104,6 +107,13 @@
     </Compile>
     <Compile Include="IPages\IPaginaCadastroPadrao.cs" />
     <Compile Include="Modelo\TipoOperacaoUsuario.cs" />
+    <Compile Include="Pages\AlterarSenhaUsuario.aspx.cs">
+      <DependentUpon>AlterarSenhaUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AlterarSenhaUsuario.aspx.designer.cs">
+      <DependentUpon>AlterarSenhaUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CadastroResposta.aspx.cs">
       <DependentUpon>CadastroResposta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +170,13 @@
     <Compile Include="Pages\ExcluirResposta.aspx.designer.cs">
       <DependentUpon>ExcluirResposta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ExcluirUsuario.aspx.cs">
+      <DependentUpon>ExcluirUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ExcluirUsuario.aspx.designer.cs">
+      <DependentUpon>ExcluirUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -167,6 +184,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioNaoLogado.aspx.cs">
+      <DependentUpon>UsuarioNaoLogado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioNaoLogado.aspx.designer.cs">
+      <DependentUpon>UsuarioNaoLogado.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

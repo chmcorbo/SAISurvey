@@ -26,6 +26,7 @@ namespace SAISurvey.Web.Administracao.Account
                 servValidadorAcessoUsuario = new ServValidadorAcessoUsuario();
                 Usuario usuario =  servValidadorAcessoUsuario.Execute(txtLogin.Text, txtSenha.Text);
                 Session.Add("usuario_logado", usuario);
+                Response.Redirect("~/default.aspx");
             }
             catch (Exception ex)
             {

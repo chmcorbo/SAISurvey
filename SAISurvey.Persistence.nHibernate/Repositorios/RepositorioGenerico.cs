@@ -30,7 +30,6 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
             try
             {
                 Session.Clear(); // Ver isso com o Coelho
-                //Session.Evict(pEntidadeBase);
                 Session.SaveOrUpdate(pEntidadeBase);
                 transaction.Commit();
             }

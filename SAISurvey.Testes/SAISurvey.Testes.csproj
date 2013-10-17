@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlunoTeste.cs" />
+    <Compile Include="AvaliacaoAlunoTeste.cs" />
     <Compile Include="AvaliacaoTeste.cs" />
     <Compile Include="BancoTeste.cs" />
     <Compile Include="CursoTeste.cs" />

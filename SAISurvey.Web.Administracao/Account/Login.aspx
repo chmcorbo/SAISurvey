@@ -42,7 +42,7 @@
         <td class="style4">
             Senha</td>
         <td class="style3">
-            <asp:TextBox ID="txtSenha" runat="server" MaxLength="10" TextMode="Password" 
+            <asp:TextBox ID="txtSenha" runat="server" MaxLength="20" TextMode="Password" 
                 ToolTip="Digite sua senha" Width="218px"></asp:TextBox>
         </td>
         <td>

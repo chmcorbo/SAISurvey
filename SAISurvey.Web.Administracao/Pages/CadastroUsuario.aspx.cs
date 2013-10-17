@@ -84,7 +84,7 @@ namespace SAISurvey.Web.Administracao.Pages
             catch (Exception ex)
             {
                 lbMessagem.Visible = true;
-                lbMessagem.Text = ex.Message;
+                lbMessagem.Text = ex.InnerException.Message;
             }
 
         }
