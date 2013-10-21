@@ -41,9 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntidadeBase.cs" />
+    <Compile Include="Excecoes\ExAvaliacaoPeriodoInvalido.cs" />
+    <Compile Include="Excecoes\ExAvaliacaoSemObjetivo.cs" />
+    <Compile Include="Excecoes\ExAvaliacaoSemQuestoes.cs" />
+    <Compile Include="Excecoes\ExAvaliacaoSemTurma.cs" />
     <Compile Include="Excecoes\ExLoginExistenteUsuario.cs" />
     <Compile Include="Excecoes\ExLoginNaoInformado.cs" />
     <Compile Include="Excecoes\ExModuloNaoRefereciadoNoBloco.cs" />
+    <Compile Include="Excecoes\ExQuestaoExistenteAvaliacaoAluno.cs" />
     <Compile Include="Excecoes\ExSenhaNaoInformada.cs" />
     <Compile Include="Excecoes\ExSenhaUsuarioInvalida.cs" />
     <Compile Include="Excecoes\ExUsuarioInvalido.cs" />
@@ -68,6 +73,7 @@
     <Compile Include="Repositorios\IRepositorioProfessor.cs" />
     <Compile Include="Repositorios\IRepositorioQuestao.cs" />
     <Compile Include="Repositorios\IRepositorioResposta.cs" />
+    <Compile Include="Repositorios\IRepositorioTurma.cs" />
     <Compile Include="Repositorios\IRepositorioUsuario.cs" />
     <Compile Include="Servicos\IServValidadorAcessoUsuario.cs" />
     <Compile Include="Servicos\IServValidadorGravacaoUsuario.cs" />

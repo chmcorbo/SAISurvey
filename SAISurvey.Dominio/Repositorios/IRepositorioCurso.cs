@@ -10,7 +10,7 @@ namespace SAISurvey.Dominio.Repositorios
     public interface IRepositorioCurso : IRepositorioGenerico<Curso>
     {
         IList<Curso> ObterPorDescricao(String pDescricaoCurso);
-        IList<Modulo> ObterModulosPorDescricao(String pDescricaoCurso);
-        Curso ObterCursoPorIDModulo(String pID_Modulo);
+        IList<Modulo> ObterModulosPorDescricao(String pDescricaoModulo);
+        Modulo ObterCursoPorIDModulo(String pID_Modulo);
     }
 }

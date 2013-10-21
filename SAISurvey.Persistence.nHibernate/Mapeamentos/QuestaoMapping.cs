@@ -12,7 +12,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
         public QuestaoMapping()
         {
             Id(q => q.ID).Index("Pk_Questao").Length(40);
-            Map(q => q.Descricao).Length(100);
+            Map(q => q.Descricao).Length(150);
             Table("TB_QUESTAO");
         }
     }

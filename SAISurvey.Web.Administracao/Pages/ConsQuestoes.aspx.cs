@@ -18,12 +18,7 @@ namespace SAISurvey.Web.Administracao.Pages
 
         protected void btnProcurar_Click(object sender, EventArgs e)
         {
-            RepositorioQuestao repositorioQuestao = new RepositorioQuestao();
-            if (txtDescricao.Text != String.Empty)
-                GridView1.DataSource = repositorioQuestao.ObterPorDescricao(txtDescricao.Text);
-            else
-                GridView1.DataSource = repositorioQuestao.ListarTudo();
-            GridView1.DataBind();
+            ObjectDataSource1.DataBind();
         }
 
         protected void btnNovo_Click(object sender, EventArgs e)

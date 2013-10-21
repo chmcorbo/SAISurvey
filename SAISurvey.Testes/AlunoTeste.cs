@@ -22,24 +22,49 @@ namespace SAISurvey.Testes
             repositorio = new RepositorioAluno();
         }
 
-        public void IncluirAlunos()
+        public Boolean CargaInicial()
         {
-            aluno = new Aluno();
-            aluno.Matricula = "900001";
-            aluno.Nome = "Carlos Henrique Meireles Corbo";
-            repositorio.Atualizar(aluno);
+            Boolean erro = false;
 
-            aluno = new Aluno();
-            aluno.Matricula = "900002";
-            aluno.Nome = "Ricardo Coelho da Silva";
-            repositorio.Atualizar(aluno);
+            try
+            {
+                aluno = new Aluno();
+                aluno.Matricula = "900001";
+                aluno.Nome = "Carlos Henrique Meireles Corbo";
+                aluno.Email = "chmcorbo@gmail.com";
+                repositorio.Adicionar(aluno);
+
+                aluno = new Aluno();
+                aluno.Matricula = "900002";
+                aluno.Nome = "Tatiana Moreira da Silva Corbo";
+                aluno.Email = "tmscorbo@gmail.com";
+                repositorio.Adicionar(aluno);
+
+                aluno = new Aluno();
+                aluno.Matricula = "900003";
+                aluno.Nome = "Ricardo Coelho da Silva";
+                aluno.Email = "rcoelhorj01@gmail.com";
+                repositorio.Adicionar(aluno);
+
+                aluno = new Aluno();
+                aluno.Matricula = "900004";
+                aluno.Nome = "Ana Carolina Moreira";
+                aluno.Email = "krol.moreira201102@gmail.com";
+                repositorio.Adicionar(aluno);
+            }
+            catch
+            {
+                erro = true;
+            }
+
+            return !erro;
         }
 
         [Test]
         public void a_Obter_Aluno_por_ID()
         {
             if (repositorio.ListarTudo().Count() == 0)
-                IncluirAlunos();
+                CargaInicial();
             aluno = repositorio.ListarTudo().FirstOrDefault();
             alunoRecuperado = repositorio.ObterPorID(aluno.ID);
             Assert.AreSame(aluno, alunoRecuperado);

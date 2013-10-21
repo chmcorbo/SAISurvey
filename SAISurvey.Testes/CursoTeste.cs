@@ -21,6 +21,85 @@ namespace SAISurvey.Testes
             repositorio = new RepositorioCurso();
         }
 
+        private Curso Incluir_Curso_Engenharia_Software_NET()
+        {
+            return Incluir_Curso_Com_Bloco_Com_Modulo();
+        }
+
+        private Curso Incluir_Curso_Governanca_TI()
+        {
+            objeto = new Curso() { Descricao = "MBA em Governança e Melhores Práticas da TI" };
+            objeto.AdicionarBloco("Governança de Infraestrutura da TI")
+                .AdicionarModulo("Segurança e Continuidade")
+                .AdicionarModulo("Modalidades de Sourcing")
+                .AdicionarModulo("Sistema de Gestão da Qualidade")
+                .AdicionarModulo("Gerenciamento de Serviços de TI");
+            
+            objeto.AdicionarBloco("Governança de Desenvolvimento de Software")
+                .AdicionarModulo("Qualidade de Software")
+                .AdicionarModulo("Qualidade na Gestão do Desenvolvimento")
+                .AdicionarModulo("Gestão de Processos");
+
+            objeto.AdicionarBloco("Gerência de Projetos")
+                .AdicionarModulo("Gestão de Integração e Escopo")
+                .AdicionarModulo("Gestão de Tempo, Custo e Qualidade")
+                .AdicionarModulo("Gestão de Aquisições e Riscos")
+                .AdicionarModulo("Gestão de Comunicação, RH e Aspectos Comportamentais");
+
+            objeto.AdicionarBloco("TI e Negócios")
+                .AdicionarModulo("TI e Estratégia")
+                .AdicionarModulo("Governança e Controle em TI");
+
+            repositorio.Adicionar(objeto);
+            return objeto;
+        }
+
+        private Curso Incluir_Curso_Gestao_Sistema_Informacao()
+        {
+            objeto = new Curso() { Descricao = "MBA em Gestão de Sistemas de Informação com SAP" };
+
+            objeto.AdicionarBloco("Gestão de Resultados")
+                .AdicionarModulo("TI e Estratégia")
+                .AdicionarModulo("Gerenciamento de Processos de Negócios - BPM")
+                .AdicionarModulo("Gestão de Pessoas - Mudanças Organizacionais");
+            
+            objeto.AdicionarBloco("Processos Organizacionais Estratégicos")
+                .AdicionarModulo("Gerenciamento de Projetos")
+                .AdicionarModulo("Gestão da Implantação de Sistemas de Informação")
+                .AdicionarModulo("Processos Organizacionais");
+
+            objeto.AdicionarBloco("ERP SAP")
+                .AdicionarModulo("Metodologia ASAP")
+                .AdicionarModulo("RH - Recursos Humanos")
+                .AdicionarModulo("MM - Gestão de Material")
+                .AdicionarModulo("SD - Vendas e Distribuição")
+                .AdicionarModulo("PP - Planejamento de Produção")
+                .AdicionarModulo("FI - Finanças")
+                .AdicionarModulo("CO- Contabilidade")
+                .AdicionarModulo("BI - Business Intelligence");
+
+            repositorio.Adicionar(objeto);
+            return objeto;
+
+        }
+
+        public Boolean CargaInicial()
+        {
+            Boolean erro = false;
+            try
+            {
+                Incluir_Curso_Engenharia_Software_NET();
+                Incluir_Curso_Governanca_TI();
+                Incluir_Curso_Gestao_Sistema_Informacao();
+            }
+            catch
+            {
+                erro = true;
+            }
+
+            return !erro;
+        }
+
         public Curso Incluir_Cursos_Sem_Bloco()
         {
             objeto = new Curso() { Descricao = "MIT em Gestão de Bancos de Dados com Oracle" };
@@ -39,7 +118,7 @@ namespace SAISurvey.Testes
 
         public Curso Incluir_Curso_Com_Bloco_Com_Modulo()
         {
-            objeto = new Curso() { Descricao = "Pós-graduação MIT em Engenharia de Software com .NET" };
+            objeto = new Curso() { Descricao = "MIT em Engenharia de Software com .NET" };
             objeto.AdicionarBloco("Engenharia de Software")
                 .AdicionarModulo("Engenharia de Software Aplicada")
                 .AdicionarModulo("Processos de Desenvolvimento de Software")
@@ -58,7 +137,6 @@ namespace SAISurvey.Testes
             repositorio.Adicionar(objeto);
             return objeto;
         }
-
 
         [Test]
         public void a_Incluir_Cursos_Sem_Bloco()

@@ -23,7 +23,7 @@ namespace SAISurvey.Web.Administracao.Pages
             if (txtDescricao.Text != String.Empty)
                 GridView1.DataSource = repositorio.ObterPorDescricao(txtDescricao.Text);
             else
-                GridView1.DataSource = repositorio.ListarTudo();
+                GridView1.DataSource = repositorio.ListarTudo().OrderBy(r => r.Descricao);
             GridView1.DataBind();
         }
 

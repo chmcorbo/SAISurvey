@@ -9,5 +9,6 @@ namespace SAISurvey.Dominio.Modelo
     {
         public virtual String Matricula { get; set; }
         public virtual String Nome { get; set; }
+        public virtual String Email { get; set; }
     }
 }

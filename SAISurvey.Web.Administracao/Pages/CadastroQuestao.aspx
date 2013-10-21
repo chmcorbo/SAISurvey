@@ -9,6 +9,8 @@
         {
             width: 342px;
         }
+        .textEntry
+        {}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -30,7 +32,7 @@
                 Descrição</td>
             <td class="style2">
                 <asp:TextBox ID="txtDescricao" runat="server" Width="676px" 
-                    CssClass="textEntry"></asp:TextBox>
+                    CssClass="textEntry" Height="49px" MaxLength="150" TextMode="MultiLine"></asp:TextBox>
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="rfvUsuarioRequerido" runat="server" 

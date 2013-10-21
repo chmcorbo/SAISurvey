@@ -1,0 +1,18 @@
+﻿*{
+        margin:2; /*Defin a a separacao das colunas aqui*/
+        padding:0;
+    }
+    .linha{
+        padding:0;
+        clear:both;
+    width: 595px;
+}
+
+    .coluna{    
+        height:25px;
+        width:143px;      
+        float:left;
+    }
+
+body {
+}

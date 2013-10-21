@@ -19,10 +19,52 @@ namespace SAISurvey.Testes.Repositorios
         }
 
         [Test]
-        public void b_Incluir_Usuario()
+        public void b_Incluir_Aluno()
+        {
+            AlunoTeste alunoTeste = new AlunoTeste();
+            Assert.IsTrue(alunoTeste.CargaInicial());
+        }
+
+        [Test]
+        public void c_Incluir_Professor()
+        {
+            ProfessorTeste professorTeste = new ProfessorTeste();
+            Assert.IsTrue(professorTeste.CargaInicial());
+        }
+
+        [Test]
+        public void d_Incluir_Usuario()
         {
             UsuarioTeste usuarioTeste = new UsuarioTeste();
-            Assert.IsTrue(usuarioTeste.IncluirUsuarios());
+            Assert.IsTrue(usuarioTeste.CargaInicial());
+        }
+
+        [Test]
+        public void e_Incluir_Cursos()
+        {
+            CursoTeste cursoTeste = new CursoTeste();
+            Assert.IsTrue(cursoTeste.CargaInicial());
+        }
+
+        [Test]
+        public void f_Incluir_Turma()
+        {
+            TurmaTeste turmaTeste = new TurmaTeste();
+            Assert.IsTrue(turmaTeste.CargaInicial());
+        }
+
+        [Test]
+        public void g_Incluir_Questoes()
+        {
+            QuestaoTeste questaoTeste = new QuestaoTeste();
+            Assert.IsTrue(questaoTeste.CargaInicial());
+        }
+
+        [Test]
+        public void h_Incluir_Respostas()
+        {
+            RespostaTeste respostaTeste = new RespostaTeste();
+            Assert.IsTrue(respostaTeste.CargaInicial());
         }
     }
 }

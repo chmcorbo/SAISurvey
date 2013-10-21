@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SAISurvey.Dominio
 {
+    [Serializable]
     public class EntidadeBase
     {
         public virtual String ID { get; set; }

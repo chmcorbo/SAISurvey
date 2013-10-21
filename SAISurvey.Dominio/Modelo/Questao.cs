@@ -6,6 +6,7 @@ using SAISurvey.Dominio;
 
 namespace SAISurvey.Dominio.Modelo
 {
+    [Serializable]
     public class Questao : EntidadeBase
     {
         public virtual String Descricao { get; set; }

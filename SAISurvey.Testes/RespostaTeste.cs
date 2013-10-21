@@ -22,23 +22,40 @@ namespace SAISurvey.Testes
             repositorio = new RepositorioResposta();
         }
 
-        public void IncluirResposta()
+        public Boolean CargaInicial()
         {
-            resposta = new Resposta();
-            resposta.Descricao = "Totalmente insatisfeito";
-            repositorio.Atualizar(resposta);
+            Boolean erro = false;
+            try
+            {
+                resposta = new Resposta();
+                resposta.Descricao = "Concordo totalmente";
+                repositorio.Adicionar(resposta);
 
-            resposta = new Resposta();
-            resposta.Descricao = "Insatisfeito";
-            repositorio.Atualizar(resposta);
+                resposta = new Resposta();
+                resposta.Descricao = "Concordo";
+                repositorio.Adicionar(resposta);
 
-            resposta = new Resposta();
-            resposta.Descricao = "Não tenho como avaliar";
-            repositorio.Atualizar(resposta);
+                resposta = new Resposta();
+                resposta.Descricao = "Não concordo nem discordo";
+                repositorio.Adicionar(resposta);
 
-            resposta = new Resposta();
-            resposta.Descricao = "Satisfeito";
-            repositorio.Atualizar(resposta);
+                resposta = new Resposta();
+                resposta.Descricao = "Discordo";
+                repositorio.Adicionar(resposta);
+
+                resposta = new Resposta();
+                resposta.Descricao = "Discordo totalmente";
+                repositorio.Adicionar(resposta);
+
+                resposta = new Resposta();
+                resposta.Descricao = "Não sei avaliar";
+                repositorio.Adicionar(resposta);
+            }
+            catch
+            {
+                erro = true;
+            }
+            return !erro;
         }
 
         [Test]
@@ -55,7 +72,7 @@ namespace SAISurvey.Testes
         public void b_Alterar_Resposta()
         {
             if (repositorio.ListarTudo().Count() == 0)
-                IncluirResposta();
+                CargaInicial();
 
             resposta = repositorio.ListarTudo().LastOrDefault();
             resposta.Descricao = "Satisfeitíssimo";
@@ -68,7 +85,7 @@ namespace SAISurvey.Testes
         public void c_Excluir_Resposta()
         {
             if (repositorio.ListarTudo().Count() == 0)
-                IncluirResposta();
+                CargaInicial();
 
             resposta = repositorio.ListarTudo().LastOrDefault();
             repositorio.Excluir(resposta);

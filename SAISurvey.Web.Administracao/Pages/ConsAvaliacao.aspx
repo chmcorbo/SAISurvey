@@ -1,27 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConsQuestoes.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.PesqQuestoes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConsAvaliacao.aspx.cs" Inherits="SAISurvey.Web.Administracao.Pages.ConsAvaliacao" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .style1
-        {
-            width: 84%;
-        }
-        .style2
-        {
-            width: 489px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <h2>
-        Pesquisar Questões
+        Pesquisar Avaliação
     </h2>
     <table class="style1">
         <tr>
             <td>
-                Descrição</td>
-            <td class="style2">
-                <asp:TextBox ID="txtDescricao" runat="server" Width="469px"></asp:TextBox>
+                Período
             </td>
+            <td class="style2">
+                <asp:TextBox ID="txtDataInicial" runat="server" Width="115px">01/01/2013</asp:TextBox>
+            </td>
+            <td> à </td>
+            <td class="style2">
+                <asp:TextBox ID="txtDataFinal" runat="server" Width="115px">31/12/2013</asp:TextBox>
+            </td>
+
             <td>
                 <asp:Button ID="btnProcurar" runat="server" CssClass="submitButton" 
                     Text="Procurar" onclick="btnProcurar_Click" />
@@ -30,19 +27,21 @@
             </td>
         </tr>
     </table>
+    <br /> 
     <div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" Width="567px" 
-            AllowPaging="True" DataSourceID="ObjectDataSource1">
+            CellPadding="4" ForeColor="#333333" GridLines="None" Width="918px">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="Descricao" HeaderText="Descricao" />
+                <asp:BoundField DataField="Objetivo" HeaderText="Objetivo" />
+                <asp:BoundField DataField="Turma.Modulo.Bloco.Curso.Descricao" 
+                    HeaderText="Curso" />
+                <asp:BoundField DataField="Turma.Descricao" HeaderText="Turma" />
+                <asp:BoundField DataField="Data_Inicio" HeaderText="Data Inicial" />
+                <asp:BoundField DataField="Data_Fim" HeaderText="Data Final" />
                 <asp:HyperLinkField DataNavigateUrlFields="ID" 
-                    DataNavigateUrlFormatString="~/Pages/CadastroQuestao.aspx?id={0}" 
+                    DataNavigateUrlFormatString="~/Pages/CadastroAvaliacao.aspx?id={0}" 
                     HeaderText="Operação 1" Text="Editar" />
-                <asp:HyperLinkField DataNavigateUrlFields="id" 
-                    DataNavigateUrlFormatString="~/Pages/ExcluirQuestao.aspx?id={0}" 
-                    HeaderText="Operação 2" Text="Excluir" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -55,13 +54,6 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-            SelectMethod="ObterPorDescricao" 
-            TypeName="SAISurvey.Persistence.nHibernate.Repositorios.RepositorioQuestao">
-            <SelectParameters>
-                <asp:ControlParameter ControlID="txtDescricao" Name="pDescricao" 
-                    PropertyName="Text" Type="String" />
-            </SelectParameters>
-        </asp:ObjectDataSource>
     </div>
+
 </asp:Content>

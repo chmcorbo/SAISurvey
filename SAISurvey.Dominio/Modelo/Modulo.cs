@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SAISurvey.Dominio.Modelo
 {
+    [Serializable]
     public class Modulo : EntidadeBase
     {
         public virtual Bloco Bloco { get; set; }

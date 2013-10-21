@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SAISurvey.Dominio.Excecoes;
 
 namespace SAISurvey.Dominio.Modelo
 {
@@ -30,7 +31,11 @@ namespace SAISurvey.Dominio.Modelo
 
         public virtual AvaliacaoAluno AdicionarRespostaQuestao(Questao pQuestao, Resposta pResposta)
         {
-            RespostaQuestao respostaQuestao = new RespostaQuestao(){AvaliacaoAluno=this, Questao = pQuestao, Resposta=pResposta};
+            RespostaQuestao respostaQuestao;
+            respostaQuestao = RespostasQuestoes.Where(q => q.Questao.ID == pQuestao.ID).FirstOrDefault();
+            if (respostaQuestao != null)
+                RespostasQuestoes.Remove(respostaQuestao);
+            respostaQuestao = new RespostaQuestao() { AvaliacaoAluno = this, Questao = pQuestao, Resposta = pResposta };
             RespostasQuestoes.Add(respostaQuestao);
             return this;
         }

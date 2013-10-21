@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using SAISurvey.Dominio.Excecoes;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate.Repositorios;
-
 
 namespace SAISurvey.Testes
 {
@@ -14,32 +14,37 @@ namespace SAISurvey.Testes
     public class AvaliacaoTeste 
     {
         IRepositorioAvaliacao repositorio;
+        IRepositorioTurma repositorioTurma;
+        IRepositorioGenerico<Questao> repositorioQuestao;
         Avaliacao objeto;
         Avaliacao objetoRecuperado;
 
         public AvaliacaoTeste()
         {
             repositorio = new RepositorioAvaliacao();
+            repositorioTurma = new RepositorioTurma();
+            repositorioQuestao = new RepositorioQuestao();
         }
 
-        public Curso IncluirCurso()
+        public void VerificaTurmaCadastrada()
         {
-            Curso curso = new Curso() { Descricao = "MBA em Gestão Empresarial" };
-            RepositorioCurso repositorioCurso = new RepositorioCurso();
-
-            curso.AdicionarBloco("Estratégia")
-                .AdicionarModulo("Gestão Estratégica")
-                .AdicionarModulo("Planejamento Estratégico")
-                .AdicionarModulo("Estratégia em Ação")
-                .AdicionarModulo("Gestão Financeira")
-                .AdicionarModulo("Comunicação Empresarial (Redação e Apresentação)");
-
-            repositorioCurso.Adicionar(curso);
-            return curso;
-
+            if (repositorioTurma.ListarTudo().Count() == 0)
+            {
+                TurmaTeste turmaTeste = new TurmaTeste();
+                turmaTeste.Incluir_Turmas();
+            }
         }
 
-        public Avaliacao IncluirAvaliacaoSemModuloSemQuestoes()
+        private void VerificaQuestoesCadastradas()
+        {
+            if (repositorioQuestao.ListarTudo().Count() == 0)
+            {
+                QuestaoTeste questaoTeste = new QuestaoTeste();
+                questaoTeste.CargaInicial();
+            }
+        }
+
+        private Avaliacao IncluirAvaliacaoSemTurmaSemQuestoes()
         {
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
@@ -48,16 +53,8 @@ namespace SAISurvey.Testes
             return avaliacao;
         }
 
-
-        public Avaliacao IncluirAvaliacaoSemModuloComQuestoes()
+        private Avaliacao IncluirAvaliacaoSemTurmaComQuestoes()
         {
-            IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
-            if (repositorioQuestao.ListarTudo().Count() == 0)
-            {
-                QuestaoTeste questaoTeste = new QuestaoTeste();
-                questaoTeste.IncluirQuestoes();
-            }
-            
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("10/10/2013");
@@ -66,26 +63,26 @@ namespace SAISurvey.Testes
             return avaliacao;
         }
 
-        public Avaliacao IncluirAvaliacaoComModuloSemQuestoes()
+        private Avaliacao IncluirAvaliacaoComTurmaSemQuestoes()
         {
-            IncluirCurso();
+            VerificaTurmaCadastrada();
             RepositorioCurso repositorioCurso = new RepositorioCurso();
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("21/10/2013");
             avaliacao.Data_Fim = DateTime.Parse("13/01/2014");
-            avaliacao.Modulo = repositorioCurso.ObterModulosPorDescricao("Gestão Estratégica").FirstOrDefault();
+            avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;
         }
 
-        public Avaliacao IncluirAvaliacaoComModuloComQuestoes()
+        private Avaliacao IncluirAvaliacaoComTurmaComQuestoes()
         {
             IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
             RepositorioCurso repositorioCurso = new RepositorioCurso();
             if (repositorioQuestao.ListarTudo().Count() == 0)
             {
                 QuestaoTeste questaoTeste = new QuestaoTeste();
-                questaoTeste.IncluirQuestoes();
+                questaoTeste.CargaInicial();
             }
 
             Avaliacao avaliacao = new Avaliacao();
@@ -93,24 +90,28 @@ namespace SAISurvey.Testes
             avaliacao.Data_Inicio = DateTime.Parse("22/10/2013");
             avaliacao.Data_Fim = DateTime.Parse("11/02/2014");
             avaliacao.Questoes = repositorioQuestao.ListarTudo().ToList();
-            avaliacao.Modulo = repositorioCurso.ObterModulosPorDescricao("Planejamento Estratégico").FirstOrDefault(); ;
+            avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;
         }
 
-        [Test]
-        public void a_IncluirAvaliacaoSemModuloSemQuestoes()
+        public Avaliacao IncluirAvaliacao()
         {
-            objeto = IncluirAvaliacaoSemModuloSemQuestoes();
+            return IncluirAvaliacaoComTurmaComQuestoes();
+        }
+
+        [Test]
+        public void a_IncluirAvaliacaoSemTurmaSemQuestoes()
+        {
+            objeto = IncluirAvaliacaoSemTurmaSemQuestoes();
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
 
-
         [Test]
-        public void b_IncluirAvaliacaoSemModuloComQuestoes()
+        public void b_IncluirAvaliacaoSemTurmaComQuestoes()
         {
-            objeto = IncluirAvaliacaoSemModuloComQuestoes();
+            objeto = IncluirAvaliacaoSemTurmaComQuestoes();
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
@@ -118,78 +119,116 @@ namespace SAISurvey.Testes
         }
 
         [Test]
-        public void c_IncluirAvaliacaoComModuloSemQuestoes()
+        public void c_IncluirAvaliacaoComTurmaSemQuestoes()
         {
-            objeto = IncluirAvaliacaoComModuloSemQuestoes();
+            objeto = IncluirAvaliacaoComTurmaSemQuestoes();
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
-            Assert.IsNotNull(objetoRecuperado.Modulo);
+            Assert.IsNotNull(objetoRecuperado.Turma);
         }
 
         [Test]
-        public void d_IncluirAvaliacaoComModuloComQuestoes()
+        public void d_IncluirAvaliacaoComTurmaComQuestoes()
         {
-            objeto = IncluirAvaliacaoComModuloComQuestoes();
+            objeto = IncluirAvaliacaoComTurmaComQuestoes();
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
             Assert.IsTrue(objetoRecuperado.Questoes.Count() > 0);
-            Assert.IsNotNull(objetoRecuperado.Modulo);
+            Assert.IsNotNull(objetoRecuperado.Turma);
         }
 
         [Test]
         public void e_Alterar_Avaliacao()
         {
             IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
-            objeto = IncluirAvaliacaoComModuloSemQuestoes();
+            objeto = IncluirAvaliacaoComTurmaSemQuestoes();
             repositorio.Adicionar(objeto);
             String id = objeto.ID;
             objeto.Objetivo = "Identificar oportunidades de melhorias";
-            objeto.Modulo = null;
             objeto.Questoes = repositorioQuestao.ListarTudo().ToList();
             repositorio.Atualizar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreEqual(objetoRecuperado.Objetivo, objeto.Objetivo);
             Assert.AreEqual(objetoRecuperado.Questoes.Count(), repositorioQuestao.ListarTudo().Count());
-            Assert.IsNull(objetoRecuperado.Modulo);
+            /*******************************************************************/
+        }
+
+        [Test]
+        public void f_Alterar_Avaliacao_Sem_Turma()
+        {
+            /*******************************************************************/
+            IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
+            objeto = IncluirAvaliacaoSemTurmaComQuestoes();
+            Assert.Throws<ExAvaliacaoSemTurma>(delegate { repositorio.Adicionar(objeto);});
+            /*******************************************************************/
+        }
+
+        [Test]
+        public void g_Alterar_Avaliacao_Periodo_Invalido()
+        {
+            /*******************************************************************/
+            IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
+            objeto = IncluirAvaliacaoComTurmaComQuestoes();
+            objeto.Data_Inicio = null;
+            Assert.Throws<ExAvaliacaoPeriodoInvalido>(delegate { repositorio.Adicionar(objeto); });
+            /*******************************************************************/
+        }
+
+        [Test]
+        public void h_Alterar_Avaliacao_Sem_Objetivo()
+        {
+            /*******************************************************************/
+            IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
+            objeto = IncluirAvaliacaoComTurmaComQuestoes();
+            objeto.Objetivo = String.Empty;
+            Assert.Throws<ExAvaliacaoPeriodoInvalido>(delegate { repositorio.Adicionar(objeto); });
+            /*******************************************************************/
+        }
+
+        [Test]
+        public void i_Alterar_Avaliacao_Sem_Questoes()
+        {
+            /*******************************************************************/
+            IRepositorioGenerico<Questao> repositorioQuestao = new RepositorioGenerico<Questao>();
+            objeto = IncluirAvaliacaoComTurmaSemQuestoes();
+            Assert.Throws<ExAvaliacaoPeriodoInvalido>(delegate { repositorio.Adicionar(objeto); });
             /*******************************************************************/
         }
 
 
         [Test]
-        public void f_Excluir_AvaliacaoSemModuloSemQuestões()
+        public void j_Excluir_AvaliacaoSemTurmaSemQuestões()
         {
-            objeto = IncluirAvaliacaoSemModuloSemQuestoes();
+            objeto = IncluirAvaliacaoSemTurmaSemQuestoes();
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             repositorio.Excluir(objeto);
             Assert.IsNull(repositorio.ObterPorID(objeto.ID));
         }
 
         [Test]
-        public void f_Excluir_AvaliacaoSemModuloComQuestões()
+        public void l_Excluir_AvaliacaoSemTurmaComQuestões()
         {
-            objeto = IncluirAvaliacaoSemModuloComQuestoes();
+            objeto = IncluirAvaliacaoSemTurmaComQuestoes();
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             repositorio.Excluir(objeto);
             Assert.IsNull(repositorio.ObterPorID(objeto.ID));
         }
 
-
         [Test]
-        public void f_Excluir_AvaliacaoComModuloSemQuestões()
+        public void m_Excluir_AvaliacaoComTurmaSemQuestões()
         {
-            objeto = IncluirAvaliacaoComModuloSemQuestoes();
+            objeto = IncluirAvaliacaoComTurmaSemQuestoes();
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             repositorio.Excluir(objeto);
             Assert.IsNull(repositorio.ObterPorID(objeto.ID));
         }
         
-        
         [Test]
-        public void f_Excluir_AvaliacaoComModuloComQuestões()
+        public void n_Excluir_AvaliacaoComTurmaComQuestões()
         {
-            objeto = IncluirAvaliacaoComModuloComQuestoes();
+            objeto = IncluirAvaliacaoComTurmaComQuestoes();
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             repositorio.Excluir(objeto);
             Assert.IsNull(repositorio.ObterPorID(objeto.ID));

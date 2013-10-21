@@ -6,6 +6,7 @@ using SAISurvey.Dominio.Excecoes;
 
 namespace SAISurvey.Dominio.Modelo
 {
+    [Serializable]
     public class Bloco : EntidadeBase
     {
         public virtual Curso Curso { get; set; }

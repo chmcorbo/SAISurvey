@@ -29,46 +29,47 @@ namespace SAISurvey.Testes
             if (repositorioAluno.ListarTudo().Count() == 0)
             {
                 AlunoTeste alunoTeste = new AlunoTeste();
-                alunoTeste.IncluirAlunos();
+                alunoTeste.CargaInicial();
             }
-
+            /***************************************************************************/
             RepositorioResposta repositorioResposta = new RepositorioResposta();
-
             if (repositorioResposta.ListarTudo().Count() == 0)
             {
                 RespostaTeste respostaTeste = new RespostaTeste();
-                respostaTeste.IncluirResposta();
+                respostaTeste.CargaInicial();
             }
-
+            /***************************************************************************/
             AvaliacaoTeste avaliacaoTeste = new AvaliacaoTeste();
-            Avaliacao avaliacao = avaliacaoTeste.IncluirAvaliacaoComModuloComQuestoes();
+            Avaliacao avaliacao = avaliacaoTeste.IncluirAvaliacao();
             RepositorioAvaliacao repositorioAvalicao = new RepositorioAvaliacao();
             repositorioAvalicao.Adicionar(avaliacao);
-
+            /***************************************************************************/
             objeto = new AvaliacaoAluno();
             objeto.Aluno = repositorioAluno.ListarTudo().First();
             objeto.Avaliacao = avaliacao;
-
-
+            /***************************************************************************/
             return objeto;
+        }
+        private void IncluirQuestoes(AvaliacaoAluno pAvaliacaoAluno)
+        {
+            Int32 contador = 0;
+
+            RepositorioResposta repositorioResposta = new RepositorioResposta();
+            List<Resposta> respostas = repositorioResposta.ListarTudo().ToList();
+
+            foreach (Questao questao in objeto.Avaliacao.Questoes)
+            {
+                Resposta resposta = respostas.Skip(contador).Take(1).FirstOrDefault();
+                objeto.AdicionarRespostaQuestao(questao, resposta);
+                contador++;
+            }
         }
 
         [Test]
         public void a_Incluir_AvaliacaoAluno()
         {
             objeto = IncluirAvaliacao();
-
-            Int32 contador = 0;
-            RepositorioResposta repositorioResposta = new RepositorioResposta();
-            List<Resposta> respostas = repositorioResposta.ListarTudo().ToList();
-
-            foreach (Questao questao in objeto.Avaliacao.Questoes)
-            {
-                respostas = respostas.Skip(contador).Take(1).ToList();
-                Resposta resposta = respostas.Skip(contador).Take(1).FirstOrDefault();
-                objeto.AdicionarRespostaQuestao(questao, resposta);
-            }
-
+            IncluirQuestoes(objeto);
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
@@ -78,20 +79,20 @@ namespace SAISurvey.Testes
         public void b_Alterar_AvaliacaoAluno()
         {
             objeto = IncluirAvaliacao();
-
-            Int32 contador = 0;
+            IncluirQuestoes(objeto);
+            repositorio.Adicionar(objeto);
+            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
             RepositorioResposta repositorioResposta = new RepositorioResposta();
             List<Resposta> respostas = repositorioResposta.ListarTudo().ToList();
-
-            foreach (Questao questao in objeto.Avaliacao.Questoes)
+            Int32 contador = 0;
+            foreach (Questao questao in objetoRecuperado.Avaliacao.Questoes)
             {
-                Resposta resposta = respostas.Skip(contador).Take(1).FirstOrDefault();
-                objeto.AdicionarRespostaQuestao(questao, resposta);
+                Resposta resposta = respostas.Reverse<Resposta>().Skip(contador).Take(1).FirstOrDefault();
+                objetoRecuperado.AdicionarRespostaQuestao(questao, resposta);
+                contador++;
             }
-
-            repositorio.Atualizar(objeto);
-
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            repositorio.Atualizar(objetoRecuperado);
+            objeto = repositorio.ObterPorID(objetoRecuperado.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
     }

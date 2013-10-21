@@ -14,59 +14,161 @@ namespace SAISurvey.Testes
     {
         Turma objeto;
         Turma objetoRecuperado;
-        RepositorioGenerico<Turma> repositorio;
+        IRepositorioTurma repositorio;
         IRepositorioProfessor repProfessor;
         IRepositorioAluno repAluno;
+        IRepositorioCurso repCurso;
 
         // Falta incluir os testes fazendo referência obrigatório ao atributo Modulo.
         public TurmaTeste()
         {
-            repositorio = new RepositorioGenerico<Turma>();
+            repositorio = new RepositorioTurma();
             repProfessor = new RepositorioProfessor();
             repAluno = new RepositorioAluno();
+            repCurso = new RepositorioCurso();
         }
 
-        private Turma Incluir_Turma_Sem_Professor_Sem_Aluno()
+        private void VerificaAlgumCursoCadastrado(IRepositorioCurso repositorioCurso)
         {
-            Turma turma = new Turma();
-            turma.Sala = "101";
-            turma.Data_Inicio = DateTime.Parse("29/09/2013");
-            turma.Data_Fim = DateTime.Parse("21/11/2013");
-            return turma;
+            if (repositorioCurso.ListarTudo().Count() == 0)
+            {
+                CursoTeste cursoTeste = new CursoTeste();
+                cursoTeste.CargaInicial();
+            }
         }
 
-        private Turma Incluir_Turma_Com_Professor_Sem_Aluno()
+        private Turma Turma_Engenharia_Quintas_Feiras()
         {
             Professor professor = repProfessor.ObterPorMatricula("100001");
             if (professor == null)
             {
                 ProfessorTeste professorTeste = new ProfessorTeste();
-                professorTeste.IncluirProfessores();
+                professorTeste.CargaInicial();
                 professor = repProfessor.ObterPorMatricula("100001");
+            }
+            
+            Turma turma = new Turma();
+            turma.Descricao = "Quintas-feiras";
+            turma.Sala = "101";
+            turma.Data_Inicio = DateTime.Parse("09/05/2013");
+            turma.Data_Fim = DateTime.Parse("18/07/2013");
+            turma.Professor = professor;
+            turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
+            repositorio.Adicionar(turma);
+            return turma;
+        }
+
+        private Turma Turma_Engenharia_Sabados()
+        {
+            Professor professor = repProfessor.ObterPorMatricula("100002");
+            if (professor == null)
+            {
+                ProfessorTeste professorTeste = new ProfessorTeste();
+                professorTeste.CargaInicial();
+                professor = repProfessor.ObterPorMatricula("100002");
             }
 
             Turma turma = new Turma();
+            turma.Descricao = "Sábados";
             turma.Sala = "102";
-            turma.Data_Inicio = DateTime.Parse("02/09/2013");
-            turma.Data_Fim = DateTime.Parse("25/11/2013");
+            turma.Data_Inicio = DateTime.Parse("04/05/2013");
+            turma.Data_Fim = DateTime.Parse("06/07/2013");
+            turma.Professor = professor;
+            turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
+            repositorio.Adicionar(turma);
+            return turma;
+        }
+
+        private Turma Turma_Sistema_Informacao_SAP()
+        {
+            Professor professor = repProfessor.ObterPorMatricula("100003");
+            if (professor == null)
+            {
+                ProfessorTeste professorTeste = new ProfessorTeste();
+                professorTeste.CargaInicial();
+                professor = repProfessor.ObterPorMatricula("100003");
+            }
+
+            Turma turma = new Turma();
+            turma.Descricao = "Quartas-feiras";
+            turma.Sala = "203";
+            turma.Data_Inicio = DateTime.Parse("08/05/2013");
+            turma.Data_Fim = DateTime.Parse("24/07/2013");
+            turma.Professor = professor;
+            turma.Modulo = repCurso.ObterModulosPorDescricao("BI - Business Intelligence").FirstOrDefault();
+            repositorio.Adicionar(turma);
+            return turma;
+        }
+
+        public Boolean CargaInicial()
+        {
+            Boolean erro = false;
+            try
+            {
+                Turma_Engenharia_Quintas_Feiras();
+                Turma_Engenharia_Sabados();
+                Turma_Sistema_Informacao_SAP();
+            }
+            catch
+            {
+                erro = true;
+            }
+            return !erro;
+
+        }
+
+
+
+
+        private Turma Incluir_Turma_Sem_Professor_Sem_Aluno()
+        {
+            // MBA em Gerência de Projetos - Padrão PMI 
+            VerificaAlgumCursoCadastrado(repCurso);
+            Turma turma = new Turma();
+            turma.Sala = "101";
+            turma.Data_Inicio = DateTime.Parse("05/09/2013");
+            turma.Data_Fim = DateTime.Parse("14/11/2013");
+            return turma;
+        }
+
+        private Turma Incluir_Turma_Com_Professor_Sem_Aluno()
+        {
+            // Engenharia de software - Sábados
+            Professor professor = repProfessor.ObterPorMatricula("100001");
+            if (professor == null)
+            {
+                ProfessorTeste professorTeste = new ProfessorTeste();
+                professorTeste.CargaInicial();
+                professor = repProfessor.ObterPorMatricula("100001");
+            }
+            VerificaAlgumCursoCadastrado(repCurso);
+
+            Turma turma = new Turma();
+            turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
+            turma.Sala = "101";
+            turma.Data_Inicio = DateTime.Parse("21/09/2013");
+            turma.Data_Fim = DateTime.Parse("14/12/2013");
             turma.Professor = professor;
             return turma;
         }
 
         private Turma Incluir_Turma_Sem_Professor_Com_Aluno()
         {
+            // MBA Gestão de Sistemas da Informação com SAP
+
             Aluno aluno = repAluno.ObterPorMatricula("900001");
             if (aluno == null)
             {
                 AlunoTeste alunoTeste = new AlunoTeste();
-                alunoTeste.IncluirAlunos();
+                alunoTeste.CargaInicial();
                 aluno = repAluno.ObterPorMatricula("900001");
             }
 
             Turma turma = new Turma();
-            turma.Sala = "103";
-            turma.Data_Inicio = DateTime.Parse("28/08/2013");
-            turma.Data_Fim = DateTime.Parse("21/11/2013");
+            turma.Modulo = repCurso.ObterModulosPorDescricao("Análise e Projeto de Sistemas Orientados a Objetos").FirstOrDefault();
+            turma.Sala = "201";
+            turma.Data_Inicio = DateTime.Parse("11/08/2013");
+            turma.Data_Fim = DateTime.Parse("11/12/2013");
             turma.Alunos.Add(aluno);
             return turma;
         }
@@ -77,7 +179,7 @@ namespace SAISurvey.Testes
             if (professor == null)
             {
                 ProfessorTeste professorTeste = new ProfessorTeste();
-                professorTeste.IncluirProfessores();
+                professorTeste.CargaInicial();
                 professor = repProfessor.ObterPorMatricula("100001");
             }
 
@@ -86,14 +188,15 @@ namespace SAISurvey.Testes
             if (aluno == null)
             {
                 AlunoTeste alunoTeste = new AlunoTeste();
-                alunoTeste.IncluirAlunos();
+                alunoTeste.CargaInicial();
                 aluno = repAluno.ObterPorMatricula("900001");
             }
 
             Turma turma = new Turma();
-            turma.Sala = "104";
-            turma.Data_Inicio = DateTime.Parse("28/08/2013");
-            turma.Data_Fim = DateTime.Parse("21/11/2013");
+            turma.Sala = "201";
+            turma.Modulo = repCurso.ObterModulosPorDescricao("Desenvolvimento Web com WCF e WWF").FirstOrDefault();
+            turma.Data_Inicio = DateTime.Parse("05/09/2013");
+            turma.Data_Fim = DateTime.Parse("14/11/2013");
             turma.Professor = professor;
             turma.Alunos.Add(aluno);
             return turma;

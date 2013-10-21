@@ -28,14 +28,11 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
             return queryOver.List<Modulo>();
         }
 
-        public Curso ObterCursoPorIDModulo(String pID_Modulo)
+        public Modulo ObterCursoPorIDModulo(String pID_Modulo)
         {
             IQueryOver<Modulo> queryOver = Session.QueryOver<Modulo>()
                 .Where(m => m.ID == pID_Modulo);
-
-            Modulo modulo = queryOver.List().FirstOrDefault();
-
-            return modulo.Bloco.Curso;
+            return queryOver.List().FirstOrDefault();
         }
     }
 }

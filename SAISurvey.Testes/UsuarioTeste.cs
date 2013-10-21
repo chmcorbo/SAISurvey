@@ -33,7 +33,7 @@ namespace SAISurvey.Testes
             return usuario;
         }
 
-        public Boolean IncluirUsuarios()
+        public Boolean CargaInicial()
         {
             Boolean erro = false;
             try
