@@ -69,8 +69,8 @@ namespace SAISurvey.Testes
             RepositorioCurso repositorioCurso = new RepositorioCurso();
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
-            avaliacao.Data_Inicio = DateTime.Parse("21/10/2013");
-            avaliacao.Data_Fim = DateTime.Parse("05/11/2013");
+            avaliacao.Data_Inicio = DateTime.Parse("21/10/2013 08:00:00");
+            avaliacao.Data_Fim = DateTime.Parse("05/11/2013 23:59:00");
             avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;
         }
@@ -87,8 +87,8 @@ namespace SAISurvey.Testes
 
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
-            avaliacao.Data_Inicio = DateTime.Parse("22/10/2013");
-            avaliacao.Data_Fim = DateTime.Parse("31/10/2014");
+            avaliacao.Data_Inicio = DateTime.Parse("22/10/2013 08:00:00");
+            avaliacao.Data_Fim = DateTime.Parse("31/10/2013 23:59:00");
             avaliacao.Questoes = repositorioQuestao.ListarTudo().ToList();
             avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;

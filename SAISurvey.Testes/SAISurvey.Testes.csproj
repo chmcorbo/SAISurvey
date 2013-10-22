@@ -35,6 +35,7 @@
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +54,7 @@
     <Compile Include="QuestaoTeste.cs" />
     <Compile Include="RespostaTeste.cs" />
     <Compile Include="ServEnviarConviteAvaliacaoTeste.cs" />
+    <Compile Include="ServExportadorAvaliacaoCSVTeste.cs" />
     <Compile Include="TurmaTeste.cs" />
     <Compile Include="UsuarioTeste.cs" />
   </ItemGroup>
@@ -69,6 +71,9 @@
       <Project>{1EB4E285-B1E2-42E7-941A-1019F86E1938}</Project>
       <Name>SAISurvey.Persistence.nHibernate</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exportacao\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

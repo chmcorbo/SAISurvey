@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using clRecorderLog.Model;
+using SAISurvey.App.Servicos.Excecoes;
 
-namespace clRecorderLog.DAL
+namespace SAISurvey.App.Servicos
 {
     public class CSVFile
     {
@@ -14,7 +14,14 @@ namespace clRecorderLog.DAL
         private StreamReader _sr;
         private StreamWriter _sw;
 
-        private void Salvar()
+        public CSVFile(String pCaminhoArquivo, Boolean pCriarArquivo)
+        {
+            _caminhoarquivo = pCaminhoArquivo;
+            _sb = new StringBuilder();
+            VerificarArquivoExiste(pCriarArquivo);
+        }
+
+        public void Salvar()
         {
             _sw = new StreamWriter(_caminhoarquivo,false, System.Text.Encoding.UTF8);
             _sw.Write(_sb);
@@ -31,8 +38,6 @@ namespace clRecorderLog.DAL
         private void InicializarArquivo()
         {
             _sb.Clear();
-            _sb.AppendLine("Data;Hora;Evento;Observacao");
-            _sb.AppendLine(DateTime.Now.ToString("dd/MM/yyyy") + ";" + DateTime.Now.ToString("T") + ";Abertura do arquivo;Criação do arquivo realizada com sucesso com sucesso");
             Salvar();
         }
 
@@ -47,7 +52,7 @@ namespace clRecorderLog.DAL
                 }
                 else
                 {
-                    throw new FileRecorderLogNotFound();
+                    throw new CSVFileNaoEncontrado();
                 }
             }
             else
@@ -58,21 +63,10 @@ namespace clRecorderLog.DAL
             }
         }
 
-        public CSVFile(String pCaminhoArquivo, Boolean pCriarArquivo)
-        {
-            _caminhoarquivo = pCaminhoArquivo;
-            _sb = new StringBuilder();
-            VerificarArquivoExiste(pCriarArquivo);
-        }
-
-        public Boolean Inserir(MRecordLog pRecordeLog)
+        public Boolean Inserir(String pTexto)
         {
             Boolean vResult = false;
-            _sb.AppendLine(pRecordeLog.Horario.ToString("dd/MM/yyyy") + ";"+
-                           pRecordeLog.Horario.ToString("T") + ";"+
-                           pRecordeLog.Evento + ";"+
-                           pRecordeLog.Observacao);
-            Salvar();
+            _sb.AppendLine(pTexto);
             vResult = true;
             return vResult;
         }

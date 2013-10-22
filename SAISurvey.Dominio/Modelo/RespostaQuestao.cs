@@ -12,9 +12,7 @@ namespace SAISurvey.Dominio.Modelo
         public virtual Resposta Resposta { get; set; }
         public RespostaQuestao()
         {
-            AvaliacaoAluno = new AvaliacaoAluno();
-            Questao = new Questao();
-            Resposta = new Resposta();
+
         }
     }
 }

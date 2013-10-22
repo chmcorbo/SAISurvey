@@ -18,12 +18,10 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
             List<Avaliacao> lstAvaliacoes;
             EnvioEmail envioEmail = new EnvioEmail("smtp.gmail.com", true, "chmcorbo", "nqbx2009");
             MessagemEmail messagemEmail = new MessagemEmail();
-            messagemEmail.Remetente = "chmcorbo@gmail.com";
+            messagemEmail.Remetente = "comunicacao@infnet.edu.br";
             messagemEmail.Assunto = "Questionário de Avaliação do Curso";
             
-            
             RepositorioAvaliacao repositorioAvaliacao = new RepositorioAvaliacao();
-            RepositorioGenerico<Turma> repositorioTurma = new RepositorioGenerico<Turma>();
             RepositorioGenerico<AvaliacaoAluno> repositorioAvaliacaoAluno = new RepositorioGenerico<AvaliacaoAluno>();
 
             lstAvaliacoes = repositorioAvaliacao.ListarSemConvite(pDataReferencia).ToList();
@@ -39,18 +37,23 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
                         {
                             avaliacaoAluno.AdicionarRespostaQuestao(questao);
                         }
+                        
                         messagemEmail.Destinatario = aluno.Email;
-                        messagemEmail.ConteudoMessagem = "Olá " + aluno.Nome +
+                        messagemEmail.ConteudoMessagem = "Olá " + aluno.Nome +","+
                             Environment.NewLine +
                             Environment.NewLine +
-                            "Você está sendo convidado para responder um questionário de avaliação do módulo " + avaliacao.Turma.Modulo.Descricao +
+                            "Esse é um convite para você responder um questionário de avaliação do módulo " + avaliacao.Turma.Modulo.Descricao +
                             Environment.NewLine +
                             "Clique no link http://www.infnet.edu.br" +
                             Environment.NewLine +
-                            "Esse questionário estará disponível até o dia " + avaliacao.Data_Fim.Value.Date.ToString("dd/MM/yyyy") +
-                            " as " + avaliacao.Data_Fim.Value.Hour.ToString("HH:mm");
+                            Environment.NewLine +
+                            "Esse questionário estará disponível até o dia " + avaliacao.Data_Fim.Value.ToString("dd/MM/yyyy") +
+                            " as " + avaliacao.Data_Fim.Value.ToString("hh:mm:ss");
                         envioEmail.Enviar(messagemEmail);
+                        repositorioAvaliacaoAluno.Adicionar(avaliacaoAluno);
                     }
+                    avaliacao.ConviteEnviado = "S";
+                    repositorioAvaliacao.Atualizar(avaliacao);
                 }
             }
             else

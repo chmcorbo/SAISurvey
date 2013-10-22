@@ -16,8 +16,8 @@ namespace SAISurvey.App.Servicos
 
         public EnvioEmail(String pServidorSMTP, Boolean pHabilitarSSL, String pUsuario, String pSenha)
         {
-            _SmtpClient = new SmtpClient(pServidorSMTP, 465);
-            _SmtpClient.Timeout = 3600000;
+            _SmtpClient = new SmtpClient(pServidorSMTP, 587);
+            _SmtpClient.Timeout = 120000;
             _SmtpClient.EnableSsl = pHabilitarSSL;
             _SmtpClient.Credentials = new NetworkCredential(pUsuario, pSenha);
         }

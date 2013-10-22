@@ -12,6 +12,7 @@ namespace SAISurvey.Dominio.Modelo
         public virtual Avaliacao Avaliacao { get; set; }
         public virtual IList<RespostaQuestao> RespostasQuestoes { get; set; }
         public virtual String Fechada { get; set; }
+        public virtual String Comentarios { get; set; }
         private void CriarObjetos()
         {
             Fechada = "N";
@@ -35,7 +36,7 @@ namespace SAISurvey.Dominio.Modelo
             respostaQuestao = RespostasQuestoes.Where(q => q.Questao.ID == pQuestao.ID).FirstOrDefault();
             if (respostaQuestao != null)
                 RespostasQuestoes.Remove(respostaQuestao);
-            respostaQuestao = new RespostaQuestao() { AvaliacaoAluno = this, Questao = pQuestao };
+            respostaQuestao = new RespostaQuestao() { AvaliacaoAluno = this, Questao = pQuestao, Resposta=null };
             RespostasQuestoes.Add(respostaQuestao);
             return this;
         }

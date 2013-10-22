@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSVFile.cs" />
     <Compile Include="EnvioEmail.cs" />
+    <Compile Include="Excecoes\CSVFileNaoEncontrado.cs" />
     <Compile Include="Modelo\MessagemEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

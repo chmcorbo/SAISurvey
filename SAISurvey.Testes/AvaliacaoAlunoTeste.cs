@@ -47,6 +47,7 @@ namespace SAISurvey.Testes
             objeto = new AvaliacaoAluno();
             objeto.Aluno = repositorioAluno.ListarTudo().First();
             objeto.Avaliacao = avaliacao;
+            objeto.Comentarios = "Secretaria atende de forma ineficiente.";
             /***************************************************************************/
             return objeto;
         }
@@ -62,7 +63,19 @@ namespace SAISurvey.Testes
                 Resposta resposta = respostas.Skip(contador).Take(1).FirstOrDefault();
                 objeto.AdicionarRespostaQuestao(questao, resposta);
                 contador++;
+                if (contador > 5)
+                    contador = 0;
             }
+        }
+
+        public Boolean CargaInicial()
+        {
+            Boolean _erro = true;
+            objeto = IncluirAvaliacao();
+            IncluirQuestoes(objeto);
+            repositorio.Adicionar(objeto);
+            _erro = false;
+            return !_erro;
         }
 
         [Test]
@@ -90,6 +103,8 @@ namespace SAISurvey.Testes
                 Resposta resposta = respostas.Reverse<Resposta>().Skip(contador).Take(1).FirstOrDefault();
                 objetoRecuperado.AdicionarRespostaQuestao(questao, resposta);
                 contador++;
+                if (contador > 5)
+                    contador = 0;
             }
             repositorio.Atualizar(objetoRecuperado);
             objeto = repositorio.ObterPorID(objetoRecuperado.ID);
