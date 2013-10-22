@@ -54,6 +54,7 @@ namespace SAISurvey.Testes
             turma.Data_Fim = DateTime.Parse("18/07/2013");
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
+            turma.Alunos.Add(repAluno.ObterPorMatricula("900001"));
             repositorio.Adicionar(turma);
             return turma;
         }
@@ -75,6 +76,7 @@ namespace SAISurvey.Testes
             turma.Data_Fim = DateTime.Parse("06/07/2013");
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
+            turma.Alunos.Add(repAluno.ObterPorMatricula("900002"));
             repositorio.Adicionar(turma);
             return turma;
         }
@@ -96,6 +98,7 @@ namespace SAISurvey.Testes
             turma.Data_Fim = DateTime.Parse("24/07/2013");
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("BI - Business Intelligence").FirstOrDefault();
+            turma.Alunos.Add(repAluno.ObterPorMatricula("900003"));
             repositorio.Adicionar(turma);
             return turma;
         }
@@ -116,9 +119,6 @@ namespace SAISurvey.Testes
             return !erro;
 
         }
-
-
-
 
         private Turma Incluir_Turma_Sem_Professor_Sem_Aluno()
         {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Persistence.nHibe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Web.Administracao", "SAISurvey.Web.Administracao\SAISurvey.Web.Administracao.csproj", "{BA701ABC-149C-47DD-9460-8F4124A8E2B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.App.Servicos", "SAISurvey.App.Servicos\SAISurvey.App.Servicos\SAISurvey.App.Servicos.csproj", "{B126B856-966A-44F0-9E2C-A2ED45D57994}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{BA701ABC-149C-47DD-9460-8F4124A8E2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA701ABC-149C-47DD-9460-8F4124A8E2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA701ABC-149C-47DD-9460-8F4124A8E2B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B126B856-966A-44F0-9E2C-A2ED45D57994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B126B856-966A-44F0-9E2C-A2ED45D57994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B126B856-966A-44F0-9E2C-A2ED45D57994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B126B856-966A-44F0-9E2C-A2ED45D57994}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

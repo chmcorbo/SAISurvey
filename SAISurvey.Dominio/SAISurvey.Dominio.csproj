@@ -75,8 +75,10 @@
     <Compile Include="Repositorios\IRepositorioResposta.cs" />
     <Compile Include="Repositorios\IRepositorioTurma.cs" />
     <Compile Include="Repositorios\IRepositorioUsuario.cs" />
+    <Compile Include="Servicos\IServEnviarConviteAvaliacao.cs" />
     <Compile Include="Servicos\IServValidadorAcessoUsuario.cs" />
     <Compile Include="Servicos\IServValidadorGravacaoUsuario.cs" />
+    <Compile Include="Servicos\IServValidarAvaliacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enumerados\" />

@@ -66,5 +66,12 @@ namespace SAISurvey.Testes.Repositorios
             RespostaTeste respostaTeste = new RespostaTeste();
             Assert.IsTrue(respostaTeste.CargaInicial());
         }
+
+        [Test]
+        public void i_Incluir_Avaliacao()
+        {
+            AvaliacaoTeste avaliacaoTeste = new AvaliacaoTeste();
+            Assert.IsTrue(avaliacaoTeste.CargaInicial());
+        }
     }
 }

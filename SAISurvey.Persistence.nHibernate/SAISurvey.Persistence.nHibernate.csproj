@@ -76,6 +76,7 @@
     <Compile Include="Repositorios\RepositorioResposta.cs" />
     <Compile Include="Repositorios\RepositorioTurma.cs" />
     <Compile Include="Repositorios\RepositorioUsuario.cs" />
+    <Compile Include="Servicos\ServEnviarConviteAvaliacao.cs" />
     <Compile Include="Servicos\ServValidadorAcessoUsuario.cs" />
     <Compile Include="Servicos\ServValidadorGravacaoUsuario.cs" />
   </ItemGroup>
@@ -83,6 +84,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SAISurvey.App.Servicos\SAISurvey.App.Servicos\SAISurvey.App.Servicos.csproj">
+      <Project>{B126B856-966A-44F0-9E2C-A2ED45D57994}</Project>
+      <Name>SAISurvey.App.Servicos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SAISurvey.Dominio\SAISurvey.Dominio.csproj">
       <Project>{54C010CF-77D4-43A9-AC35-88C27FCDDD24}</Project>
       <Name>SAISurvey.Dominio</Name>

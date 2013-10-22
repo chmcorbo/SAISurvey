@@ -58,7 +58,7 @@ namespace SAISurvey.Testes
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("10/10/2013");
-            avaliacao.Data_Fim = DateTime.Parse("05/12/2013");
+            avaliacao.Data_Fim = DateTime.Parse("25/10/2013");
             avaliacao.Questoes = repositorioQuestao.ListarTudo().ToList();
             return avaliacao;
         }
@@ -70,7 +70,7 @@ namespace SAISurvey.Testes
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("21/10/2013");
-            avaliacao.Data_Fim = DateTime.Parse("13/01/2014");
+            avaliacao.Data_Fim = DateTime.Parse("05/11/2013");
             avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;
         }
@@ -88,7 +88,7 @@ namespace SAISurvey.Testes
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("22/10/2013");
-            avaliacao.Data_Fim = DateTime.Parse("11/02/2014");
+            avaliacao.Data_Fim = DateTime.Parse("31/10/2014");
             avaliacao.Questoes = repositorioQuestao.ListarTudo().ToList();
             avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
             return avaliacao;
@@ -97,6 +97,12 @@ namespace SAISurvey.Testes
         public Avaliacao IncluirAvaliacao()
         {
             return IncluirAvaliacaoComTurmaComQuestoes();
+        }
+
+        public Boolean CargaInicial()
+        {
+            repositorio.Adicionar(IncluirAvaliacao());
+            return true;
         }
 
         [Test]

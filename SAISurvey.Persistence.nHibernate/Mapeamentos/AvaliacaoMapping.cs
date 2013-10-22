@@ -16,6 +16,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
             Map(a => a.Objetivo).Length(50);
             Map(a => a.Data_Inicio);
             Map(a => a.Data_Fim);
+            Map(a => a.ConviteEnviado).Length(1);
             References<Turma>(a => a.Turma).ForeignKey("FK_AVALIACAO_MODULO").Column("ID_Turma");
             HasManyToMany(a => a.Questoes).Table("TB_AVALIACAO_QUESTAO");
             Table("TB_AVALIACAO");

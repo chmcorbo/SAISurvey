@@ -29,6 +29,16 @@ namespace SAISurvey.Dominio.Modelo
             CriarObjetos();
         }
 
+        public virtual AvaliacaoAluno AdicionarRespostaQuestao(Questao pQuestao)
+        {
+            RespostaQuestao respostaQuestao;
+            respostaQuestao = RespostasQuestoes.Where(q => q.Questao.ID == pQuestao.ID).FirstOrDefault();
+            if (respostaQuestao != null)
+                RespostasQuestoes.Remove(respostaQuestao);
+            respostaQuestao = new RespostaQuestao() { AvaliacaoAluno = this, Questao = pQuestao };
+            RespostasQuestoes.Add(respostaQuestao);
+            return this;
+        }
         public virtual AvaliacaoAluno AdicionarRespostaQuestao(Questao pQuestao, Resposta pResposta)
         {
             RespostaQuestao respostaQuestao;

@@ -13,10 +13,12 @@ namespace SAISurvey.Dominio.Modelo
         public virtual IList<Questao> Questoes { get; set; }
         public virtual DateTime? Data_Inicio { get; set; }
         public virtual DateTime? Data_Fim { get; set; }
+        public virtual String ConviteEnviado { get; set; }
         public Avaliacao()
         {
             //Turma = new Turma();
             Questoes = new List<Questao>();
+            ConviteEnviado = "N";
         }
     }
 }

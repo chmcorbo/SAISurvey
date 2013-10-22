@@ -9,5 +9,6 @@ namespace SAISurvey.Dominio.Repositorios
     public interface IRepositorioAvaliacao : IRepositorioGenerico<Avaliacao>
     {
         IList<Avaliacao> ListarPorPeriodo(DateTime pDataInicial, DateTime pDataFinal);
+        IList<Avaliacao> ListarSemConvite(DateTime pDataReferencia);
     }
 }

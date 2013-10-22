@@ -53,5 +53,13 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
             if (VerificaConsistencia(pEntidadeBase))
                 base.Atualizar(pEntidadeBase);
         }
+
+
+        public IList<Avaliacao> ListarSemConvite(DateTime pDataReferencia)
+        {
+            IQueryOver<Avaliacao> queryOver = Session.QueryOver<Avaliacao>()
+                .Where(a => pDataReferencia >= a.Data_Inicio && pDataReferencia <= a.Data_Fim && a.ConviteEnviado == "N");
+            return queryOver.List<Avaliacao>();
+        }
     }
 }

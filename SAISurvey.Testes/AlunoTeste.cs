@@ -37,13 +37,13 @@ namespace SAISurvey.Testes
                 aluno = new Aluno();
                 aluno.Matricula = "900002";
                 aluno.Nome = "Tatiana Moreira da Silva Corbo";
-                aluno.Email = "tmscorbo@gmail.com";
+                aluno.Email = "chmcorbo@gmail.com";
                 repositorio.Adicionar(aluno);
 
                 aluno = new Aluno();
                 aluno.Matricula = "900003";
                 aluno.Nome = "Ricardo Coelho da Silva";
-                aluno.Email = "rcoelhorj01@gmail.com";
+                aluno.Email = "chmcorbo@gmail.com";
                 repositorio.Adicionar(aluno);
 
                 aluno = new Aluno();
