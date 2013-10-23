@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExLoginExistenteUsuario : Exception
     {
-        public ExLoginExistenteUsuario(String pMessage) { }
+        public ExLoginExistenteUsuario() : base("Login de usuário existente.") { }
     }
 }

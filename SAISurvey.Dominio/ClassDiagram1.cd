@@ -1,1 +1,277 @@
- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SAISurvey.Dominio.EntidadeBase" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EntidadeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExAvaliacaoPeriodoInvalido" Collapsed="true">
+    <Position X="28.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExAvaliacaoPeriodoInvalido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExAvaliacaoSemObjetivo" Collapsed="true">
+    <Position X="30" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExAvaliacaoSemObjetivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExAvaliacaoSemQuestoes" Collapsed="true">
+    <Position X="31.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExAvaliacaoSemQuestoes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExAvaliacaoSemTurma" Collapsed="true">
+    <Position X="33.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExAvaliacaoSemTurma.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExLoginExistenteUsuario" Collapsed="true">
+    <Position X="30" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExLoginExistenteUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExLoginNaoInformado" Collapsed="true">
+    <Position X="31.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExLoginNaoInformado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExBlocoNaoRefereciadoNoCurso" Collapsed="true">
+    <Position X="28.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExModuloNaoRefereciadoNoBloco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExQuestaoExistenteAvaliacaoAluno" Collapsed="true">
+    <Position X="33.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExQuestaoExistenteAvaliacaoAluno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExSenhaNaoInformada" Collapsed="true">
+    <Position X="28.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExSenhaNaoInformada.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExSenhaUsuarioInvalida" Collapsed="true">
+    <Position X="30" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExSenhaUsuarioInvalida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExUsuarioNaoEncontrado" Collapsed="true">
+    <Position X="33.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExUsuarioInvalido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Excecoes.ExUsuarioNaoAdministrador" Collapsed="true">
+    <Position X="31.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Excecoes\ExUsuarioNaoAdministrador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Aluno" Collapsed="true">
+    <Position X="23.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Modelo\Aluno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Avaliacao">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwIIAAAAAAAAAAAAAAAAgAAgAAAAAAA=</HashCode>
+      <FileName>Modelo\Avaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.AvaliacaoAluno">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAEFAAgAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Modelo\AvaliacaoAluno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Bloco">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQgBAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\Bloco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Curso">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAEABAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\Curso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Modulo">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\Modulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Professor">
+    <Position X="21.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Modelo\Professor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Questao" Collapsed="true">
+    <Position X="25.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\Questao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Resposta">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\Resposta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.RespostaQuestao">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Modelo\RespostaQuestao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Turma">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAABAwAAAAAAAACAAAAAAAAAAAAACAABAAA=</HashCode>
+      <FileName>Modelo\Turma.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAISurvey.Dominio.Modelo.Usuario">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAQAAEBAAA=</HashCode>
+      <FileName>Modelo\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioAluno" Collapsed="true">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioAluno.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioAvaliacao" Collapsed="true">
+    <Position X="12" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioAvaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioCurso" Collapsed="true">
+    <Position X="16.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioCurso.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioGenerico&lt;T&gt;" Collapsed="true">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAABAAAAAAEAAAAAAgAAgAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioGenerico.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioProfessor" Collapsed="true">
+    <Position X="0.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioProfessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioQuestao" Collapsed="true">
+    <Position X="3" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioQuestao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioResposta" Collapsed="true">
+    <Position X="5.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioResposta.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioTurma" Collapsed="true">
+    <Position X="9.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioTurma.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Repositorios.IRepositorioUsuario" Collapsed="true">
+    <Position X="14.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositorios\IRepositorioUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Servicos.IServEnviarConviteAvaliacao" Collapsed="true">
+    <Position X="28.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Servicos\IServEnviarConviteAvaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Servicos.IServExportadorAvaliacaoCSV" Collapsed="true">
+    <Position X="30" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Servicos\IServExportadorAvaliacaoCSV.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Servicos.IServValidadorAcessoUsuario" Collapsed="true">
+    <Position X="31.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Servicos\IServValidadorAcessoUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Servicos.IServValidadorGravacaoUsuario" Collapsed="true">
+    <Position X="33.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Servicos\IServValidadorGravacaoUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SAISurvey.Dominio.Servicos.IServValidarAvaliacao" Collapsed="true">
+    <Position X="28.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Servicos\IServValidarAvaliacao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

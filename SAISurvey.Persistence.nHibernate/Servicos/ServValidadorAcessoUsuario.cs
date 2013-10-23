@@ -16,13 +16,13 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
             RepositorioUsuario repositorio = new RepositorioUsuario();
             Usuario usuario = repositorio.ObterPorLogin(pLogin);
             if (usuario == null)
-                throw new ExUsuarioNaoEncontrado("Login de usuário não encontrado");
+                throw new ExUsuarioNaoEncontrado();
 
             if (usuario.Senha != pSenha)
-                throw new ExSenhaUsuarioInvalida("Senha informada inválida");
+                throw new ExSenhaUsuarioInvalida();
 
             if (usuario.Administrador == "N")
-                throw new ExUsuarioNaoAdministrador("O usuário não é um administrador");
+                throw new ExUsuarioNaoAdministrador();
 
             return usuario;
         }

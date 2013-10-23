@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExUsuarioNaoEncontrado : Exception
     {
-        public ExUsuarioNaoEncontrado(String Message) { }
+        public ExUsuarioNaoEncontrado() : base("Login de usuário inválido") { }
     }
 }

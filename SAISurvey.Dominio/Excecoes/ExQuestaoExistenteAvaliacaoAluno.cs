@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExQuestaoExistenteAvaliacaoAluno : Exception
     {
-        public ExQuestaoExistenteAvaliacaoAluno(String Message) { }
+        public ExQuestaoExistenteAvaliacaoAluno() : base("Questão inexistente na avaliação do aluno") { }
     }
 }

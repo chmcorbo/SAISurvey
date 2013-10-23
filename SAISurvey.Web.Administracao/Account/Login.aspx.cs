@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
@@ -26,7 +27,8 @@ namespace SAISurvey.Web.Administracao.Account
                 servValidadorAcessoUsuario = new ServValidadorAcessoUsuario();
                 Usuario usuario =  servValidadorAcessoUsuario.Execute(txtLogin.Text, txtSenha.Text);
                 Session.Add("usuario_logado", usuario);
-                Response.Redirect("~/default.aspx");
+                FormsAuthentication.RedirectFromLoginPage(usuario.Login, false);
+                //Response.Redirect("~/default.aspx");
             }
             catch (Exception ex)
             {

@@ -17,18 +17,18 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
             Boolean erro = true;
 
             if (String.IsNullOrEmpty(pAvaliacao.Objetivo))
-                throw new ExAvaliacaoSemObjetivo("Avaliação sem objetivo");
+                throw new ExAvaliacaoSemObjetivo();
 
             if (pAvaliacao.Data_Inicio==null || 
                 pAvaliacao.Data_Fim==null || 
                 pAvaliacao.Data_Fim<pAvaliacao.Data_Inicio)
-                throw new ExAvaliacaoPeriodoInvalido("Periodo de avaliação inválido");
+                throw new ExAvaliacaoPeriodoInvalido();
 
             if (pAvaliacao.Turma == null)
-                throw new ExAvaliacaoSemTurma("Avaliação sem turma");
+                throw new ExAvaliacaoSemTurma();
 
             if (pAvaliacao.Questoes == null || pAvaliacao.Questoes.Count() == 0)
-                throw new ExAvaliacaoSemQuestoes("Avaliação sem questões");
+                throw new ExAvaliacaoSemQuestoes();
 
             erro = false;
 

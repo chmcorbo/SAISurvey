@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExUsuarioNaoAdministrador : Exception
     {
-        public ExUsuarioNaoAdministrador(String Message) { }
+        public ExUsuarioNaoAdministrador() : base("Usuário não é um administrador") { }
     }
 }

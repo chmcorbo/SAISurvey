@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExAvaliacaoSemTurma : Exception
     {
-        public ExAvaliacaoSemTurma(String Message) { }
+        public ExAvaliacaoSemTurma() : base("Avaliação não possui uma turma associada.") { }
     }
 }

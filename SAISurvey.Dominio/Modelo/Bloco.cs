@@ -36,7 +36,7 @@ namespace SAISurvey.Dominio.Modelo
         {
             if (pModulo.Bloco != this)
             {
-                throw new ExBlocoNaoRefereciadoNoCurso("O módulo inserido não tem referência do bloco em questão");
+                throw new ExBlocoNaoRefereciadoNoCurso();
             }
             Modulos.Add(pModulo);
         }

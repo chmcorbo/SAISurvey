@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExAvaliacaoPeriodoInvalido : Exception
     {
-        public ExAvaliacaoPeriodoInvalido(String pMessage) { }
+        public ExAvaliacaoPeriodoInvalido() : base("Avaliação com período inválido.") { }
     }
 }

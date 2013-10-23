@@ -30,9 +30,7 @@ namespace SAISurvey.Testes
                 AvaliacaoTeste avaliacaoTeste = new AvaliacaoTeste();
                 avaliacaoTeste.IncluirAvaliacao();
             }
-            Assert.IsTrue(servEnviarConviteAvaliacao.Execute(DateTime.Parse("25/10/2013")));
+            Assert.IsTrue(servEnviarConviteAvaliacao.Execute(DateTime.Now));
         }
-
-
     }
 }

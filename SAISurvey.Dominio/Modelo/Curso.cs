@@ -30,7 +30,7 @@ namespace SAISurvey.Dominio.Modelo
         {
             if (pBloco.Curso != this)
             {
-                throw new ExBlocoNaoRefereciadoNoCurso("O bloco inserido não tem referência do curso em questão");
+                throw new ExBlocoNaoRefereciadoNoCurso();
             }
             Blocos.Add(pBloco);
         }

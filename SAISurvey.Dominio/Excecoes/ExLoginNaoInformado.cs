@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExLoginNaoInformado : Exception
     {
-        public ExLoginNaoInformado(String Message) { }
+        public ExLoginNaoInformado() : base("Login de usuário não informado.") { }
     }
 }

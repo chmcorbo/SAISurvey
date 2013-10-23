@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExAvaliacaoSemQuestoes : Exception
     {
-        public ExAvaliacaoSemQuestoes(String Message){ }
+        public ExAvaliacaoSemQuestoes() : base("Avaliação sem nenhuma questão informada.") { }
     }
 }

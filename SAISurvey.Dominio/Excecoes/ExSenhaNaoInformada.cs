@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExSenhaNaoInformada : Exception
     {
-        public ExSenhaNaoInformada(String Message) { }
+        public ExSenhaNaoInformada() : base("Senha inválida") { }
     }
 }

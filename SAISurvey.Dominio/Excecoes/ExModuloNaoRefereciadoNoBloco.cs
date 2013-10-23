@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExBlocoNaoRefereciadoNoCurso:  Exception
     {
-        public ExBlocoNaoRefereciadoNoCurso(String Message) { }
+        public ExBlocoNaoRefereciadoNoCurso() : base("Bloco não referenciado no curso em questão.") { }
     }
 }

@@ -26,15 +26,15 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
         public bool Execute(Usuario pUsuario)
         {
             if (String.IsNullOrEmpty(pUsuario.Login))
-                throw new ExLoginNaoInformado("Login de usuário não encontrado.");
+                throw new ExLoginNaoInformado();
 
             if (String.IsNullOrEmpty(pUsuario.Senha))
-                throw new ExSenhaNaoInformada("Senha não informada.");
+                throw new ExSenhaNaoInformada();
 
             Usuario usuario = repositorioUsuario.ObterPorLogin(pUsuario.Login);
 
             if (usuario!=null && usuario.ID!=pUsuario.ID)
-                throw new ExLoginExistenteUsuario("Login de usuário existente");
+                throw new ExLoginExistenteUsuario();
 
             return true;
         }

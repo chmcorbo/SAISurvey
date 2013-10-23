@@ -7,6 +7,6 @@ namespace SAISurvey.Dominio.Excecoes
 {
     public class ExAvaliacaoSemObjetivo : Exception
     {
-        public ExAvaliacaoSemObjetivo(String pMessage) { }
+        public ExAvaliacaoSemObjetivo() : base("Avaliação sem objetivo.") { }
     }
 }
