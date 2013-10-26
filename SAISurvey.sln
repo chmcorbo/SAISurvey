@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.App.Servicos", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Servicos.EnvioConvite", "SAISurvey.Servicos.EnvioConvite\SAISurvey.Servicos.EnvioConvite.csproj", "{048C63F2-8E9C-4A04-AFDA-36A689A7C96F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAISurvey.Web.Questionario", "SAISurvey.Web.Questionario\SAISurvey.Web.Questionario.csproj", "{6C34273E-5FE8-46ED-8F5B-16D7805E7994}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{048C63F2-8E9C-4A04-AFDA-36A689A7C96F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{048C63F2-8E9C-4A04-AFDA-36A689A7C96F}.Release|x86.ActiveCfg = Release|x86
 		{048C63F2-8E9C-4A04-AFDA-36A689A7C96F}.Release|x86.Build.0 = Release|x86
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C34273E-5FE8-46ED-8F5B-16D7805E7994}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
