@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.elgLogEventos = new System.Diagnostics.EventLog();
-            ((System.ComponentModel.ISupportInitialize)(this.elgLogEventos)).BeginInit();
+            this.elgSAISurveyEnvioConvite = new System.Diagnostics.EventLog();
+            ((System.ComponentModel.ISupportInitialize)(this.elgSAISurveyEnvioConvite)).BeginInit();
             // 
-            // elgLogEventos
+            // elgSAISurveyEnvioConvite
             // 
-            this.elgLogEventos.Log = "SAISurveyAvaliacaoLog";
-            this.elgLogEventos.Source = "SAISurveyAvaliacaoLog";
+            this.elgSAISurveyEnvioConvite.Log = "wsSAISurveyEnvioConviteLog";
+            this.elgSAISurveyEnvioConvite.Source = "elgSAISurveyEnvioConvite";
             // 
             // SEnvioConvite
             // 
             this.ServiceName = "SAISurveyEnvioConvite";
-            ((System.ComponentModel.ISupportInitialize)(this.elgLogEventos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elgSAISurveyEnvioConvite)).EndInit();
 
         }
 
         #endregion
 
-        private System.Diagnostics.EventLog elgLogEventos;
+        private System.Diagnostics.EventLog elgSAISurveyEnvioConvite;
 
     }
 }

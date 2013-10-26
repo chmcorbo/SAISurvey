@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
@@ -13,6 +14,7 @@ namespace SAISurvey.Testes
     public class AvaliacaoAlunoTeste
     {
 
+        ConectionManager conexao;
         IRepositorioGenerico<AvaliacaoAluno> repositorio;
         AvaliacaoAluno objeto;
         AvaliacaoAluno objetoRecuperado;
@@ -20,7 +22,8 @@ namespace SAISurvey.Testes
 
         public AvaliacaoAlunoTeste()
         {
-            repositorio = new RepositorioGenerico<AvaliacaoAluno>();
+            conexao = new ConectionManager();
+            repositorio = new RepositorioGenerico<AvaliacaoAluno>(conexao);
         }
 
         public AvaliacaoAluno IncluirAvaliacao()
@@ -41,7 +44,7 @@ namespace SAISurvey.Testes
             /***************************************************************************/
             AvaliacaoTeste avaliacaoTeste = new AvaliacaoTeste();
             Avaliacao avaliacao = avaliacaoTeste.IncluirAvaliacao();
-            RepositorioAvaliacao repositorioAvalicao = new RepositorioAvaliacao();
+            RepositorioAvaliacao repositorioAvalicao = new RepositorioAvaliacao(conexao);
             repositorioAvalicao.Adicionar(avaliacao);
             /***************************************************************************/
             objeto = new AvaliacaoAluno();

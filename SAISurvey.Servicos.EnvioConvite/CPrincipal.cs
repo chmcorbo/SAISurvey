@@ -10,16 +10,17 @@ namespace SAISurvey.Servicos.EnvioConvite
     {
         private System.Timers.Timer _timerTarefa;
         private SGerenciadorTarefas sGerenciadorTarefas;
-        private System.Diagnostics.EventLog _EventLog;
+        private System.Diagnostics.EventLog _EventLog = null;
 
         public void InitializeComponente(System.Diagnostics.EventLog pEventLog)
         {
-            if (!System.Diagnostics.EventLog.SourceExists("SAISurveyLogEventos"))
+            if (!System.Diagnostics.EventLog.SourceExists("elgSAISurveyEnvioConvite"))
             {
-                System.Diagnostics.EventLog.CreateEventSource("SAISurveyAvaliacaoLog", "SAISurveyAvaliacaoLog");
+                System.Diagnostics.EventLog.CreateEventSource(
+                    "elgSAISurveyEnvioConvite", "wsSAISurveyEnvioConviteLog");
             }
-            _EventLog.Source = "SAISurveyAvaliacaoLog";
-            _EventLog.Log = "SAISurveyAvaliacaoLog";
+            _EventLog.Source = "elgSAISurveyEnvioConvite";
+            _EventLog.Log = "wsSAISurveyEnvioConviteLog";
         }
 
         public void Iniciar(String[] args)
@@ -30,6 +31,12 @@ namespace SAISurvey.Servicos.EnvioConvite
             _timerTarefa.Elapsed += new System.Timers.ElapsedEventHandler(sGerenciadorTarefas.ExecutarTarefaAgenda);
             _timerTarefa.Interval = 30000;
             _timerTarefa.Enabled = true;
+            _EventLog.WriteEntry("Serviço iniciado");
+        }
+
+        public void Finalizar()
+        {
+            _EventLog.WriteEntry("Serviço parado");
         }
     }
 }

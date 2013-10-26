@@ -10,7 +10,6 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioProfessor : RepositorioGenerico<Professor>, IRepositorioProfessor
     {
-
         public Professor ObterPorMatricula(string pMatricula)
         {
             IQueryOver<Professor> queryOver = Session.QueryOver<Professor>()

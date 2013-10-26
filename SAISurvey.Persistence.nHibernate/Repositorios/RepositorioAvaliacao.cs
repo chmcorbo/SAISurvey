@@ -12,6 +12,13 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioAvaliacao :  RepositorioGenerico<Avaliacao>, IRepositorioAvaliacao
     {
+
+        public RepositorioAvaliacao(ConectionManager pConexao) : base(pConexao)
+        {
+
+        }
+
+
         private Boolean VerificaConsistencia(Avaliacao pAvaliacao)
         {
             Boolean erro = true;
@@ -54,9 +61,9 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
                 base.Atualizar(pEntidadeBase);
         }
 
-
         public IList<Avaliacao> ListarSemConvite(DateTime pDataReferencia)
         {
+            Session = ConectionManager.GetConnection();
             IQueryOver<Avaliacao> queryOver = Session.QueryOver<Avaliacao>()
                 .Where(a => pDataReferencia >= a.Data_Inicio && pDataReferencia <= a.Data_Fim && a.ConviteEnviado == "N");
             return queryOver.List<Avaliacao>();

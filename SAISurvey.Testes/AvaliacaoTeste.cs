@@ -6,6 +6,7 @@ using NUnit.Framework;
 using SAISurvey.Dominio.Excecoes;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
@@ -13,6 +14,7 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class AvaliacaoTeste 
     {
+        ConectionManager conexao = new ConectionManager();
         IRepositorioAvaliacao repositorio;
         IRepositorioTurma repositorioTurma;
         IRepositorioGenerico<Questao> repositorioQuestao;
@@ -21,7 +23,8 @@ namespace SAISurvey.Testes
 
         public AvaliacaoTeste()
         {
-            repositorio = new RepositorioAvaliacao();
+            conexao = new ConectionManager();
+            repositorio = new RepositorioAvaliacao(conexao);
             repositorioTurma = new RepositorioTurma();
             repositorioQuestao = new RepositorioQuestao();
         }

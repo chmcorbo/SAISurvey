@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConectionManager.cs" />
     <Compile Include="FluentSessionFactory.cs" />
     <Compile Include="HybridSessionBuilder.cs" />
     <Compile Include="Mapeamentos\AlunoMapping.cs" />
