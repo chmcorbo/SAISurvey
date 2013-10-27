@@ -6,7 +6,7 @@ using SAISurvey.Dominio.Modelo;
 
 namespace SAISurvey.Dominio.Servicos
 {
-    public interface IServValidadorGravacaoUsuario
+    public interface IServValidadorConsistenciaUsuario
     {
         Boolean Execute(Usuario pUsuario);
     }

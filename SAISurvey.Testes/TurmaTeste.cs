@@ -5,6 +5,8 @@ using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
@@ -14,7 +16,8 @@ namespace SAISurvey.Testes
     {
         Turma objeto;
         Turma objetoRecuperado;
-        IRepositorioTurma repositorio;
+        ControladorTurma controlador;
+        ConectionManager conexao;
         IRepositorioProfessor repProfessor;
         IRepositorioAluno repAluno;
         IRepositorioCurso repCurso;
@@ -22,10 +25,11 @@ namespace SAISurvey.Testes
         // Falta incluir os testes fazendo referência obrigatório ao atributo Modulo.
         public TurmaTeste()
         {
-            repositorio = new RepositorioTurma();
-            repProfessor = new RepositorioProfessor();
-            repAluno = new RepositorioAluno();
-            repCurso = new RepositorioCurso();
+            controlador = new ControladorTurma();
+            conexao = new ConectionManager();
+            repProfessor = new RepositorioProfessor(conexao);
+            repAluno = new RepositorioAluno(conexao);
+            repCurso = new RepositorioCurso(conexao);
         }
 
         private void VerificaAlgumCursoCadastrado(IRepositorioCurso repositorioCurso)
@@ -55,7 +59,7 @@ namespace SAISurvey.Testes
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
             turma.Alunos.Add(repAluno.ObterPorMatricula("900001"));
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             return turma;
         }
 
@@ -77,7 +81,7 @@ namespace SAISurvey.Testes
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").FirstOrDefault();
             turma.Alunos.Add(repAluno.ObterPorMatricula("900002"));
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             return turma;
         }
 
@@ -99,7 +103,7 @@ namespace SAISurvey.Testes
             turma.Professor = professor;
             turma.Modulo = repCurso.ObterModulosPorDescricao("BI - Business Intelligence").FirstOrDefault();
             turma.Alunos.Add(repAluno.ObterPorMatricula("900003"));
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             return turma;
         }
 
@@ -183,7 +187,7 @@ namespace SAISurvey.Testes
                 professor = repProfessor.ObterPorMatricula("100001");
             }
 
-            IRepositorioAluno repAluno = new RepositorioAluno();
+            IRepositorioAluno repAluno = new RepositorioAluno(conexao);
             Aluno aluno = repAluno.ObterPorMatricula("900001");
             if (aluno == null)
             {
@@ -205,21 +209,21 @@ namespace SAISurvey.Testes
         public void Incluir_Turmas()
         {
             Turma turma = Incluir_Turma_Sem_Professor_Sem_Aluno();
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             turma = Incluir_Turma_Com_Professor_Sem_Aluno();
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             turma = Incluir_Turma_Sem_Professor_Com_Aluno();
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
             turma = Incluir_Turma_Com_Professor_Com_Aluno();
-            repositorio.Adicionar(turma);
+            controlador.Adicionar(turma);
         }
 
         [Test]
         public void a_Incluir_Turma_Sem_Professor_Sem_Aluno()
         {
             objeto = Incluir_Turma_Sem_Professor_Sem_Aluno();
-            repositorio.Adicionar(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
 
@@ -227,8 +231,8 @@ namespace SAISurvey.Testes
         public void b_Incluir_Turma_Com_Professor_Sem_Aluno()
         {
             objeto = Incluir_Turma_Com_Professor_Sem_Aluno();
-            repositorio.Adicionar(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
             Professor professor = repProfessor.ObterPorMatricula("100001");
             Assert.AreEqual(professor.ID, objeto.Professor.ID);
@@ -238,8 +242,8 @@ namespace SAISurvey.Testes
         public void c_Incluir_Turma_Sem_Professor_Com_Aluno()
         {
             objeto = Incluir_Turma_Sem_Professor_Com_Aluno();
-            repositorio.Adicionar(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto,objetoRecuperado);
             Aluno aluno = repAluno.ObterPorMatricula("900001");
             Assert.AreEqual(aluno.ID,objetoRecuperado.Alunos[0].ID);
@@ -249,8 +253,8 @@ namespace SAISurvey.Testes
         public void d_Incluir_Turma_Com_Professor_Com_Aluno()
         {
             objeto = Incluir_Turma_Com_Professor_Com_Aluno();
-            repositorio.Adicionar(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
             
             Professor professor = repProfessor.ObterPorMatricula("100001");
@@ -269,8 +273,8 @@ namespace SAISurvey.Testes
             objeto.Professor = null;
             Aluno aluno = objeto.Alunos.Where(a => a.Matricula=="0002").FirstOrDefault();
             objeto.Alunos.Remove(aluno);
-            repositorio.Atualizar(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Atualizar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
 
@@ -278,8 +282,8 @@ namespace SAISurvey.Testes
         public void f_Excluir_Turma()
         {
             objeto = Incluir_Turma_Com_Professor_Com_Aluno();
-            repositorio.Excluir(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Excluir(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.IsNull(objetoRecuperado);
         }
 

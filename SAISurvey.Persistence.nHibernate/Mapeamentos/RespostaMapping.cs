@@ -13,6 +13,7 @@ namespace SAISurvey.Persistence.nHibernate.Mapeamentos
         {
             Id(r => r.ID).Index("PK_RESPOSTA").Length(40);
             Map(r => r.Descricao).Length(100);
+            Map(r => r.Ordem);
             Table("TB_RESPOSTA");
         }
     }

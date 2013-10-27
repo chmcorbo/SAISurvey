@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 using SAISurvey.Web.Administracao.IPages;
-using SAISurvey.Web.Administracao.Modelo;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
@@ -16,6 +11,7 @@ namespace SAISurvey.Web.Administracao.Pages
     {
         private String _id = String.Empty;
         private Usuario _objeto;
+        private ConectionManager _conexao;
         private IRepositorioUsuario _repositorio;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +20,6 @@ namespace SAISurvey.Web.Administracao.Pages
             {
                 if (Session["usuario_logado"] == null)
                     Response.Redirect("~/UsuarioNaoLogado.aspx");
-
                 _objeto = (Usuario)Session["usuario_logado"];
                 _id = _objeto.ID;
                 Session.Add("usuario", _objeto);
@@ -49,7 +44,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Usuario pObjeto)
         {
-            _repositorio = new RepositorioUsuario();
+            _conexao = new ConectionManager();
+            _repositorio = new RepositorioUsuario(_conexao);
             _repositorio.Atualizar(pObjeto);
         }
 

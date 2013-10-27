@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
+using SAISurvey.Dominio.Controladores;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
@@ -12,13 +15,21 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class ProfessorTeste
     {
-        IRepositorioProfessor repositorio;
         Professor objeto;
         Professor objetoRecuperado;
+        IControladorGenerico<Professor> controlador;
 
         public ProfessorTeste()
         {
-            repositorio = new RepositorioProfessor();
+            controlador = new ControladorGenerico<Professor>();
+        }
+
+        private Professor IncluirProfessor()
+        {
+            Professor professor = new Professor();
+            professor.Matricula = "100001";
+            professor.Nome = "Ubirajara Júnior";
+            return professor;
         }
 
         public Boolean CargaInicial()
@@ -27,30 +38,28 @@ namespace SAISurvey.Testes
 
             try
             {
-                objeto = new Professor();
-                objeto.Matricula = "100001";
-                objeto.Nome = "Ubirajara Júnior";
-                repositorio.Adicionar(objeto);
+                objeto = IncluirProfessor();
+                controlador.Adicionar(objeto);
 
                 objeto = new Professor();
                 objeto.Matricula = "100002";
                 objeto.Nome = "Carlos Pedro Muniz";
-                repositorio.Atualizar(objeto);
+                controlador.Adicionar(objeto);
 
                 objeto = new Professor();
                 objeto.Matricula = "100003";
                 objeto.Nome = "Michael Santana Cardoso";
-                repositorio.Atualizar(objeto);
+                controlador.Adicionar(objeto);
 
                 objeto = new Professor();
                 objeto.Matricula = "100004";
                 objeto.Nome = "Anderson Padro Ramos";
-                repositorio.Atualizar(objeto);
+                controlador.Adicionar(objeto);
 
                 objeto = new Professor();
                 objeto.Matricula = "100005";
                 objeto.Nome = "Elias do Amaral Ventura";
-                repositorio.Atualizar(objeto);
+                controlador.Adicionar(objeto);
             }
             catch
             {
@@ -62,12 +71,10 @@ namespace SAISurvey.Testes
         [Test]
         public void a_Obter_Professor_por_ID()
         {
-            if (repositorio.ListarTudo().Count() == 0)
-                CargaInicial();
-            objeto = repositorio.ListarTudo().FirstOrDefault();
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objeto = IncluirProfessor();
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
-
     }
 }

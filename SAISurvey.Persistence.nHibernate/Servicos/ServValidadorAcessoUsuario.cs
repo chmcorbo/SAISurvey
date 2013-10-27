@@ -11,10 +11,23 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
 {
     public class ServValidadorAcessoUsuario : IServValidadorAcessoUsuario
     {
+        private ConectionManager _conexao;
+
+        public ServValidadorAcessoUsuario(ConectionManager pConexao)
+        {
+            _conexao = pConexao;
+        }
+
         public Usuario Execute(string pLogin, String pSenha)
         {
-            RepositorioUsuario repositorio = new RepositorioUsuario();
-            Usuario usuario = repositorio.ObterPorLogin(pLogin);
+            Usuario usuario;
+
+            if (pLogin == String.Empty)
+                throw new ExUsuarioNaoEncontrado();
+
+            RepositorioUsuario repositorio = new RepositorioUsuario(_conexao);
+            usuario = repositorio.ObterPorLogin(pLogin);
+
             if (usuario == null)
                 throw new ExUsuarioNaoEncontrado();
 

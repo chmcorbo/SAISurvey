@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using SAISurvey.Web.Administracao.IPages;
 using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
     public partial class CadastroUsuario : System.Web.UI.Page, IPaginaCadastroPadrao<Usuario>
     {
-        private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
-        private IRepositorioUsuario _repositorio;
         private Usuario _objeto;
-
+        private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
+        private ConectionManager _conexao;
+        private IRepositorioUsuario _repositorio;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +24,8 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _repositorio = new RepositorioUsuario();
+                    _conexao = new ConectionManager();
+                    _repositorio = new RepositorioUsuario(_conexao);
                     _objeto = _repositorio.ObterPorID(_id);
                 }
                 else
@@ -61,7 +58,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Usuario pObjeto)
         {
-            _repositorio = new RepositorioUsuario();
+            _conexao = new ConectionManager();
+            _repositorio = new RepositorioUsuario(_conexao);
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
             {

@@ -5,6 +5,8 @@ using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 
@@ -13,13 +15,13 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class RespostaTeste
     {
-        RepositorioResposta repositorio;
         Resposta resposta;
         Resposta respostaRecuperada;
+        ControladorResposta controlador;
 
         public RespostaTeste()
         {
-            repositorio = new RepositorioResposta();
+            controlador = new ControladorResposta();
         }
 
         public Boolean CargaInicial()
@@ -29,27 +31,33 @@ namespace SAISurvey.Testes
             {
                 resposta = new Resposta();
                 resposta.Descricao = "Concordo totalmente";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 1;
+                controlador.Adicionar(resposta);
 
                 resposta = new Resposta();
                 resposta.Descricao = "Concordo";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 2;
+                controlador.Adicionar(resposta);
 
                 resposta = new Resposta();
                 resposta.Descricao = "Não concordo nem discordo";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 3;
+                controlador.Adicionar(resposta);
 
                 resposta = new Resposta();
                 resposta.Descricao = "Discordo";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 4;
+                controlador.Adicionar(resposta);
 
                 resposta = new Resposta();
                 resposta.Descricao = "Discordo totalmente";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 5;
+                controlador.Adicionar(resposta);
 
                 resposta = new Resposta();
                 resposta.Descricao = "Não sei avaliar";
-                repositorio.Adicionar(resposta);
+                resposta.Ordem = 6;
+                controlador.Adicionar(resposta);
             }
             catch
             {
@@ -63,33 +71,33 @@ namespace SAISurvey.Testes
         {
             resposta = new Resposta();
             resposta.Descricao = "Totalmente satisfeito";
-            repositorio.Adicionar(resposta);
-            respostaRecuperada = repositorio.ObterPorID(resposta.ID);
+            controlador.Adicionar(resposta);
+            respostaRecuperada = controlador.ObterPorID(resposta.ID);
             Assert.AreSame(resposta, respostaRecuperada);
         }
 
         [Test]
         public void b_Alterar_Resposta()
         {
-            if (repositorio.ListarTudo().Count() == 0)
+            if (controlador.ListarTudo().Count() == 0)
                 CargaInicial();
 
-            resposta = repositorio.ListarTudo().LastOrDefault();
+            resposta = controlador.ListarTudo().LastOrDefault();
             resposta.Descricao = "Satisfeitíssimo";
-            repositorio.Atualizar(resposta);
-            respostaRecuperada = repositorio.ObterPorID(resposta.ID);
+            controlador.Atualizar(resposta);
+            respostaRecuperada = controlador.ObterPorID(resposta.ID);
             Assert.AreEqual(resposta.Descricao, respostaRecuperada.Descricao);
         }
 
         [Test]
         public void c_Excluir_Resposta()
         {
-            if (repositorio.ListarTudo().Count() == 0)
+            if (controlador.ListarTudo().Count() == 0)
                 CargaInicial();
 
-            resposta = repositorio.ListarTudo().LastOrDefault();
-            repositorio.Excluir(resposta);
-            respostaRecuperada = repositorio.ObterPorID(resposta.ID);
+            resposta = controlador.ListarTudo().LastOrDefault();
+            controlador.Excluir(resposta);
+            respostaRecuperada = controlador.ObterPorID(resposta.ID);
             Assert.IsNull(respostaRecuperada);
         }
     }

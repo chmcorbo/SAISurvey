@@ -20,13 +20,8 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 
         protected ISession Session
         {
-            get { return _session; }
+            get { return _session ?? (_session = _ConectionManager.GetConnection()); }
             set { _session = value; }
-        }
-
-        public RepositorioGenerico()
-        {
-            
         }
 
         public RepositorioGenerico(ConectionManager pConectionManager)
@@ -39,8 +34,7 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
          
             try
             {
-                _session = _ConectionManager.GetConnection();
-                _session.Save(pEntidadeBase);
+                Session.Save(pEntidadeBase);
             }
             catch (Exception e)
             {
@@ -53,8 +47,7 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
         {
             try
             {
-                _session = _ConectionManager.GetConnection();
-                _session.SaveOrUpdate(pEntidadeBase);
+                Session.SaveOrUpdate(pEntidadeBase);
             }
             catch (Exception e)
             {
@@ -66,8 +59,7 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
         {
             try
             {
-                _session = _ConectionManager.GetConnection();
-                _session.Delete(pEntidadeBase);
+                Session.Delete(pEntidadeBase);
             }
             catch (Exception e)
             {
@@ -77,11 +69,10 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 
         public virtual IQueryable<T> ListarTudo()
         {
-            _session = _ConectionManager.GetConnection();
             IQueryable<T> lista = null;
             try
             {
-                lista = _session.CreateCriteria(typeof(T)).List<T>().AsQueryable();
+                lista = Session.CreateCriteria(typeof(T)).List<T>().AsQueryable();
             }
             catch (Exception e)
             {
@@ -93,8 +84,7 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 
         public virtual T ObterPorID(String pID)
         {
-            _session = _ConectionManager.GetConnection();
-            IQueryOver<T> queryOver = _session.QueryOver<T>().Where(t => t.ID == pID);
+            IQueryOver<T> queryOver = Session.QueryOver<T>().Where(t => t.ID == pID);
             return queryOver.List<T>().FirstOrDefault();
         }
 

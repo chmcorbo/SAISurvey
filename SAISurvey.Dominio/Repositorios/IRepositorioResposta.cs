@@ -11,6 +11,4 @@ namespace SAISurvey.Dominio.Repositorios
     {
         IList<Resposta> ObterPorDescricao(String pDescricao);
     }
-
-    
 }

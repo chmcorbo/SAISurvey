@@ -21,7 +21,7 @@ namespace SAISurvey.Testes
         public ServEnviarConviteAvaliacaoTeste()
         {
             conexao = new ConectionManager();
-            servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao();
+            servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao(conexao);
             repositorioAvaliacao = new RepositorioAvaliacao(conexao);
         }
 

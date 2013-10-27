@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using SAISurvey.Dominio;
 
-namespace SAISurvey.Web.Administracao.Controller
+namespace SAISurvey.Web.Administracao.Controlador
 {
     public class ObjetosSessaoController
     {

@@ -112,7 +112,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IPages\IPaginaCadastroPadrao.cs" />
-    <Compile Include="Controller\ObjetosSessaoController.cs" />
+    <Compile Include="Controlador\ObjetosSessaoController.cs" />
     <Compile Include="Modelo\TipoOperacaoUsuario.cs" />
     <Compile Include="Pages\AlterarSenhaUsuario.aspx.cs">
       <DependentUpon>AlterarSenhaUsuario.aspx</DependentUpon>

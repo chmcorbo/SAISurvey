@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 using SAISurvey.Dominio.Modelo;
 
@@ -13,6 +14,8 @@ namespace SAISurvey.Web.Administracao.Pages
 {
     public partial class SelecionarQuestoes : System.Web.UI.Page
     {
+        private ConectionManager _conexao;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,7 +45,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         protected void btnAdicionarQuestoesSelecionadas_Click(object sender, EventArgs e)
         {
-            IRepositorioGenerico<Questao> repQuestao = new RepositorioGenerico<Questao>();
+            _conexao = new ConectionManager();
+            IRepositorioGenerico<Questao> repQuestao = new RepositorioGenerico<Questao>(_conexao);
             Avaliacao avaliacao = (Avaliacao)Session["avaliacao"];
             foreach (GridViewRow row in GridView1.Rows)
             {

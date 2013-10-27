@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using SAISurvey.Dominio.Modelo;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -24,7 +19,8 @@ namespace SAISurvey.Web.Administracao.Pages
         protected void btnProcurar_Click(object sender, EventArgs e)
         {
             DateTime dataInicial, dataFinal;
-            RepositorioAvaliacao repositorio = new RepositorioAvaliacao();
+            ConectionManager conexao = new ConectionManager();
+            RepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
             dataInicial = DateTime.Parse(txtDataInicial.Text);
             dataFinal = DateTime.Parse(txtDataFinal.Text);
             GridView1.DataSource = repositorio.ListarPorPeriodo(dataInicial,dataFinal);

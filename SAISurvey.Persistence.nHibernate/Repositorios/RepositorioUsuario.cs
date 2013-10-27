@@ -12,6 +12,14 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioUsuario : RepositorioGenerico<Usuario>, IRepositorioUsuario
     {
+        private ConectionManager _conexao;
+
+        public RepositorioUsuario(ConectionManager pConexao)
+            : base(pConexao)
+        {
+            _conexao = pConexao;
+        }
+
         public Usuario ObterPorLogin(string pLogin)
         {
             IQueryOver<Usuario> queryOver = Session.QueryOver<Usuario>()
@@ -21,14 +29,14 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 
         public override void Adicionar(Usuario pEntidadeBase)
         {
-            IServValidadorGravacaoUsuario servValidadorGravacaoUsuario = new ServValidadorGravacaoUsuario(this);
+            IServValidadorConsistenciaUsuario servValidadorGravacaoUsuario = new ServValidadorConsistenciaUsuario(_conexao,this);
             if (servValidadorGravacaoUsuario.Execute(pEntidadeBase))
                 base.Adicionar(pEntidadeBase);
         }
 
         public override void Atualizar(Usuario pEntidadeBase)
         {
-            IServValidadorGravacaoUsuario servValidadorGravacaoUsuario = new ServValidadorGravacaoUsuario(this);
+            IServValidadorConsistenciaUsuario servValidadorGravacaoUsuario = new ServValidadorConsistenciaUsuario(_conexao,this);
             if (servValidadorGravacaoUsuario.Execute(pEntidadeBase))
                 base.Atualizar(pEntidadeBase);
         }

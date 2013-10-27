@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Web.Administracao.IPages;
 using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 
@@ -17,17 +16,17 @@ namespace SAISurvey.Web.Administracao.Pages
     {
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
+        private Avaliacao _objeto;
+        private ConectionManager _conexao;
         private IRepositorioAvaliacao _repositorio;
         private IRepositorioCurso _repositorioCurso;
         private IRepositorioTurma _repositorioTurma;
-        private Avaliacao _objeto;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 PreencheListaCursos();
-
                 if (Request.QueryString["id"] != "0")
                 {
                     _id = Request.QueryString["id"];
@@ -39,7 +38,8 @@ namespace SAISurvey.Web.Administracao.Pages
                     else
                     {
                         _operacao = TipoOperacaoUsuario.Editar;
-                        _repositorio = new RepositorioAvaliacao();
+                        _conexao = new ConectionManager();
+                        _repositorio = new RepositorioAvaliacao(_conexao);
                         _objeto = _repositorio.ObterPorID(_id);
                     }
                 }
@@ -71,7 +71,8 @@ namespace SAISurvey.Web.Administracao.Pages
         private void PreencheListaCursos()
         {
             LimparLista(ddlCurso);
-            _repositorioCurso = new RepositorioCurso();
+            _conexao = new ConectionManager();
+            _repositorioCurso = new RepositorioCurso(_conexao);
             ddlCurso.DataSource = _repositorioCurso.ListarTudo().OrderBy(c => c.Descricao);
             ddlCurso.DataValueField = "ID";
             ddlCurso.DataTextField = "Descricao";
@@ -98,7 +99,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         private void PreencheListaTurmas(String pID_Modulo)
         {
-            _repositorioTurma = new RepositorioTurma();
+            _conexao = new ConectionManager();
+            _repositorioTurma = new RepositorioTurma(_conexao);
             LimparLista(ddlTurma);
             ddlTurma.DataValueField = "ID";
             ddlTurma.DataTextField = "Descricao";
@@ -132,7 +134,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public Avaliacao BindToModel()
         {
-            _repositorioTurma = new RepositorioTurma();
+            _conexao = new ConectionManager();
+            _repositorioTurma = new RepositorioTurma(_conexao);
             Avaliacao avaliacao = (Avaliacao)Session["avaliacao"];
             avaliacao.Objetivo = txtObjetivo.Text;
             avaliacao.Data_Inicio = DateTime.Parse(txtDataInicial.Text);
@@ -143,7 +146,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Avaliacao pObjeto)
         {
-            _repositorio = new RepositorioAvaliacao();
+            _conexao = new ConectionManager();
+            _repositorio = new RepositorioAvaliacao(_conexao);
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
             {
@@ -157,7 +161,9 @@ namespace SAISurvey.Web.Administracao.Pages
         {
             if (ddlCurso.SelectedValue != String.Empty)
             {
-                _repositorioCurso = new RepositorioCurso();
+
+                _conexao = new ConectionManager();
+                _repositorioCurso = new RepositorioCurso(_conexao);
                 Curso curso = _repositorioCurso.ObterPorID(ddlCurso.SelectedValue);
                 Session.Add("curso", curso);
                 PreencheListaBlocos(curso);

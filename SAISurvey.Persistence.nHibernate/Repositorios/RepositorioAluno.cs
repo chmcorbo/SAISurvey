@@ -11,6 +11,11 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioAluno : RepositorioGenerico<Aluno>, IRepositorioAluno
     {
+        public RepositorioAluno(ConectionManager pConexao) : base(pConexao)
+        {
+
+        }
+
         public Aluno ObterPorMatricula(string pMatricula)
         {
             IQueryOver<Aluno> queryOver = Session.QueryOver<Aluno>()

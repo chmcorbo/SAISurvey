@@ -13,9 +13,15 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
 {
     public class ServEnviarConviteAvaliacao : IServEnviarConviteAvaliacao
     {
+        private ConectionManager _conexao;
+
+        public ServEnviarConviteAvaliacao(ConectionManager pConexao)
+        {
+            _conexao = pConexao;
+        }
+
         public Boolean Execute(DateTime pDataReferencia)
         {
-            ConectionManager conexao = new ConectionManager();
             Boolean _erro = false;
             List<Avaliacao> lstAvaliacoes;
             EnvioEmail envioEmail = new EnvioEmail("smtp.gmail.com", true, "chmcorbo", "nqbx2009");
@@ -25,14 +31,10 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
 
             try
             {
-                conexao.BeginTransaction();
-
-                RepositorioAvaliacao repositorioAvaliacao = new RepositorioAvaliacao(conexao);
-
-                RepositorioGenerico<AvaliacaoAluno> repositorioAvaliacaoAluno = new RepositorioGenerico<AvaliacaoAluno>(conexao);
-
+                _conexao.BeginTransaction();
+                RepositorioAvaliacao repositorioAvaliacao = new RepositorioAvaliacao(_conexao);
+                RepositorioGenerico<AvaliacaoAluno> repositorioAvaliacaoAluno = new RepositorioGenerico<AvaliacaoAluno>(_conexao);
                 lstAvaliacoes = repositorioAvaliacao.ListarSemConvite(pDataReferencia).ToList();
-
                 if (lstAvaliacoes.Count() > 0)
                 {
                     foreach (Avaliacao avaliacao in lstAvaliacoes)
@@ -63,11 +65,11 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
                         repositorioAvaliacao.Atualizar(avaliacao);
                     }
                 }
-                conexao.CommitTransaction();
+                _conexao.CommitTransaction();
             }
             catch
             {
-                conexao.RollbackTransaction();
+                _conexao.RollbackTransaction();
                 _erro = true;
             }
             return !_erro;

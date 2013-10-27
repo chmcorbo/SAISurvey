@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
+using SAISurvey.Dominio.Controladores;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 
@@ -13,13 +16,22 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class AlunoTeste
     {
-        IRepositorioAluno repositorio;
-        Aluno aluno;
-        Aluno alunoRecuperado;
+        Aluno objeto;
+        Aluno objetoRecuperado;
+        ControladorGenerico<Aluno> controlador;
 
         public AlunoTeste()
         {
-            repositorio = new RepositorioAluno();
+            controlador = new ControladorGenerico<Aluno>();
+        }
+
+        private Aluno IncluirAluno()
+        {
+            objeto = new Aluno();
+            objeto.Matricula = "900001";
+            objeto.Nome = "Carlos Henrique Meireles Corbo";
+            objeto.Email = "chmcorbo@gmail.com";
+            return objeto;
         }
 
         public Boolean CargaInicial()
@@ -28,29 +40,26 @@ namespace SAISurvey.Testes
 
             try
             {
-                aluno = new Aluno();
-                aluno.Matricula = "900001";
-                aluno.Nome = "Carlos Henrique Meireles Corbo";
-                aluno.Email = "chmcorbo@gmail.com";
-                repositorio.Adicionar(aluno);
+                objeto = IncluirAluno();
+                controlador.Adicionar(objeto);
 
-                aluno = new Aluno();
-                aluno.Matricula = "900002";
-                aluno.Nome = "Tatiana Moreira da Silva Corbo";
-                aluno.Email = "chmcorbo@gmail.com";
-                repositorio.Adicionar(aluno);
+                objeto = new Aluno();
+                objeto.Matricula = "900002";
+                objeto.Nome = "Tatiana Moreira da Silva Corbo";
+                objeto.Email = "chmcorbo@gmail.com";
+                controlador.Adicionar(objeto);
 
-                aluno = new Aluno();
-                aluno.Matricula = "900003";
-                aluno.Nome = "Ricardo Coelho da Silva";
-                aluno.Email = "chmcorbo@gmail.com";
-                repositorio.Adicionar(aluno);
+                objeto = new Aluno();
+                objeto.Matricula = "900003";
+                objeto.Nome = "Ricardo Coelho da Silva";
+                objeto.Email = "chmcorbo@gmail.com";
+                controlador.Adicionar(objeto);
 
-                aluno = new Aluno();
-                aluno.Matricula = "900004";
-                aluno.Nome = "Ana Carolina Moreira";
-                aluno.Email = "krol.moreira201102@gmail.com";
-                repositorio.Adicionar(aluno);
+                objeto = new Aluno();
+                objeto.Matricula = "900004";
+                objeto.Nome = "Ana Carolina Moreira";
+                objeto.Email = "krol.moreira201102@gmail.com";
+                controlador.Adicionar(objeto);
             }
             catch
             {
@@ -63,11 +72,10 @@ namespace SAISurvey.Testes
         [Test]
         public void a_Obter_Aluno_por_ID()
         {
-            if (repositorio.ListarTudo().Count() == 0)
-                CargaInicial();
-            aluno = repositorio.ListarTudo().FirstOrDefault();
-            alunoRecuperado = repositorio.ObterPorID(aluno.ID);
-            Assert.AreSame(aluno, alunoRecuperado);
+            objeto = IncluirAluno();
+            controlador.Adicionar(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
+            Assert.AreSame(objeto, objetoRecuperado);
         }
     }
 }

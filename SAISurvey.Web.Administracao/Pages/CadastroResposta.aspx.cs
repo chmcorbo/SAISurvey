@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using SAISurvey.Web.Administracao.IPages;
 using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -16,9 +12,9 @@ namespace SAISurvey.Web.Administracao.Pages
     {
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
-        private IRepositorioResposta _repositorio;
         private Resposta _objeto;
-
+        private ConectionManager _conexao;
+        private IRepositorioResposta _repositorio;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +24,8 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _repositorio = new RepositorioResposta();
+                    _conexao = new ConectionManager();
+                    _repositorio = new RepositorioResposta(_conexao);
                     _objeto = _repositorio.ObterPorID(_id);
                 }
                 else
@@ -57,7 +54,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Resposta pObjeto)
         {
-            _repositorio = new RepositorioResposta();
+            _conexao = new ConectionManager();
+            _repositorio = new RepositorioResposta(_conexao);
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
                 _repositorio.Adicionar(pObjeto);
@@ -78,7 +76,6 @@ namespace SAISurvey.Web.Administracao.Pages
                 lbMessagem.Visible = true;
                 lbMessagem.Text = ex.Message;
             }
-
         }
 
         protected void btnVoltar_Click(object sender, EventArgs e)

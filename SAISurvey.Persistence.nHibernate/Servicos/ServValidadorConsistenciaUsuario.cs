@@ -9,18 +9,21 @@ using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Persistence.nHibernate.Servicos
 {
-    public class ServValidadorGravacaoUsuario : IServValidadorGravacaoUsuario
+    public class ServValidadorConsistenciaUsuario : IServValidadorConsistenciaUsuario
     {
-        private RepositorioUsuario repositorioUsuario;
+        private ConectionManager _conexao;
+        private RepositorioUsuario _repositorioUsuario;
         
-        public ServValidadorGravacaoUsuario()
+        public ServValidadorConsistenciaUsuario(ConectionManager pConexao)
         {
-            repositorioUsuario = new RepositorioUsuario();
+            _conexao = pConexao;
+            _repositorioUsuario = new RepositorioUsuario(_conexao);
         }
 
-        public ServValidadorGravacaoUsuario(RepositorioUsuario pRepositorioUsuario)
+        public ServValidadorConsistenciaUsuario(ConectionManager pConexao, RepositorioUsuario pRepositorioUsuario)
         {
-            repositorioUsuario = pRepositorioUsuario;
+            _conexao = pConexao;
+            _repositorioUsuario = pRepositorioUsuario;
         }
 
         public bool Execute(Usuario pUsuario)
@@ -31,7 +34,7 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
             if (String.IsNullOrEmpty(pUsuario.Senha))
                 throw new ExSenhaNaoInformada();
 
-            Usuario usuario = repositorioUsuario.ObterPorLogin(pUsuario.Login);
+            Usuario usuario = _repositorioUsuario.ObterPorLogin(pUsuario.Login);
 
             if (usuario!=null && usuario.ID!=pUsuario.ID)
                 throw new ExLoginExistenteUsuario();

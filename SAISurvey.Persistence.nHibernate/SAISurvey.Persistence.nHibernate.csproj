@@ -52,6 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConectionManager.cs" />
+    <Compile Include="Controladores\ControladorAluno.cs" />
+    <Compile Include="Controladores\ControladorAvaliacao.cs" />
+    <Compile Include="Controladores\ControladorCurso.cs" />
+    <Compile Include="Controladores\ControladorGenerico.cs" />
+    <Compile Include="Controladores\ControladorProfessor.cs" />
+    <Compile Include="Controladores\ControladorQuestao.cs" />
+    <Compile Include="Controladores\ControladorResposta.cs" />
+    <Compile Include="Controladores\ControladorTurma.cs" />
+    <Compile Include="Controladores\ControladorUsuario.cs" />
     <Compile Include="FluentSessionFactory.cs" />
     <Compile Include="HybridSessionBuilder.cs" />
     <Compile Include="Mapeamentos\AlunoMapping.cs" />
@@ -80,7 +89,8 @@
     <Compile Include="Servicos\ServEnviarConviteAvaliacao.cs" />
     <Compile Include="Servicos\ServExportadorAvaliacaoCSV.cs" />
     <Compile Include="Servicos\ServValidadorAcessoUsuario.cs" />
-    <Compile Include="Servicos\ServValidadorGravacaoUsuario.cs" />
+    <Compile Include="Servicos\ServValidadorConsistenciaUsuario.cs" />
+    <Compile Include="Servicos\ServValidadorConsistenciaAvaliacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

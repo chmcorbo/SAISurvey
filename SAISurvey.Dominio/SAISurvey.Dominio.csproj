@@ -53,6 +53,7 @@
     <Compile Include="Excecoes\ExSenhaUsuarioInvalida.cs" />
     <Compile Include="Excecoes\ExUsuarioInvalido.cs" />
     <Compile Include="Excecoes\ExUsuarioNaoAdministrador.cs" />
+    <Compile Include="Controladores\IControladorGenerico.cs" />
     <Compile Include="Modelo\Aluno.cs" />
     <Compile Include="Modelo\Avaliacao.cs" />
     <Compile Include="Modelo\AvaliacaoAluno.cs" />
@@ -78,8 +79,8 @@
     <Compile Include="Servicos\IServEnviarConviteAvaliacao.cs" />
     <Compile Include="Servicos\IServExportadorAvaliacaoCSV.cs" />
     <Compile Include="Servicos\IServValidadorAcessoUsuario.cs" />
-    <Compile Include="Servicos\IServValidadorGravacaoUsuario.cs" />
-    <Compile Include="Servicos\IServValidarAvaliacao.cs" />
+    <Compile Include="Servicos\IServValidadorConsistenciaUsuario.cs" />
+    <Compile Include="Servicos\IServValidadorConsistenciaAvaliacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enumerados\" />

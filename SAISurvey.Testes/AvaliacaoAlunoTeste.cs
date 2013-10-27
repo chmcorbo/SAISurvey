@@ -13,12 +13,10 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class AvaliacaoAlunoTeste
     {
-
-        ConectionManager conexao;
-        IRepositorioGenerico<AvaliacaoAluno> repositorio;
         AvaliacaoAluno objeto;
         AvaliacaoAluno objetoRecuperado;
-
+        ConectionManager conexao;
+        IRepositorioGenerico<AvaliacaoAluno> repositorio;
 
         public AvaliacaoAlunoTeste()
         {
@@ -28,14 +26,14 @@ namespace SAISurvey.Testes
 
         public AvaliacaoAluno IncluirAvaliacao()
         {
-            RepositorioAluno repositorioAluno = new RepositorioAluno();
+            RepositorioAluno repositorioAluno = new RepositorioAluno(conexao);
             if (repositorioAluno.ListarTudo().Count() == 0)
             {
                 AlunoTeste alunoTeste = new AlunoTeste();
                 alunoTeste.CargaInicial();
             }
             /***************************************************************************/
-            RepositorioResposta repositorioResposta = new RepositorioResposta();
+            RepositorioResposta repositorioResposta = new RepositorioResposta(conexao);
             if (repositorioResposta.ListarTudo().Count() == 0)
             {
                 RespostaTeste respostaTeste = new RespostaTeste();
@@ -58,7 +56,7 @@ namespace SAISurvey.Testes
         {
             Int32 contador = 0;
 
-            RepositorioResposta repositorioResposta = new RepositorioResposta();
+            RepositorioResposta repositorioResposta = new RepositorioResposta(conexao);
             List<Resposta> respostas = repositorioResposta.ListarTudo().ToList();
 
             foreach (Questao questao in objeto.Avaliacao.Questoes)
@@ -98,7 +96,7 @@ namespace SAISurvey.Testes
             IncluirQuestoes(objeto);
             repositorio.Adicionar(objeto);
             objetoRecuperado = repositorio.ObterPorID(objeto.ID);
-            RepositorioResposta repositorioResposta = new RepositorioResposta();
+            RepositorioResposta repositorioResposta = new RepositorioResposta(conexao);
             List<Resposta> respostas = repositorioResposta.ListarTudo().ToList();
             Int32 contador = 0;
             foreach (Questao questao in objetoRecuperado.Avaliacao.Questoes)

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -23,7 +24,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         protected void btnProcurar_Click(object sender, EventArgs e)
         {
-            RepositorioUsuario repositorio = new RepositorioUsuario();
+            ConectionManager conexao = new ConectionManager();
+            RepositorioUsuario repositorio = new RepositorioUsuario(conexao);
             if (txtNome.Text != String.Empty)
                 GridView1.DataSource = repositorio.ListarPorNome(txtNome.Text);
             else

@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using SAISurvey.Dominio.Modelo;
+using SAISurvey.Dominio.Controladores;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Testes
@@ -12,13 +15,13 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class CursoTeste
     {
-        RepositorioCurso repositorio;
         Curso objeto;
         Curso objetoRecuperado;
+        ControladorCurso controlador;
 
         public CursoTeste()
         {
-            repositorio = new RepositorioCurso();
+            controlador = new ControladorCurso();
         }
 
         private Curso Incluir_Curso_Engenharia_Software_NET()
@@ -50,7 +53,7 @@ namespace SAISurvey.Testes
                 .AdicionarModulo("TI e Estratégia")
                 .AdicionarModulo("Governança e Controle em TI");
 
-            repositorio.Adicionar(objeto);
+            controlador.Adicionar(objeto);
             return objeto;
         }
 
@@ -78,7 +81,7 @@ namespace SAISurvey.Testes
                 .AdicionarModulo("CO- Contabilidade")
                 .AdicionarModulo("BI - Business Intelligence");
 
-            repositorio.Adicionar(objeto);
+            controlador.Adicionar(objeto);
             return objeto;
 
         }
@@ -103,7 +106,7 @@ namespace SAISurvey.Testes
         public Curso Incluir_Cursos_Sem_Bloco()
         {
             objeto = new Curso() { Descricao = "MIT em Gestão de Bancos de Dados com Oracle" };
-            repositorio.Adicionar(objeto);
+            controlador.Adicionar(objeto);
             return objeto;
         }
 
@@ -112,7 +115,7 @@ namespace SAISurvey.Testes
             objeto = new Curso() { Descricao = "MBA em Gestão de Sistemas de Informação com SAP" };
             objeto.AdicionarBloco("Gestão de Resultados");
             objeto.AdicionarBloco("Processos Organizacionais Estratégicos");
-            repositorio.Adicionar(objeto);
+            controlador.Adicionar(objeto);
             return objeto;
         }
 
@@ -134,7 +137,7 @@ namespace SAISurvey.Testes
                 .AdicionarModulo("Desenvolvimento de Aplicações Web com .NET")
                 .AdicionarModulo("Desenvolvimento Web com WCF e WWF")
                 .AdicionarModulo("Tópicos Avançados");
-            repositorio.Adicionar(objeto);
+            controlador.Adicionar(objeto);
             return objeto;
         }
 
@@ -142,7 +145,7 @@ namespace SAISurvey.Testes
         public void a_Incluir_Cursos_Sem_Bloco()
         {
             objeto = Incluir_Cursos_Sem_Bloco();
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
 
@@ -150,7 +153,7 @@ namespace SAISurvey.Testes
         public void b_Incluir_Cursos_Com_Bloco_Sem_Modulo()
         {
             objeto = Incluir_Curso_Com_Bloco_Sem_Modulo();
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
 
@@ -158,24 +161,23 @@ namespace SAISurvey.Testes
         public void d_Incluir_Cursos_Com_Bloco_Com_Modulo()
         {
             objeto = Incluir_Curso_Com_Bloco_Com_Modulo();
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
         }
-
 
         [Test]
         public void e_Atualizar_Curso()
         {
-            objeto = repositorio.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
+            objeto = controlador.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             
             if (objeto == null)
                 objeto = Incluir_Curso_Com_Bloco_Sem_Modulo();
 
             objeto.Descricao = "MBA em Gestão de Sistemas de Informação com TOTVS";
 
-            repositorio.Atualizar(objeto);
+            controlador.Atualizar(objeto);
 
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
 
             Assert.AreEqual(objeto.Descricao, objetoRecuperado.Descricao);
         }
@@ -183,7 +185,7 @@ namespace SAISurvey.Testes
         [Test]
         public void f_Atualizar_Bloco_de_Curso()
         {
-            objeto = repositorio.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
+            objeto = controlador.ObterPorDescricao("MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             if (objeto == null)
                 objeto = Incluir_Curso_Com_Bloco_Sem_Modulo();
 
@@ -193,7 +195,7 @@ namespace SAISurvey.Testes
 
             objeto.AdicionarBloco("ERP SAP");
 
-            repositorio.Atualizar(objeto);
+            controlador.Atualizar(objeto);
 
             Bloco blocoRecuperado = objeto.Blocos.Where(c => c.Descricao == "ERP SAP").FirstOrDefault();
 
@@ -203,13 +205,13 @@ namespace SAISurvey.Testes
         [Test]
         public void g_Excluir_Bloco_de_Curso()
         {
-            objeto = repositorio.ListarTudo().Where(c => c.Descricao == "MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
+            objeto = controlador.ListarTudo().Where(c => c.Descricao == "MBA em Gestão de Sistemas de Informação com SAP").FirstOrDefault();
             if (objeto == null)
                 objeto = Incluir_Curso_Com_Bloco_Sem_Modulo();
 
             objeto.ExcluirBloco("Processos Organizacionais Estratégicos");
 
-            repositorio.Atualizar(objeto);
+            controlador.Atualizar(objeto);
 
             Bloco bloco = objeto.Blocos.Where(b => b.Descricao == "Processos Organizacionais Estratégicos").FirstOrDefault();
 
@@ -221,10 +223,10 @@ namespace SAISurvey.Testes
         public void h_Excluir_Curso()
         {
             objeto = Incluir_Curso_Com_Bloco_Sem_Modulo();
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.AreSame(objeto, objetoRecuperado);
-            repositorio.Excluir(objeto);
-            objetoRecuperado = repositorio.ObterPorID(objeto.ID);
+            controlador.Excluir(objeto);
+            objetoRecuperado = controlador.ObterPorID(objeto.ID);
             Assert.Null(objetoRecuperado);
         }
 

@@ -11,6 +11,12 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioTurma : RepositorioGenerico<Turma>, IRepositorioTurma
     {
+        public RepositorioTurma(ConectionManager pConexao)
+            : base(pConexao)
+        {
+
+        }
+
         public IList<Turma> ListarPorModulo(String pID_Modulo)
         {
             IQueryOver<Turma> queryOver = Session.QueryOver<Turma>()

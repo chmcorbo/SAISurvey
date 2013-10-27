@@ -11,6 +11,11 @@ namespace SAISurvey.Persistence.nHibernate.Repositorios
 {
     public class RepositorioResposta : RepositorioGenerico<Resposta>, IRepositorioResposta
     {
+        public RepositorioResposta(ConectionManager pConexao) : base(pConexao)
+        {
+
+        }
+
         public IList<Resposta> ObterPorDescricao(String pDescricao)
         {
             IQueryOver<Resposta> queryOver = Session.QueryOver<Resposta>().

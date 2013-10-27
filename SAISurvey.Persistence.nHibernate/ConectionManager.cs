@@ -12,6 +12,11 @@ namespace SAISurvey.Persistence.nHibernate
         private ITransaction _TransactionAtual = null;
         private ISession _ConexaoAtual = null;
 
+        public ConectionManager()
+        {
+
+        }
+
         public ITransaction BeginTransaction()
         {
             _TransactionAtual = GetConnection().BeginTransaction();

@@ -5,6 +5,7 @@ using System.Text;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Dominio.Servicos;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 using SAISurvey.Persistence.nHibernate.Servicos;
 using NUnit.Framework;
@@ -15,14 +16,16 @@ namespace SAISurvey.Testes
     [TestFixture]
     public class ServExportadorAvaliacaoCSVTeste
     {
+        ConectionManager _conexao;
         IRepositorioGenerico<AvaliacaoAluno> repositorio;
         IRepositorioGenerico<AvaliacaoAluno> repositorioAvaliacaoAluno;
         IServExportadorAvaliacaoCSV servExportadorAvaliacaoCSV;
 
         public ServExportadorAvaliacaoCSVTeste()
         {
-            repositorio = new RepositorioGenerico<AvaliacaoAluno>();
-            repositorioAvaliacaoAluno = new RepositorioGenerico<AvaliacaoAluno>();
+            _conexao = new ConectionManager();
+            repositorio = new RepositorioGenerico<AvaliacaoAluno>(_conexao);
+            repositorioAvaliacaoAluno = new RepositorioGenerico<AvaliacaoAluno>(_conexao);
             servExportadorAvaliacaoCSV = new ServExportadorAvaliacaoCSV(ConfigurationManager.AppSettings["CaminhoExportacaoCSV"]);
         }
 

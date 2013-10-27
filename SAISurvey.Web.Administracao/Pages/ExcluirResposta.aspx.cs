@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
+using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -14,6 +10,7 @@ namespace SAISurvey.Web.Administracao.Pages
     {
         private String _id = String.Empty;
         private Resposta _objeto;
+        private ConectionManager _conexao;
         private IRepositorioResposta _repositorio;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +18,8 @@ namespace SAISurvey.Web.Administracao.Pages
             if (!IsPostBack)
             {
                 _id = Request.QueryString["id"];
-                _repositorio = new RepositorioResposta();
+                _conexao = new ConectionManager();
+                _repositorio = new RepositorioResposta(_conexao);
                 _objeto = _repositorio.ObterPorID(_id);
                 Session.Add("questao", _objeto);
                 BindToUI(_objeto);
@@ -36,8 +34,9 @@ namespace SAISurvey.Web.Administracao.Pages
 
         private void Excluir()
         {
+            _conexao = new ConectionManager();
             _objeto = (Resposta)Session["resposta"];
-            _repositorio = new RepositorioResposta();
+            _repositorio = new RepositorioResposta(_conexao);
             _repositorio.Excluir(_objeto);
         }
 
