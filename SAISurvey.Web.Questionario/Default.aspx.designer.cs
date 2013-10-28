@@ -40,15 +40,6 @@ namespace SAISurvey.Web.Questionario {
         protected global::System.Web.UI.WebControls.Label lbTurma;
         
         /// <summary>
-        /// lbAluno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAluno;
-        
-        /// <summary>
         /// lbProfessor control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace SAISurvey.Web.Questionario {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        
+        /// <summary>
+        /// txtComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarios;
         
         /// <summary>
         /// btnSalvarContinuar control.

@@ -34,7 +34,10 @@ namespace SAISurvey.Testes
 
         private void VerificaAlgumCursoCadastrado(IRepositorioCurso repositorioCurso)
         {
-            if (repositorioCurso.ListarTudo().Count() == 0)
+            if (repCurso.ObterModulosPorDescricao("Desenvolvimento Web com WCF e WWF").Count() == 0 ||
+                repCurso.ObterModulosPorDescricao("Persistência de Dados com .NET").Count() == 0 ||
+                repCurso.ObterModulosPorDescricao("BI - Business Intelligence").Count()==0 || 
+                repCurso.ObterModulosPorDescricao("Análise e Projeto de Sistemas Orientados a Objetos").Count()==0)
             {
                 CursoTeste cursoTeste = new CursoTeste();
                 cursoTeste.CargaInicial();
@@ -43,6 +46,7 @@ namespace SAISurvey.Testes
 
         private Turma Turma_Engenharia_Quintas_Feiras()
         {
+            VerificaAlgumCursoCadastrado(repCurso);
             Professor professor = repProfessor.ObterPorMatricula("100001");
             if (professor == null)
             {
@@ -65,6 +69,7 @@ namespace SAISurvey.Testes
 
         private Turma Turma_Engenharia_Sabados()
         {
+            VerificaAlgumCursoCadastrado(repCurso);
             Professor professor = repProfessor.ObterPorMatricula("100002");
             if (professor == null)
             {
@@ -87,6 +92,7 @@ namespace SAISurvey.Testes
 
         private Turma Turma_Sistema_Informacao_SAP()
         {
+            VerificaAlgumCursoCadastrado(repCurso);
             Professor professor = repProfessor.ObterPorMatricula("100003");
             if (professor == null)
             {
@@ -138,6 +144,7 @@ namespace SAISurvey.Testes
         private Turma Incluir_Turma_Com_Professor_Sem_Aluno()
         {
             // Engenharia de software - Sábados
+            VerificaAlgumCursoCadastrado(repCurso);
             Professor professor = repProfessor.ObterPorMatricula("100001");
             if (professor == null)
             {
@@ -159,7 +166,7 @@ namespace SAISurvey.Testes
         private Turma Incluir_Turma_Sem_Professor_Com_Aluno()
         {
             // MBA Gestão de Sistemas da Informação com SAP
-
+            VerificaAlgumCursoCadastrado(repCurso);
             Aluno aluno = repAluno.ObterPorMatricula("900001");
             if (aluno == null)
             {
@@ -179,6 +186,7 @@ namespace SAISurvey.Testes
 
         private Turma Incluir_Turma_Com_Professor_Com_Aluno()
         {
+            VerificaAlgumCursoCadastrado(repCurso);
             Professor professor = repProfessor.ObterPorMatricula("100001");
             if (professor == null)
             {
@@ -206,16 +214,11 @@ namespace SAISurvey.Testes
             return turma;
         }
 
-        public void Incluir_Turmas()
+        public Turma Incluir_Turma()
         {
-            Turma turma = Incluir_Turma_Sem_Professor_Sem_Aluno();
+            Turma turma = Incluir_Turma_Com_Professor_Com_Aluno();
             controlador.Adicionar(turma);
-            turma = Incluir_Turma_Com_Professor_Sem_Aluno();
-            controlador.Adicionar(turma);
-            turma = Incluir_Turma_Sem_Professor_Com_Aluno();
-            controlador.Adicionar(turma);
-            turma = Incluir_Turma_Com_Professor_Com_Aluno();
-            controlador.Adicionar(turma);
+            return turma;
         }
 
         [Test]

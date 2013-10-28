@@ -2,6 +2,14 @@
     CodeBehind="Default.aspx.cs" Inherits="SAISurvey.Web.Questionario._Default" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
+    <script type="text/javascript">
+        function Check(textBox, maxLength) {
+            if (textBox.value.length > maxLength) {
+                alert("O texto não poderá superior a " + maxLength + " caracteres");
+                textBox.value = textBox.value.substr(0, maxLength);
+            }
+        }        
+    </script>
     <style type="text/css">
         .style1
     {
@@ -11,45 +19,53 @@
     {
         width: 73px;
     }
-</style>
+        .style3
+        {
+            width: 100%;
+        }
+        .newStyle1
+        {
+            border: thin solid #000084;
+        }
+        .style4
+        {
+            width: 698px;
+        }
+        .newStyle2
+        {
+            border-width: thin;
+            border-style: solid;
+            border-color: #000084;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        Welcome to ASP.NET!
-    </h2>
-    <table class="style1">
+    <table class="newStyle2">
         <tr>
             <td class="style2">
                 Curso</td>
-            <td>
+            <td class="style4">
                 <asp:Label ID="lbCurso" runat="server" Text="lbCurso"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="style2">
                 Módulo</td>
-            <td>
+            <td class="style4">
                 <asp:Label ID="lbModulo" runat="server" Text="lbModulo"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="style2">
                 Turma</td>
-            <td>
+            <td class="style4">
                 <asp:Label ID="lbTurma" runat="server" Text="lbTurma"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="style2">
-                Aluno</td>
-            <td>
-                <asp:Label ID="lbAluno" runat="server" Text="lbAluno"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="style2">
                 Professor</td>
-            <td>
+            <td class="style4">
                 <asp:Label ID="lbProfessor" runat="server" Text="lbProfessor"></asp:Label>
             </td>
         </tr>
@@ -61,57 +77,44 @@
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
         BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" 
         CellPadding="3" DataSourceID="ObjectDataSource1" GridLines="Vertical" 
-        AllowPaging="True" PageSize="6">
+        AllowPaging="True" PageSize="6" ondatabound="GridView1_DataBound" 
+    onpageindexchanging="GridView1_PageIndexChanging">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <Columns>
-            <asp:BoundField DataField="ID" Visible="False" />
-            <asp:BoundField DataField="Questao.Descricao" HeaderText="Questão" 
-                SortExpression="ID" />
-            <asp:TemplateField HeaderText="Concordo Totalmente">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta1" runat="server" Text="lbResposta1"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HiddenField ID="hdfID" runat="server" 
+                        Value='<%# Eval("Questao.ID") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Questao.Descricao" HeaderText="Questão" />
+            <asp:TemplateField HeaderText="Resposta1">
                 <ItemTemplate>
                     <asp:RadioButton Visible="true" ID="rbResposta1"  runat="server" GroupName="Resposta" 
                     AutoPostBack="false" OnCheckedChanged="rbResposta_CheckedChanged"/>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Concordo">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta2" runat="server" Text="lbResposta2"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Resposta2">
                 <ItemTemplate>
                     <asp:RadioButton ID="rbResposta2" runat="server" GroupName="Resposta" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Não concordo nem discordo">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta3" runat="server" Text="lbResposta3"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Resposta3">
                 <ItemTemplate>
                     <asp:RadioButton ID="rbResposta3" runat="server" GroupName="Resposta" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Discordo">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta4" runat="server" Text="lbResposta4"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Resposta4">
                 <ItemTemplate>
                     <asp:RadioButton ID="rbResposta4" runat="server" GroupName="Resposta" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Discordo Totalmente">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta5" runat="server" Text="lbResposta5"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Resposta5">
                 <ItemTemplate>
                     <asp:RadioButton ID="rbResposta5" runat="server" GroupName="Resposta" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Não sei avaliar">
-                <HeaderTemplate>
-                    <asp:Label ID="lbResposta6" runat="server" Text="lbResposta6"></asp:Label>
-                </HeaderTemplate>
+            <asp:TemplateField HeaderText="Resposta6">
                 <ItemTemplate>
                     <asp:RadioButton ID="rbResposta6" runat="server" GroupName="Resposta" />
                 </ItemTemplate>
@@ -128,26 +131,42 @@
         <SortedDescendingHeaderStyle BackColor="#000065" />
     </asp:GridView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        SelectMethod="ListarQuestoes" TypeName="SAISurvey.Web.Questionario._Default">
+        SelectMethod="ListarQuestoes" 
+        TypeName="SAISurvey.Web.Questionario._Default" 
+        DataObjectTypeName="RespostaQuestao">
     </asp:ObjectDataSource>
+    <table class="style3">
+        <tr>
+            <td>
+                Comentário</td>
+        </tr>
+        <tr>
+            <td>
+                <asp:TextBox ID="txtComentarios" runat="server" Height="50px"  
+                    TextMode="MultiLine" Width="923px" 
+                    onkeyUp="javascript:Check(this, 255);"
+                    onchange="javascript:Check(this, 255);" ></asp:TextBox>
+            </td>
+        </tr>
+    </table>
     <br />
     <table class="style1">
         <tr>
             <td>
                 <asp:Button ID="btnSalvarContinuar" runat="server" Text="Salvar e continuar" 
-                    Width="200px" />
+                    Width="200px" onclick="btnSalvarContinuar_Click" />
             </td>
             <td>
-                <asp:Button ID="btnSalvarFechar" runat="server" Text="Salvar e fechar" 
-                    Width="200px" />
+                <asp:Button ID="btnSalvarFechar" runat="server" Text="Salvar e terninar depois" 
+                    Width="200px" onclick="btnSalvarFechar_Click" />
             </td>
             <td>
-                <asp:Button ID="btnSalvarEncerrar" runat="server" Text="Salvar e encerrar" 
-                    Width="200px" />
+                <asp:Button ID="btnSalvarEncerrar" runat="server" Text="Salvar e terminar" 
+                    Width="200px" onclick="btnSalvarEncerrar_Click" />
             </td>
             <td>
                 <asp:Button ID="btnDescartarResponderDepois" runat="server" 
-                    Text="Descartar e responder depois" Width="200px" 
+                    Text="Descartar e terminar depois" Width="200px" 
                     onclick="btnDescartarResponderDepois_Click" />
             </td>
         </tr>

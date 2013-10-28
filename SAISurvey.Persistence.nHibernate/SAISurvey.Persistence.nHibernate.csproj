@@ -54,6 +54,7 @@
     <Compile Include="ConectionManager.cs" />
     <Compile Include="Controladores\ControladorAluno.cs" />
     <Compile Include="Controladores\ControladorAvaliacao.cs" />
+    <Compile Include="Controladores\ControladorAvaliacaoAluno.cs" />
     <Compile Include="Controladores\ControladorCurso.cs" />
     <Compile Include="Controladores\ControladorGenerico.cs" />
     <Compile Include="Controladores\ControladorProfessor.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Repositorios\Banco.cs" />
     <Compile Include="Repositorios\RepositorioAluno.cs" />
     <Compile Include="Repositorios\RepositorioAvaliacao.cs" />
+    <Compile Include="Repositorios\RepositorioAvaliacaoAluno.cs" />
     <Compile Include="Repositorios\RepositorioCurso.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
     <Compile Include="Repositorios\RepositorioProfessor.cs" />

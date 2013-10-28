@@ -32,12 +32,8 @@ namespace SAISurvey.Testes
         [Test]
         public void a_ExportarAvaliacao()
         {
-            if (repositorioAvaliacaoAluno.ListarTudo().Count() == 0)
-            {
-                AvaliacaoAlunoTeste avaliacaoAlunoTeste = new AvaliacaoAlunoTeste();
-                avaliacaoAlunoTeste.CargaInicial();
-            }
-            AvaliacaoAluno avaliacaoAluno = repositorioAvaliacaoAluno.ListarTudo().FirstOrDefault();
+            AvaliacaoAlunoTeste avaliacaoAlunoTeste = new AvaliacaoAlunoTeste();
+            AvaliacaoAluno avaliacaoAluno = avaliacaoAlunoTeste.IncluirAvaliacaoAluno();
             Assert.IsTrue(servExportadorAvaliacaoCSV.Execute(avaliacaoAluno));
         }
     

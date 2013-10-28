@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using SAISurvey.App.Servicos;
 using SAISurvey.Dominio.Modelo;
+using SAISurvey.Dominio.Excecoes;
 using SAISurvey.Dominio.Servicos;
+using SAISurvey.Persistence.nHibernate.Repositorios;
 using SAISurvey.Persistence.nHibernate.Servicos;
 
 namespace SAISurvey.Persistence.nHibernate.Servicos
@@ -13,14 +15,26 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
     {
         private CSVFile _csvFile;
         private String _CaminhoArquivo;
+        private ConectionManager _conexao;
+        private RepositorioAvaliacaoAluno repositorioAvaliacaoAluno;
 
         public ServExportadorAvaliacaoCSV(String pCaminhoArquivo)
         {
             _CaminhoArquivo = pCaminhoArquivo;
+            _conexao = new ConectionManager();
+            repositorioAvaliacaoAluno = new RepositorioAvaliacaoAluno(_conexao);
         }
 
         public Boolean Execute(AvaliacaoAluno pAvaliacaoAluno)
         {
+            AvaliacaoAluno avaliacaoAluno = repositorioAvaliacaoAluno.ObterPorID(pAvaliacaoAluno.ID);
+
+            if (avaliacaoAluno == null)
+                throw new ExAvaliacaoAlunoInexistente();
+
+            if (avaliacaoAluno.Fechada != "S")
+                throw new ExAvaliacaoAlunoNaoEstaFechada();
+            
             String NomeArquivo = "Avaliacao_"+pAvaliacaoAluno.ID+"_"+pAvaliacaoAluno.Aluno.Matricula+".csv";
             _csvFile = new CSVFile(_CaminhoArquivo+NomeArquivo, true);
 

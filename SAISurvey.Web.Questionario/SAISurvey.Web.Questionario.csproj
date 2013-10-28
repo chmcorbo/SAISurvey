@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Agradecimento.aspx" />
+    <Content Include="AvaliacaoEncerrada.aspx" />
+    <Content Include="AvaliacaoNaoEncontrada.aspx" />
+    <Content Include="ContinuarDepois.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -73,6 +77,34 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Agradecimento.aspx.cs">
+      <DependentUpon>Agradecimento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agradecimento.aspx.designer.cs">
+      <DependentUpon>Agradecimento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AvaliacaoEncerrada.aspx.cs">
+      <DependentUpon>AvaliacaoEncerrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AvaliacaoEncerrada.aspx.designer.cs">
+      <DependentUpon>AvaliacaoEncerrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AvaliacaoNaoEncontrada.aspx.cs">
+      <DependentUpon>AvaliacaoNaoEncontrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AvaliacaoNaoEncontrada.aspx.designer.cs">
+      <DependentUpon>AvaliacaoNaoEncontrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContinuarDepois.aspx.cs">
+      <DependentUpon>ContinuarDepois.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContinuarDepois.aspx.designer.cs">
+      <DependentUpon>ContinuarDepois.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

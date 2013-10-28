@@ -20,6 +20,7 @@ namespace SAISurvey.Testes
         
         ConectionManager conexao = new ConectionManager();
         ControladorAvaliacao controlador;
+        IRepositorioAvaliacao repositorio;
         IRepositorioTurma repositorioTurma;
         IRepositorioQuestao repositorioQuestao;
 
@@ -27,17 +28,15 @@ namespace SAISurvey.Testes
         {
             controlador = new ControladorAvaliacao();
             conexao = new ConectionManager();
+            repositorio = new RepositorioAvaliacao(conexao);
             repositorioTurma = new RepositorioTurma(conexao);
             repositorioQuestao = new RepositorioQuestao(conexao);
         }
 
-        public void VerificaTurmaCadastrada()
+        public Turma CadastraTurma()
         {
-            if (repositorioTurma.ListarTudo().Count() == 0)
-            {
-                TurmaTeste turmaTeste = new TurmaTeste();
-                turmaTeste.Incluir_Turmas();
-            }
+            TurmaTeste turmaTeste = new TurmaTeste();
+            return turmaTeste.Incluir_Turma();
         }
 
         private void VerificaQuestoesCadastradas()
@@ -60,6 +59,11 @@ namespace SAISurvey.Testes
 
         private Avaliacao IncluirAvaliacaoSemTurmaComQuestoes()
         {
+            if (repositorioQuestao.ListarTudo().Count() == 0)
+            {
+                QuestaoTeste questaoTeste = new QuestaoTeste();
+                questaoTeste.CargaInicial();
+            }
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("10/10/2013");
@@ -70,19 +74,17 @@ namespace SAISurvey.Testes
 
         private Avaliacao IncluirAvaliacaoComTurmaSemQuestoes()
         {
-            VerificaTurmaCadastrada();
             RepositorioCurso repositorioCurso = new RepositorioCurso(conexao);
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.Objetivo = "Pesquisa de satisfação";
             avaliacao.Data_Inicio = DateTime.Parse("21/10/2013 08:00:00");
             avaliacao.Data_Fim = DateTime.Parse("05/11/2013 23:59:00");
-            avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
+            avaliacao.Turma = CadastraTurma();
             return avaliacao;
         }
 
         private Avaliacao IncluirAvaliacaoComTurmaComQuestoes()
         {
-            RepositorioCurso repositorioCurso = new RepositorioCurso(conexao);
             if (repositorioQuestao.ListarTudo().Count() == 0)
             {
                 QuestaoTeste questaoTeste = new QuestaoTeste();
@@ -94,7 +96,7 @@ namespace SAISurvey.Testes
             avaliacao.Data_Inicio = DateTime.Parse("22/10/2013 08:00:00");
             avaliacao.Data_Fim = DateTime.Parse("31/10/2013 23:59:00");
             avaliacao.Questoes = repositorioQuestao.ListarTudo().ToList();
-            avaliacao.Turma = repositorioTurma.ListarTudo().FirstOrDefault();
+            avaliacao.Turma = CadastraTurma();
             return avaliacao;
         }
 
@@ -113,15 +115,12 @@ namespace SAISurvey.Testes
         public void a_IncluirAvaliacaoSemTurmaSemQuestoes()
         {
             objeto = IncluirAvaliacaoSemTurmaSemQuestoes();
-            controlador.Adicionar(objeto);
-            objetoRecuperado = controlador.ObterPorID(objeto.ID);
-            Assert.AreSame(objeto, objetoRecuperado);
+            Assert.Throws<ExAvaliacaoSemTurma>(delegate { repositorio.Adicionar(objeto); });
         }
 
         [Test]
         public void b_IncluirAvaliacaoSemTurmaComQuestoes()
         {
-            IRepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
             objeto = IncluirAvaliacaoSemTurmaComQuestoes();
             Assert.Throws<ExAvaliacaoSemTurma>(delegate { repositorio.Adicionar(objeto); });
         }
@@ -129,9 +128,8 @@ namespace SAISurvey.Testes
         [Test]
         public void c_IncluirAvaliacaoComTurmaSemQuestoes()
         {
-            IRepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
             objeto = IncluirAvaliacaoComTurmaSemQuestoes();
-            Assert.Throws<ExAvaliacaoSemTurma>(delegate { repositorio.Adicionar(objeto); });
+            Assert.Throws<ExAvaliacaoSemQuestoes>(delegate { repositorio.Adicionar(objeto); });
         }
 
         [Test]
@@ -149,7 +147,7 @@ namespace SAISurvey.Testes
         public void e_Alterar_Avaliacao()
         {
             IRepositorioQuestao repositorioQuestao = new RepositorioQuestao(conexao);
-            objeto = IncluirAvaliacaoComTurmaSemQuestoes();
+            objeto = IncluirAvaliacaoComTurmaComQuestoes();
             controlador.Adicionar(objeto);
             String id = objeto.ID;
             objeto.Objetivo = "Identificar oportunidades de melhorias";
@@ -189,7 +187,7 @@ namespace SAISurvey.Testes
             IRepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
             objeto = IncluirAvaliacaoComTurmaComQuestoes();
             objeto.Objetivo = String.Empty;
-            Assert.Throws<ExAvaliacaoPeriodoInvalido>(delegate { repositorio.Adicionar(objeto); });
+            Assert.Throws<ExAvaliacaoSemObjetivo>(delegate { repositorio.Adicionar(objeto); });
             /*******************************************************************/
         }
 
@@ -199,7 +197,7 @@ namespace SAISurvey.Testes
             /*******************************************************************/
             IRepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
             objeto = IncluirAvaliacaoComTurmaSemQuestoes();
-            Assert.Throws<ExAvaliacaoPeriodoInvalido>(delegate { repositorio.Adicionar(objeto); });
+            Assert.Throws<ExAvaliacaoSemQuestoes>(delegate { repositorio.Adicionar(objeto); });
             /*******************************************************************/
         }
 

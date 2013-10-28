@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SAISurvey.Web.Questionario
 {
-    public partial class SiteMaster : System.Web.UI.MasterPage
+    public partial class AvaliacaoNaoEncontrada : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Add("usuario", "");
+
         }
     }
 }

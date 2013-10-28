@@ -73,5 +73,11 @@ namespace SAISurvey.Testes.Repositorios
             AvaliacaoTeste avaliacaoTeste = new AvaliacaoTeste();
             Assert.IsTrue(avaliacaoTeste.CargaInicial());
         }
+        [Test]
+        public void j_Incluir_AvaliacaoAluno()
+        {
+            AvaliacaoAlunoTeste avaliacaoAlunoTeste = new AvaliacaoAlunoTeste();
+            Assert.IsTrue(avaliacaoAlunoTeste.CargaInicial());
+        }
     }
 }
