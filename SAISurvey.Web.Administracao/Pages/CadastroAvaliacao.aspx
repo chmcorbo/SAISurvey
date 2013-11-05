@@ -158,7 +158,8 @@
          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
              CellPadding="4" 
              EmptyDataText="Nenhum questão definida para essa avaliação" ForeColor="#333333" 
-             GridLines="None" Width="655px" PageSize="5">
+             GridLines="None" Width="655px" PageSize="5" AllowPaging="True" 
+             DataSourceID="ObjectDataSource1">
              <AlternatingRowStyle BackColor="White" />
              <Columns>
                  <asp:BoundField DataField="Descricao" HeaderText="Descrição" />

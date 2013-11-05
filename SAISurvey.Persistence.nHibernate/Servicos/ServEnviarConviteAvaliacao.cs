@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Servicos;
 using SAISurvey.Persistence.nHibernate;
@@ -14,10 +15,12 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
     public class ServEnviarConviteAvaliacao : IServEnviarConviteAvaliacao
     {
         private ConectionManager _conexao;
+        private String _URL = String.Empty;
 
-        public ServEnviarConviteAvaliacao(ConectionManager pConexao)
+        public ServEnviarConviteAvaliacao(ConectionManager pConexao, String pURL)
         {
             _conexao = pConexao;
+            _URL = pURL;
         }
 
         public Boolean Execute(DateTime pDataReferencia)
@@ -26,6 +29,7 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
             List<Avaliacao> lstAvaliacoes;
             EnvioEmail envioEmail = new EnvioEmail("smtp.gmail.com", true, "chmcorbo", "nqbx2009");
             MessagemEmail messagemEmail = new MessagemEmail();
+            String _URLAluno = String.Empty;
             messagemEmail.Remetente = "comunicacao@infnet.edu.br";
             messagemEmail.Assunto = "Questionário de Avaliação do Curso";
 
@@ -47,13 +51,14 @@ namespace SAISurvey.Persistence.nHibernate.Servicos
                                 avaliacaoAluno.AdicionarRespostaQuestao(questao);
                             }
 
+                            _URLAluno = _URL + "?ID=" + avaliacaoAluno.ID;
                             messagemEmail.Destinatario = aluno.Email;
                             messagemEmail.ConteudoMessagem = "Olá " + aluno.Nome + "," +
                                 Environment.NewLine +
                                 Environment.NewLine +
                                 "Esse é um convite para você responder um questionário de avaliação do módulo " + avaliacao.Turma.Modulo.Descricao +
                                 Environment.NewLine +
-                                "Clique no link http://www.infnet.edu.br" +
+                                "Clique no link " + _URLAluno +
                                 Environment.NewLine +
                                 Environment.NewLine +
                                 "Esse questionário estará disponível até o dia " + avaliacao.Data_Fim.Value.ToString("dd/MM/yyyy") +

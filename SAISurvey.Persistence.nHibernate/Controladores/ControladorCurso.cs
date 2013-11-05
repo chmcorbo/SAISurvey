@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate.Repositorios;
@@ -30,6 +31,11 @@ namespace SAISurvey.Persistence.nHibernate.Controladores
         public Modulo ObterCursoPorIDModulo(String pID_Modulo)
         {
             return _repCurso.ObterCursoPorIDModulo(pID_Modulo);
+        }
+
+        public override List<Curso> ListarTudo()
+        {
+            return base.ListarTudo().OrderBy(c => c.Descricao).ToList();
         }
     }
 }

@@ -4,7 +4,7 @@ using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate;
-using SAISurvey.Persistence.nHibernate.Repositorios;
+using SAISurvey.Persistence.nHibernate.Controladores;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
@@ -13,8 +13,7 @@ namespace SAISurvey.Web.Administracao.Pages
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
         private Resposta _objeto;
-        private ConectionManager _conexao;
-        private IRepositorioResposta _repositorio;
+        private ControladorResposta _controlador;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,9 +23,8 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _conexao = new ConectionManager();
-                    _repositorio = new RepositorioResposta(_conexao);
-                    _objeto = _repositorio.ObterPorID(_id);
+                    _controlador = new ControladorResposta();
+                    _objeto = _controlador.ObterPorID(_id);
                 }
                 else
                 {
@@ -54,13 +52,12 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Resposta pObjeto)
         {
-            _conexao = new ConectionManager();
-            _repositorio = new RepositorioResposta(_conexao);
+            _controlador = new ControladorResposta();
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
-                _repositorio.Adicionar(pObjeto);
+                _controlador.Adicionar(pObjeto);
             else
-                _repositorio.Atualizar(pObjeto);
+                _controlador.Atualizar(pObjeto);
         }
 
         protected void btnGravar_Click(object sender, EventArgs e)

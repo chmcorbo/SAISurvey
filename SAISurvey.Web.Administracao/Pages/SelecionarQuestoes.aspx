@@ -71,7 +71,8 @@
         </asp:GridView>
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
             SelectMethod="ObterPorDescricao" 
-            TypeName="SAISurvey.Persistence.nHibernate.Repositorios.RepositorioQuestao">
+            
+            TypeName="SAISurvey.Persistence.nHibernate.Controladores.ControladorQuestao">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtDescricao" Name="pDescricao" 
                     PropertyName="Text" Type="String" />

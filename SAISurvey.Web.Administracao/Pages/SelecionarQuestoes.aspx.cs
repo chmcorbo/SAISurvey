@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate;
-using SAISurvey.Persistence.nHibernate.Repositorios;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Dominio.Modelo;
 
 
@@ -45,8 +45,7 @@ namespace SAISurvey.Web.Administracao.Pages
 
         protected void btnAdicionarQuestoesSelecionadas_Click(object sender, EventArgs e)
         {
-            _conexao = new ConectionManager();
-            IRepositorioGenerico<Questao> repQuestao = new RepositorioGenerico<Questao>(_conexao);
+            ControladorQuestao _controlador = new ControladorQuestao();
             Avaliacao avaliacao = (Avaliacao)Session["avaliacao"];
             foreach (GridViewRow row in GridView1.Rows)
             {
@@ -58,7 +57,7 @@ namespace SAISurvey.Web.Administracao.Pages
                         String id_questao = row.Cells[2].Text;
                         if (avaliacao.Questoes.Where(q => q.ID == id_questao).Count() == 0)
                         {
-                            Questao questao = repQuestao.ObterPorID(id_questao);
+                            Questao questao = _controlador.ObterPorID(id_questao);
                             avaliacao.Questoes.Add(questao);
                         }
                     }

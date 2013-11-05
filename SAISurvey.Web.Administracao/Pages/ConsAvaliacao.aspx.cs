@@ -1,6 +1,6 @@
 ﻿using System;
 using SAISurvey.Persistence.nHibernate;
-using SAISurvey.Persistence.nHibernate.Repositorios;
+using SAISurvey.Persistence.nHibernate.Controladores;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
@@ -19,11 +19,10 @@ namespace SAISurvey.Web.Administracao.Pages
         protected void btnProcurar_Click(object sender, EventArgs e)
         {
             DateTime dataInicial, dataFinal;
-            ConectionManager conexao = new ConectionManager();
-            RepositorioAvaliacao repositorio = new RepositorioAvaliacao(conexao);
+            ControladorAvaliacao controlador = new ControladorAvaliacao();
             dataInicial = DateTime.Parse(txtDataInicial.Text);
             dataFinal = DateTime.Parse(txtDataFinal.Text);
-            GridView1.DataSource = repositorio.ListarPorPeriodo(dataInicial,dataFinal);
+            GridView1.DataSource = controlador.ListarPorPeriodo(dataInicial, dataFinal);
             GridView1.DataBind();
         }
     }

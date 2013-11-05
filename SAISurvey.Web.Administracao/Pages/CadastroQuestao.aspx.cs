@@ -2,7 +2,7 @@
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate;
-using SAISurvey.Persistence.nHibernate.Repositorios;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Web.Administracao.Modelo;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -12,10 +12,8 @@ namespace SAISurvey.Web.Administracao.Pages
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
         private String _id = String.Empty;
         private Questao _objeto;
-        private ConectionManager _conexao;
-        private IRepositorioQuestao _repositorio;
+        private ControladorQuestao _controlador;
         
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,9 +22,8 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _conexao = new ConectionManager();
-                    _repositorio = new RepositorioQuestao(_conexao);
-                    _objeto = _repositorio.ObterPorID(_id);
+                    _controlador = new ControladorQuestao();
+                    _objeto = _controlador.ObterPorID(_id);
                 }
                 else
                 {
@@ -54,13 +51,12 @@ namespace SAISurvey.Web.Administracao.Pages
 
         private void Gravar(Questao pObjeto)
         {
-            _conexao = new ConectionManager();
-            _repositorio = new RepositorioQuestao(_conexao);
+            _controlador = new ControladorQuestao();
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
-                _repositorio.Adicionar(pObjeto);
+                _controlador.Adicionar(pObjeto);
             else
-                _repositorio.Atualizar(pObjeto);
+                _controlador.Atualizar(pObjeto);
         }
 
         protected void btnGravar_Click(object sender, EventArgs e)

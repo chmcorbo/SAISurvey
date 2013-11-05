@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Dominio.Servicos;
@@ -20,8 +21,9 @@ namespace SAISurvey.Testes
         IRepositorioAvaliacao repositorioAvaliacao;
         public ServEnviarConviteAvaliacaoTeste()
         {
+            String _url = ConfigurationManager.AppSettings["URL"];
             conexao = new ConectionManager();
-            servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao(conexao);
+            servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao(conexao, _url);
             repositorioAvaliacao = new RepositorioAvaliacao(conexao);
         }
 

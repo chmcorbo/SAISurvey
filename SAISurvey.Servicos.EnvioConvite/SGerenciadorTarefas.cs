@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Configuration;
 using SAISurvey.Dominio.Servicos;
 using SAISurvey.Persistence.nHibernate;
 using SAISurvey.Persistence.nHibernate.Servicos;
@@ -24,7 +25,8 @@ namespace SAISurvey.Servicos.EnvioConvite
             try
             {
                 ConectionManager conexao = new ConectionManager();
-                ServEnviarConviteAvaliacao servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao(conexao);
+                String _url = ConfigurationManager.AppSettings["URL"];
+                ServEnviarConviteAvaliacao servEnviarConviteAvaliacao = new ServEnviarConviteAvaliacao(conexao, _url);
                 servEnviarConviteAvaliacao.Execute(DateTime.Now);
                 _EventLog.WriteEntry("Execução do serviço servEnviarConviteAvaliacao.Execute().");
             }

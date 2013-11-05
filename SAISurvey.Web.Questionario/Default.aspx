@@ -69,6 +69,13 @@
                 <asp:Label ID="lbProfessor" runat="server" Text="lbProfessor"></asp:Label>
             </td>
         </tr>
+        <tr>
+            <td class="style2">
+                Aluno</td>
+            <td class="style4">
+                <asp:Label ID="lbAluno" runat="server" Text="lbAluno"></asp:Label>
+            </td>
+        </tr>
 </table>
     
     <br />

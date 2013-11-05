@@ -40,8 +40,9 @@
             // siEnviarConvite
             // 
             this.siEnviarConvite.Description = "Serviço de envio de convite de participação de questionário";
-            this.siEnviarConvite.DisplayName = "wsSAISurveyEnvioConvite";
+            this.siEnviarConvite.DisplayName = "SAISurveyEnvioConvite";
             this.siEnviarConvite.ServiceName = "SAISurveyEnvioConvite";
+            this.siEnviarConvite.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // piEnviarConvite
             // 

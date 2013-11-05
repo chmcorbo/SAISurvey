@@ -4,6 +4,7 @@ using SAISurvey.Web.Administracao.Modelo;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 
 namespace SAISurvey.Web.Administracao.Pages
@@ -13,9 +14,8 @@ namespace SAISurvey.Web.Administracao.Pages
         private String _id = String.Empty;
         private Usuario _objeto;
         private TipoOperacaoUsuario _operacao = TipoOperacaoUsuario.Incluir;
-        private ConectionManager _conexao;
-        private IRepositorioUsuario _repositorio;
-
+        private ControladorUsuario _controlador;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,9 +24,8 @@ namespace SAISurvey.Web.Administracao.Pages
                 {
                     _id = Request.QueryString["id"];
                     _operacao = TipoOperacaoUsuario.Editar;
-                    _conexao = new ConectionManager();
-                    _repositorio = new RepositorioUsuario(_conexao);
-                    _objeto = _repositorio.ObterPorID(_id);
+                    _controlador = new ControladorUsuario();
+                    _objeto = _controlador.ObterPorID(_id);
                 }
                 else
                 {
@@ -58,16 +57,15 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Usuario pObjeto)
         {
-            _conexao = new ConectionManager();
-            _repositorio = new RepositorioUsuario(_conexao);
+            _controlador = new ControladorUsuario();
             _operacao = (TipoOperacaoUsuario)Session["operacaoUsuario"];
             if (_operacao == TipoOperacaoUsuario.Incluir)
             {
                 _objeto.Senha = _objeto.Login;
-                _repositorio.Adicionar(pObjeto);
+                _controlador.Adicionar(pObjeto);
             }
             else
-                _repositorio.Atualizar(pObjeto);
+                _controlador.Atualizar(pObjeto);
 
         }
 

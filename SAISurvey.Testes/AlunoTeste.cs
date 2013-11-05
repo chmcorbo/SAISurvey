@@ -46,7 +46,7 @@ namespace SAISurvey.Testes
                 objeto = new Aluno();
                 objeto.Matricula = "900002";
                 objeto.Nome = "Tatiana Moreira da Silva Corbo";
-                objeto.Email = "chmcorbo@gmail.com";
+                objeto.Email = "chmeireles@hotmail.com";
                 controlador.Adicionar(objeto);
 
                 objeto = new Aluno();

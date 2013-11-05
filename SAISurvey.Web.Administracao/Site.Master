@@ -43,7 +43,7 @@
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         Bem vindo <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Logout" LogoutPageUrl="~/"/> ]
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Logout" LogoutPageUrl="~/Default.aspx"/> ]
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>

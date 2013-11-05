@@ -2,6 +2,7 @@
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Dominio.Repositorios;
 using SAISurvey.Persistence.nHibernate;
+using SAISurvey.Persistence.nHibernate.Controladores;
 using SAISurvey.Persistence.nHibernate.Repositorios;
 using SAISurvey.Web.Administracao.IPages;
 
@@ -11,8 +12,7 @@ namespace SAISurvey.Web.Administracao.Pages
     {
         private String _id = String.Empty;
         private Usuario _objeto;
-        private ConectionManager _conexao;
-        private IRepositorioUsuario _repositorio;
+        private ControladorUsuario _controlador;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,9 +44,8 @@ namespace SAISurvey.Web.Administracao.Pages
 
         public void Gravar(Usuario pObjeto)
         {
-            _conexao = new ConectionManager();
-            _repositorio = new RepositorioUsuario(_conexao);
-            _repositorio.Atualizar(pObjeto);
+            _controlador = new ControladorUsuario();
+            _controlador.Atualizar(pObjeto);
         }
 
         protected void btnVoltar_Click(object sender, EventArgs e)

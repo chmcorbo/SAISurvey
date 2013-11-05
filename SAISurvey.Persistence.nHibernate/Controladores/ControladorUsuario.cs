@@ -32,5 +32,15 @@ namespace SAISurvey.Persistence.nHibernate.Controladores
             IServValidadorAcessoUsuario servValidadorAcessoUsuario = new ServValidadorAcessoUsuario(Conexao);
             return servValidadorAcessoUsuario.Execute(pLogin, pSenha);
         }
+
+        public List<Usuario> ListarPorNome(String pNome)
+        {
+            return _repUsuario.ListarPorNome(pNome).ToList();
+        }
+
+        public override List<Usuario> ListarTudo()
+        {
+            return base.ListarTudo().OrderBy(u => u.Nome).ToList();
+        }
     }
 }

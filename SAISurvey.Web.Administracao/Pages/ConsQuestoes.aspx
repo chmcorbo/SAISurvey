@@ -7,7 +7,7 @@
         }
         .style2
         {
-            width: 489px;
+            width: 552px;
         }
     </style>
 </asp:Content>
@@ -20,7 +20,7 @@
             <td>
                 Descrição</td>
             <td class="style2">
-                <asp:TextBox ID="txtDescricao" runat="server" Width="469px"></asp:TextBox>
+                <asp:TextBox ID="txtDescricao" runat="server" Width="539px"></asp:TextBox>
             </td>
             <td>
                 <asp:Button ID="btnProcurar" runat="server" CssClass="submitButton" 
@@ -32,7 +32,7 @@
     </table>
     <div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" Width="567px" 
+            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" Width="792px" 
             AllowPaging="True" DataSourceID="ObjectDataSource1">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -57,7 +57,8 @@
         </asp:GridView>
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
             SelectMethod="ObterPorDescricao" 
-            TypeName="SAISurvey.Persistence.nHibernate.Repositorios.RepositorioQuestao">
+            
+            TypeName="SAISurvey.Persistence.nHibernate.Controladores.ControladorQuestao">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtDescricao" Name="pDescricao" 
                     PropertyName="Text" Type="String" />

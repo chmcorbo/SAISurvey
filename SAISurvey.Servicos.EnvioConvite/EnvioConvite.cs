@@ -11,7 +11,7 @@ namespace SAISurvey.Servicos.EnvioConvite
         {
             InitializeComponent();
             cPrincipal = new CPrincipal();
-            cPrincipal.InitializeComponente(elgSAISurveyEnvioConvite);
+            //cPrincipal.InitializeComponente(elgSAISurveyEnvioConvite);
         }
 
         protected override void OnStart(string[] args)

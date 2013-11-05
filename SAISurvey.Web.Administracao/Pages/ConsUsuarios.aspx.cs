@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SAISurvey.Dominio.Modelo;
 using SAISurvey.Persistence.nHibernate;
-using SAISurvey.Persistence.nHibernate.Repositorios;
+using SAISurvey.Persistence.nHibernate.Controladores;
 
 namespace SAISurvey.Web.Administracao.Pages
 {
@@ -24,12 +24,11 @@ namespace SAISurvey.Web.Administracao.Pages
 
         protected void btnProcurar_Click(object sender, EventArgs e)
         {
-            ConectionManager conexao = new ConectionManager();
-            RepositorioUsuario repositorio = new RepositorioUsuario(conexao);
+            ControladorUsuario _controlador = new ControladorUsuario();
             if (txtNome.Text != String.Empty)
-                GridView1.DataSource = repositorio.ListarPorNome(txtNome.Text);
+                GridView1.DataSource = _controlador.ListarPorNome(txtNome.Text);
             else
-                GridView1.DataSource = repositorio.ListarTudo();
+                GridView1.DataSource = _controlador.ListarTudo();
             GridView1.DataBind();
         }
     }

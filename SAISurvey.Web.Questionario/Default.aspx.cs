@@ -35,7 +35,7 @@ namespace SAISurvey.Web.Questionario
                             Session.Abandon();
                             Response.Redirect("AvaliacaoNaoEncontrada.aspx");
                         }
-                        else if (_avaliacaAluno.Fechada=="S")
+                        else if (_avaliacaAluno.Fechada=="S" || _avaliacaAluno.Avaliacao.Data_Fim<DateTime.Now)
                         {
                             Session.Abandon();
                             Response.Redirect("AvaliacaoEncerrada.aspx");
@@ -62,6 +62,7 @@ namespace SAISurvey.Web.Questionario
             lbCurso.Text=pObjeto.Avaliacao.Turma.Modulo.Bloco.Curso.Descricao;
             lbModulo.Text=pObjeto.Avaliacao.Turma.Modulo.Descricao;
             lbTurma.Text=pObjeto.Avaliacao.Turma.Descricao;
+            lbAluno.Text = pObjeto.Aluno.Nome;
             lbProfessor.Text = pObjeto.Avaliacao.Turma.Professor.Nome;
             txtComentarios.Text = pObjeto.Comentarios;
         }
